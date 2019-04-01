@@ -1,0 +1,34 @@
+---
+title: "EDA"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+```{r}
+adoptions <- readRDS("~/Stats 316 S19/Project/adoptions/adoptions.rds")
+```
+
+
+```{r}
+adoptions %>%
+  mutate(month = month(outcome_date))%>%
+  filter(!is.na(month))%>%
+  ggplot() +
+  geom_bar(aes(x=month))
+
+adoptions %>%
+  filter(animal_type=="WILDLIFE") %>%
+  group_by(animal_breed) %>%
+  summarise(n()) %>%
+  print(n=32)
+
+
+adoptions%>%
+  filter(dog == 1) %>%
+  filter(adopted == 1) %>%
+  group_by(outcome_date) %>%
+  tally() %>%
+  ggplot()+
+  geom_histogram(aes(x=n))
+```
+
