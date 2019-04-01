@@ -1,20 +1,19 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1554134310609.000,
+    "created" : 1554133496104.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
-    "id" : "EC265067",
-    "lastKnownWriteTime" : 1554134300,
-    "last_content_update" : 1554134300,
+    "hash" : "2962876135",
+    "id" : "154426C7",
+    "lastKnownWriteTime" : 1554133501,
+    "last_content_update" : 1554133501143,
     "path" : "~/GitHub/adoptions/CreateDataset.Rmd",
     "project_path" : "CreateDataset.Rmd",
     "properties" : {
-        "chunk_output_type" : "console",
-        "cursorPosition" : "6,0",
-        "scrollLine" : "0"
+        "cursorPosition" : "51,3",
+        "scrollLine" : "26"
     },
     "relative_order" : 1,
     "source_on_save" : false,
