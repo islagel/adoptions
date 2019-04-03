@@ -5,7 +5,7 @@ editor_options:
   chunk_output_type: console
 ---
 ```{r}
-adoptions <- readRDS("~/Stats 316 S19/Project/adoptions/adoptions.rds")
+adoptions <- read_csv("~/Stats 316 S19/Project/adoptions/adoptions.csv")
 ```
 
 
