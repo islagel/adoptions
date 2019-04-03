@@ -48,5 +48,5 @@ pets <- pets %>%
 ```
 
 ```{r}
-saveRDS(pets, "~/Stats 316 S19/Project/pets/pets.rds")
+write.csv(pets, "~/Stats 316 S19/Project/adoptions/adoptions.csv")
 ```
