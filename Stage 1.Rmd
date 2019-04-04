@@ -3,6 +3,11 @@ title: "Project Stage 1"
 authors: "Isaac Slagel and Jack Welsch"
 output: pdf_document
 ---
+```{r, include = FALSE}
+library(tidyverse)
+library(kableExtra)
+```
+
 
 1. Identify the important research question(s) which will guide your project (e.g. What factors are associated with lower BMI?) – and describe why your chosen project is interesting to you.  Provide rationale for each variable included in your proposed data set (e.g. Does taking a PE class help?  We may subgroup by gender.  We need to control for diet.)
 
@@ -32,9 +37,25 @@ breed <- c("animal_breed", "explanatory", "categorical", "296 unique breeds", "N
 origin <- c("animal_origin", "explanatory", "categorical", "4 sources of shelter animals", "NA")
 type <- c("animal_type", "explanatory", "categorical", "5 species of animal", "NA")
 chip <- c("chip_status", "explanatory", "bianary", "(0,1)", "NA")
+
+intake_type <- c("intake_type", "potential confounder", "categorial", "how animal came to be at the shelter", "NA")
+outcome_type <- c("outcome_type", "reponse", "categorial", "how animals was removed from shelter", "NA")
+
 intake_condition <- c("intake_condition", "potential confounder", "categorial", "keyword description of animal status at intake", "NA")
-intake_date <- c("intake_date", "response", "date", "date animal was placed in shelter", "mm-dd-yyy")
-outcome_date <- c("outcome_date", "response", "date", "date animal was removed from shelter", "mm-dd-yyy")
+outcome_condition <- c("outcome_condition", "potential confounder", "categorial", "keyword description of animal status at outcome", "NA")
+
+intake_date <- c("intake_date", "response", "date", "(2017-10-01, 2019-04-03)", "y-m-d")
+outcome_date <- c("outcome_date", "response", "date", "(2017-10-01, 2019-04-03)", "y-m-d")
+
+tab <- rbind(breed, origin, type, chip, intake_type, outcome_type, intake_condition, outcome_condition, intake_date, outcome_date)
+
+colnames(tab) <- variables
+rownames(tab) <- NULL
+
+kable(tab, format = "latex", booktabs = T) %>%
+  column_spec( 4, width = "4cm") %>%
+  kable_styling(latex_options = "striped")
+
 ```
 
 4. Outline how you plan to address your research question(s) with the data you have listed in (3) (e.g. We plan to run multiple linear regression models with BMI as response and daily attendance and age as explanatory variables, possibly examining interactions between the two).
