@@ -23,9 +23,20 @@ The variables `animal_breed`, `animal_origin`, `animal_type`, and `chip_status` 
 	For the project proposal, include the following information:
   
     -	Give the citation for each reference (in APA format or similar) and a link, if appropriate.
+      - In 1-2 paragraphs, summarize the primary findings and how they relate to your proposal.
     
-    - In 1-2 paragraphs, summarize the primary findings and how they relate to your proposal.
+1. [Lepper, M., Kass, P. H., & Hart, L. A. (2002). Prediction of adoption versus euthanasia among dogs and cats in a California animal shelter. Journal of Applied Animal Welfare Science, 5(1), 29-42.](https://www.tandfonline.com/doi/abs/10.1207/S15327604JAWS0501_3)
 
+2. [Posage, J. M., Bartlett, P. C., & Thomas, D. K. (1998). Determining factors for successful adoption of dogs from an animal shelter. Journal of the American Veterinary Medical Association, 213(4), 478-482.](https://europepmc.org/abstract/med/9713528)
+
+3. [Lampe, R., & Witte, T. H. (2015). Speed of dog adoption: Impact of online photo traits. Journal of applied animal welfare science, 18(4), 343-354.](https://www.tandfonline.com/doi/abs/10.1080/10888705.2014.982796)
+
+  The first paper (Lepper et al) had a panel of individuals record features of a young or old Labrador retriever's photo at an animal shelter. The goal of this study was to pilot research into animal advertising and adoption rates to help shelters effectively improve how animals are taken out of the system. Not surprisingly they found that dogs with poor images got adopted at a lower rate, but this phenomonon was more pronounced for older dogs. While we have no infomration on how these dogs are marketed, our research would look into which animals have the lowest odds of adoptions. Thus shelters could use their resources to market these dogs more and get them out of the shelter. 
+
+The second study, Posage et al,  much like the first one, looks into what characteristics influence a dog's chance of being adopted using data from a local humane society. They discovered certain charateristics of dogs which are associated with higher rates of adoption. 
+
+
+ The third study, Lampe and Whitte,  looked into animal shelter data from Sacramento County California. The authors were interested in what charateristics of dogs and cats influenced those animals rates of adoption. They were able to conclude on 5 variables that influeced a cat's odds of adoption and 7 variables that influenced a dog's odds of adoption using logistic regression. While we are not totally confident that the authors of this paper employed good statistical practices, they went about answering some similar questions to what we are planning to do in our research.
 
 3. Complete a variable chart (similar to the one that follows) for your anticipated variables.  A typical list will include 6-10 variables.  List the variable name, variable role if known (response, explanatory, potential confounder), an indication of whether or not the variable is quantitative or categorical, the range of values for each variable, and the units of measurement for each variable (if appropriate). For any variable whose definition is unclear, provide a short definition.  Also mention your observational units; if your data has multilevel structure, provide the level for each variable as well.  As an example, if body mass index (BMI) were the response variable, attending a physical exercise class daily is the explanatory variable, and age is a potential confounder, the first few lines of the chart might read:
 
