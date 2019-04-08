@@ -17,7 +17,6 @@ The variables `animal_breed`, `animal_origin`, `animal_type`, and `chip_status` 
 
 
 
-
 2. Find references for at least two articles in the refereed literature that are relevant to your question of interest. You should avoid articles that are too technical to be relevant to the project or to be informative for the non-specialist (e.g. “Beta 2-adrenergic receptor polymorphisms and haplotypes are associated with airways hyperresponsiveness among nonsmoking men,” Chest, 2004). Articles that appear in the popular press (such as The New York Times or Washington Post) or news articles in journals are not acceptable as refereed references, although they may help motivate ideas for your project.  Be sure you obtain the entire paper and not just an abstract!
 	You will eventually use these references in the introduction of your paper. Pay close attention to the figures, tables, and methods sections of the papers you select as they can give you an idea of what I'll be expecting from you in your final write up.  
 	For the project proposal, include the following information:
