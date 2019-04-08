@@ -1,6 +1,6 @@
 ---
 title: "Project Stage 1"
-authors: "Isaac Slagel and Jack Welsch"
+authors: "Isaac Slagel, Jack Welsch, Va Yang"
 output: pdf_document
 ---
 ```{r, include = FALSE}
