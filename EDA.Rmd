@@ -3,7 +3,6 @@ title: "EDA"
 output: pdf_document
 editor_options: 
   chunk_output_type: console
-
 ---
 
 ```{r}
@@ -17,6 +16,8 @@ library(lubridate)
 adoptions <- read_csv("~/Stats 316 S19/Project/adoptions/adoptions.csv")
 # For Jack keep the line below for reading in the data
 adoptions <- read_csv("adoptions.csv")
+head(adoptions)
+view(adoptions)
 ```
 
 
