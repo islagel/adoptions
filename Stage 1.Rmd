@@ -74,6 +74,6 @@ We plan to use Poisson regression to investigate the factors that relate to  how
 
 
 
-5. Describe how you obtained your data, providing a link if appropriate.  Store your data, properly labeled, as a .csv file in the Project folder of our class folder on the RStudio server.
+5. Describe how you obtained your data, providing a link if appropriate.  Store your data, properly labeled, as a .csv file in the Project folder of our class folder on the RStudio server. 
 
 We accessed our data from the Dallas Open Data website. This website contains many public datasets, including [animal shelter records](https://www.dallasopendata.com/City-Services/Dallas-Animal-Shelter-Data/7h2m-3um5), which anyone can request an access key to and then download. We installed the data, selected the variables of interest to us, and created a .csv file in the CreateDataset.Rmd file. Our dataset is saved as adoptions.csv.  
