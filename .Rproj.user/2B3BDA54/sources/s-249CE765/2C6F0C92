@@ -5,16 +5,16 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "4015257096",
+    "hash" : "3725770263",
     "id" : "2C6F0C92",
-    "lastKnownWriteTime" : 1554309389,
-    "last_content_update" : 1554309389509,
+    "lastKnownWriteTime" : 1554683928,
+    "last_content_update" : 1554683928834,
     "path" : "~/GitHub/adoptions/EDA.Rmd",
     "project_path" : "EDA.Rmd",
     "properties" : {
         "chunk_output_type" : "console",
-        "cursorPosition" : "39,0",
-        "scrollLine" : "6"
+        "cursorPosition" : "65,36",
+        "scrollLine" : "27"
     },
     "relative_order" : 1,
     "source_on_save" : false,

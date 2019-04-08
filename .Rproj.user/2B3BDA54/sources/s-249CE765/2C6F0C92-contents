@@ -21,6 +21,7 @@ adoptions <- read_csv("adoptions.csv")
 
 
 ```{r}
+
 adoptions %>%
   mutate(month = as.factor(month(outcome_date)))%>%
   filter(!is.na(month))%>%
@@ -56,7 +57,18 @@ adoptions%>%
   filter(dog==1)%>%
   group_by(pitbull)%>%
   summarise(mean(adopted))
+```
+
+
+
+```{r}
+adoptions%>%
+  filter(animal_type=="WILDLIFE")%>%
+  select(outcome_type)%>%
+  unique()
 
 
 ```
+
+
 
