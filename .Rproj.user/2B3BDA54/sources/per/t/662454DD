@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "3421738881",
+    "hash" : "2159334757",
     "id" : "662454DD",
-    "lastKnownWriteTime" : 1554685319,
-    "last_content_update" : 1554685319,
+    "lastKnownWriteTime" : 1554686041,
+    "last_content_update" : 1554686041456,
     "path" : "~/GitHub/adoptions/Stage 1.Rmd",
     "project_path" : "Stage 1.Rmd",
     "properties" : {
-        "cursorPosition" : "22,2",
-        "scrollLine" : "49"
+        "cursorPosition" : "2,33",
+        "scrollLine" : "0"
     },
     "relative_order" : 3,
     "source_on_save" : false,
