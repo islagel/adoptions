@@ -1,6 +1,6 @@
 ---
 title: "Project Stage 1"
-authors: "Isaac Slagel, Jack Welsch, and Va Yang"
+authors: "Isaac Slagel and Jack Welsch"
 output: pdf_document
 ---
 ```{r, include = FALSE}
@@ -72,6 +72,7 @@ kable(tab, format = "latex", booktabs = T) %>%
 4. Outline how you plan to address your research question(s) with the data you have listed in (3) (e.g. We plan to run multiple linear regression models with BMI as response and daily attendance and age as explanatory variables, possibly examining interactions between the two).
 
 We plan to use Poisson regression to investigate the factors that relate to  how long an animal will spend up for adoption. We will use logistic or binomial regression to invesitgate what factors influence the euthinization rates. To look at how the rates of adoption differ throuhghout the year we plan on using poisson regression with a categorical variable to look at the month. To look at the differences between cats and dogs we plan to do poisson regression on just cats and just dogs, then compare the coefficients between the two. We think that there may be some problems with the indepence condition for our models. We believe that the outcome for an animal in the shelter may depend on what other animals are at the shelter. We are unsure what type of mixed affects model would be most appropriate to acconut for this kind of correlation.
+
 
 
 5. Describe how you obtained your data, providing a link if appropriate.  Store your data, properly labeled, as a .csv file in the Project folder of our class folder on the RStudio server.
