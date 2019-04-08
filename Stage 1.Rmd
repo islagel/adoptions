@@ -9,7 +9,7 @@ library(kableExtra)
 ```
 
 
-1. Identify the important research question(s) which will guide your project (e.g. What factors are associated with lower BMI?) – and describe why your chosen project is interesting to you. Provide rationale for each variable included in your proposed data set (e.g. Does taking a PE class help?  We may subgroup by gender. We need to control for diet.)
+1. Identify the important research question(s) which will guide your project (e.g. What factors are associated with lower BMI?) – and describe why your chosen project is interesting to you. Provide rationale for each variable included in your proposed data set (e.g. Does taking a PE class help?  We may subgroup by gender. We need to control for diet.) 
     
     What factors influence how long an animal will stay in the humane shelter? Are certain breeds euthanized at a higher rate than others? Are certain animals adopted more during certain times of the year (ex. are more rabbits adopted around easter?). What differences do we see between the conditions of dogs and cats in the humane society? This project is of interest to us because we love animals and are intrigued about how different animals are handled in the humane shelter system. The dataset we found to look into this made us even more motivated to look into these questions as it is detailed and clean! 
 
@@ -39,6 +39,8 @@ library(kableExtra)
 
 3. Complete a variable chart (similar to the one that follows) for your anticipated variables. A typical list will include 6-10 variables.  List the variable name, variable role if known (response, explanatory, potential confounder), an indication of whether or not the variable is quantitative or categorical, the range of values for each variable, and the units of measurement for each variable (if appropriate). For any variable whose definition is unclear, provide a short definition.  Also mention your observational units; if your data has multilevel structure, provide the level for each variable as well.  As an example, if body mass index (BMI) were the response variable, attending a physical exercise class daily is the explanatory variable, and age is a potential confounder, the first few lines of the chart might read:
 
+    The observational units in this data are individual animals which have ended up in an animal shelter. There may be some multilevel data with correllation between observations at each shelter (we still need to do some work with this variable).
+
 ```{r, echo = FALSE}
 
 variables <- c("Variable Name", "Variable Role", "Variable Type", "Range of Values", "Units of Measurement")
@@ -67,6 +69,7 @@ kable(tab, format = "latex", booktabs = T) %>%
   kable_styling(latex_options = "striped")
 
 ```
+
 
 4. Outline how you plan to address your research question(s) with the data you have listed in (3) (e.g. We plan to run multiple linear regression models with BMI as response and daily attendance and age as explanatory variables, possibly examining interactions between the two).
 
