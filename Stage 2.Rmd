@@ -1,0 +1,36 @@
+---
+title: "Stage_2"
+author: "Isaac Slagel, Jack Welsh, Va Yang"
+date: "4/18/2019"
+output: pdf_document
+---
+
+Stage II:  Exploratory Data Analysis
+1. Exploratory data analysis. Calculate or prepare appropriate numeric and graphical summaries for all relevant variables. Summarize the data using methods that are appropriate to the data type.
+(a) Most likely you will need to “clean” your dataset first. Make note of any problematic data and observations that need to be removed. Consider implications about any decisions you make about missing data.  
+(b) Descriptive statistics (5 number summaries for continuous variables; tables of counts and proportions for categorical variables) for all relevant variables in your data set.  Plot continuous variables using histograms.
+(c) Explore the relationships between important pairs of variables both graphically and numerically.  Depending on the type of your response and explanatory variables, you may consider graphs such as boxplots, scatterplots, cdplots, spaghetti plots, and segmented bar charts, and you may consider summary statistics (like mean, median, standard deviation) by group, correlations, regression equations, and two-way tables with proportions. Exploratory plots can be loose with titles and labels, but for your final paper it is essential that your figures have (meaningful) captions and axis labels!
+2. EDA Report.  In no more than 3 pages, summarize the main findings of your exploratory analysis, referring to specific plots and summary statistics where necessary.  In addition, describe your plans for building models to address important research questions, including which variables will be important to consider in light of your exploratory analyses.
+
+
+A few extra details on the EDA Report:
+
+ (a) The Main Body of your report should follow these guidelines: 
+•	No more than 3 pages 
+•	Begin with a short paragraph introducing your project and primary research questions.  (This introduction will be expanded into several paragraphs for the final paper.)
+•	Use your graphical and numerical summaries to tell a story, supporting your conclusions with summary statistics.  Weave numerical summaries seamlessly into your text, and refer to graphs where appropriate.
+•	Include at least 2 interesting plots (hopefully more!).  Name each plot (e.g. Figure 1) so they are easily referred to in your report, and format the figures neatly within your report (without taking up too much space).  Exploratory plots can be loose with captions and axis labels, but for your final paper it is essential that your figures have meaningful captions and axis labels! 
+•	Preview directions you plan to go with modeling.  What models will you begin by fitting, and what variables will be involved.
+•	Write well!  Complete sentences, good flow, proper grammar, the works…
+
+(b) Your Annotated Appendix and References section should include these elements:
+•	Definitions of important variables and the source of the data.
+•	R scripts and (commented) output so that I can trace how you constructed your final data set, what the results of your exploratory data analyses were, and what plots you generated.
+•	A short annotation – one or two sentences – on what each analysis shows.
+•	Tables and figures that are informative but were not referenced specifically in the main report.  Include a short annotation – one or two sentences on what they show.
+•	A citation for each reference article (in APA format or something similar) you included in your proposal.  Also include a link, if appropriate.  Remember that you must have the entire paper and not just an abstract, and at least two must be from peer-reviewed journals.
+
+(c) General hints for your Stage II report:
+•	Aim your report at audience familiar with 272-level statistics, but may be a little rusty.  Also, they have no specific knowledge on your research topic, but they have the ability to catch on quickly. Explain your terms clearly.
+•	Show your work and output in an Appendix so your analyses can be reconstructed, if necessary.  
+•	Give concise but precise statements interpreting summary statistics, etc. – in the context of your data set and research questions you pose. Avoid vague terms like “this data”, “these results”, etc.  Also avoid cryptic variable names that you may have used in R.
