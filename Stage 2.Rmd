@@ -17,6 +17,7 @@ output: pdf_document
 •	Preview directions you plan to go with modeling.  What models will you begin by fitting, and what variables will be involved.
 •	Write well!  Complete sentences, good flow, proper grammar, the works…
 
+\pagebreak
 #Annotated Appendix and References 
 
 (b) Your Annotated Appendix and References section should include these elements:

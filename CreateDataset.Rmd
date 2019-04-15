@@ -6,7 +6,7 @@ editor_options:
 ---
 
 ```{r, include = FALSE}
-## install.packages("RSocrata")
+#install.packages("RSocrata")
 library("RSocrata")
 library(tidyverse)
 library(lubridate)
@@ -53,4 +53,5 @@ pets <- pets %>%
 
 ```{r}
 write.csv(pets, "~/Stats 316 S19/Project/adoptions/adoptions.csv")
+#write.csv(pets, "~/Documents/GitHub/adoptions/adoptions.csv")
 ```
