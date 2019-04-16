@@ -42,6 +42,7 @@ pets <- pets %>%
          surrendered = if_else(intake_type == "OWNER SURRENDER", 1, 0), 
          stray = if_else(intake_type == "STRAY", 1, 0),
          dog = if_else(animal_type == "DOG", 1, 0),
+         cat = if_else(animal_type == "CAT", 1, 0)
          ) %>%
   mutate(shelter_days = difftime(outcome_date,intake_date, units = "days"), 
          december = if_else(month(outcome_date) == 12, 1, 0), 

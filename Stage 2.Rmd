@@ -3,9 +3,16 @@ title: "Stage 2: Exploratory Data Analysis"
 author: "Isaac Slagel, Jack Welsh, Va Yang"
 date: "4/18/2019"
 output: pdf_document
+editor_options: 
+  chunk_output_type: console
 ---
 
+```{r, include=FALSE}
+library(tidyverse)
+library(readr)
+adoptions <- read_csv("~/Stats 316 S19/Project/adoptions/adoptions.csv")
 
+```
 #EDA Main Report
 
 2. EDA Report.  In no more than 3 pages, summarize the main findings of your exploratory analysis, referring to specific plots and summary statistics where necessary.  In addition, describe your plans for building models to address important research questions, including which variables will be important to consider in light of your exploratory analyses.
@@ -20,12 +27,96 @@ output: pdf_document
 \pagebreak
 #Annotated Appendix and References 
 
+
+
 (b) Your Annotated Appendix and References section should include these elements:
 •	Definitions of important variables and the source of the data.
 •	R scripts and (commented) output so that I can trace how you constructed your final data set, what the results of your exploratory data analyses were, and what plots you generated.
 •	A short annotation – one or two sentences – on what each analysis shows.
 •	Tables and figures that are informative but were not referenced specifically in the main report.  Include a short annotation – one or two sentences on what they show.
 •	A citation for each reference article (in APA format or something similar) you included in your proposal.  Also include a link, if appropriate.  Remember that you must have the entire paper and not just an abstract, and at least two must be from peer-reviewed journals.
+
+### Exploring animal_breed
+```{r}
+
+##Which dog breeds are in our data? 
+adoptions %>%
+  filter(animal_type == "DOG") %>%
+  mutate(animal_breed = fct_lump(animal_breed, n=15)) %>%
+  group_by(animal_breed) %>%
+  count(sort = TRUE)
+
+##Which cat breeds are in our data?
+adoptions %>%
+  filter(animal_type == "CAT") %>%
+  mutate(animal_breed = fct_lump(animal_breed, n=10)) %>%
+  group_by(animal_breed) %>%
+  count(sort = TRUE)
+
+##Which types of wildlife are in our data?
+adoptions %>%
+  filter(animal_type == "WILDLIFE") %>%
+  mutate(animal_breed = fct_lump(animal_breed, n=10)) %>%
+  group_by(animal_breed) %>%
+  count(sort = TRUE)
+```
+
+##Exploring animal origin
+
+```{r}
+adoptions %>%
+  filter(dog == 1 | cat == 1) %>%
+  ggplot(aes(x=animal_origin))+
+  geom_bar()+
+  facet_grid(~animal_type)
+```
+
+##Exploring chip status
+
+```{r}
+## General distribution of variable
+adoptions %>%
+  filter(dog == 1 | cat == 1) %>%
+  ggplot(aes(x=chip_status))+
+  geom_bar()+
+  facet_grid(~animal_type)
+
+## Relationship with returned to owner status
+adoptions %>%
+  filter(dog == 1 | cat == 1) %>%
+  filter(!is.na(chip_status)) %>%
+  mutate(returned = as.factor(ifelse(outcome_type== "RETURNED TO OWNER", 1, 0))) %>%
+  ggplot(aes(x=chip_status, fill = returned))+
+  geom_bar(position = "fill")
+```
+
+
+### Exploring intake_subtype
+```{r}
+
+##Which dog breeds are in our data? 
+adoptions %>%
+  mutate(intake_subtype = fct_lump(intake_subtype, n=15)) %>%
+  group_by(intake_subtype) %>%
+  count(sort = TRUE)
+```
+
+### Exploring intake_date and outcome_date
+
+```{r}
+intake <- adoptions %>%
+  mutate(intake_month = month(intake_date, label = TRUE)) %>%
+  ggplot(aes(x=intake_month))+
+  geom_bar()+ggtitle("Intake Month")
+outcome <- adoptions %>%
+  filter(!is.na(outcome_date)) %>%
+  mutate(outcome_month = month(outcome_date, label = TRUE)) %>%
+  ggplot(aes(x=outcome_month))+
+  geom_bar()+ ggtitle("Outcome Month")
+gridExtra::grid.arrange(intake, outcome)
+```
+
+
 
 
 #### 1. Exploratory data analysis. Calculate or prepare appropriate numeric and graphical summaries for all relevant variables. Summarize the data using methods that are appropriate to the data type.
