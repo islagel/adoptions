@@ -36,24 +36,24 @@ adoptions <- read_csv("~/Stats 316 S19/Project/adoptions/adoptions.csv")
 •	Tables and figures that are informative but were not referenced specifically in the main report.  Include a short annotation – one or two sentences on what they show.
 •	A citation for each reference article (in APA format or something similar) you included in your proposal.  Also include a link, if appropriate.  Remember that you must have the entire paper and not just an abstract, and at least two must be from peer-reviewed journals.
 
-### Exploring animal_breed
+## Exploring animal_breed
 ```{r}
 
-##Which dog breeds are in our data? 
+## Which dog breeds are in our data? 
 adoptions %>%
   filter(animal_type == "DOG") %>%
   mutate(animal_breed = fct_lump(animal_breed, n=15)) %>%
   group_by(animal_breed) %>%
   count(sort = TRUE)
 
-##Which cat breeds are in our data?
+## Which cat breeds are in our data?
 adoptions %>%
   filter(animal_type == "CAT") %>%
   mutate(animal_breed = fct_lump(animal_breed, n=10)) %>%
   group_by(animal_breed) %>%
   count(sort = TRUE)
 
-##Which types of wildlife are in our data?
+## Which types of wildlife are in our data?
 adoptions %>%
   filter(animal_type == "WILDLIFE") %>%
   mutate(animal_breed = fct_lump(animal_breed, n=10)) %>%
@@ -61,7 +61,7 @@ adoptions %>%
   count(sort = TRUE)
 ```
 
-##Exploring animal origin
+## Exploring animal origin
 
 ```{r}
 adoptions %>%
@@ -71,7 +71,7 @@ adoptions %>%
   facet_grid(~animal_type)
 ```
 
-##Exploring chip status
+## Exploring chip status
 
 ```{r}
 ## General distribution of variable
@@ -91,18 +91,16 @@ adoptions %>%
 ```
 
 
-### Exploring intake_subtype
+## Exploring intake_subtype
 ```{r}
-
-##Which dog breeds are in our data? 
+## Which dog breeds are in our data? 
 adoptions %>%
   mutate(intake_subtype = fct_lump(intake_subtype, n=15)) %>%
   group_by(intake_subtype) %>%
   count(sort = TRUE)
 ```
 
-### Exploring intake_date and outcome_date
-
+## Exploring intake_date and outcome_date
 ```{r}
 intake <- adoptions %>%
   mutate(intake_month = month(intake_date, label = TRUE)) %>%
@@ -116,8 +114,78 @@ outcome <- adoptions %>%
 gridExtra::grid.arrange(intake, outcome)
 ```
 
+## Pitbulls and Adoptions
+```{r}
+adoptions %>%
+  filter(dog == 1) %>%
+  mutate(adopted = as.factor(adopted), 
+         pitbull = as.factor(pitbull)) %>%
+  ggplot(aes(x = pitbull, fill = adopted))+
+  geom_bar(position = "fill")
+
+```
+
+There does not seem to be a large difference between the adoption rates of pitbull and non-pitbulls. We should try and filter out some of the non-adopted dogs though, not all dogs come to the shelter to be adopted. 
+
+```{r}
+adoptions %>%
+  filter(dog == 1) %>%
+  mutate(euthanized = as.factor(euthanized), 
+         pitbull = as.factor(pitbull)) %>%
+  ggplot(aes(x = pitbull, fill = euthanized))+
+  geom_bar(position = "fill")
+
+```
+
+While pitbulls are not adopted at a higher rate, the are euthanized at a higher rate than other dogs. Lets look at all possible outcomes to see how this is possible. 
+
+```{r}
+adoptions %>%
+  filter(dog == 1) %>%
+  mutate(outcome = as.factor(outcome_type), 
+         pitbull = as.factor(pitbull)) %>%
+  ggplot(aes(x = pitbull, fill = outcome))+
+  geom_bar(position = "fill")
 
 
+adoptions %>%
+  filter(dog == 1) %>%
+  mutate(outcome = as.factor(outcome_type), 
+         pitbull = as.factor(pitbull)) %>%
+  group_by(pitbull, outcome_type) %>%
+  count(name = "freq") %>%
+  group_by(pitbull)%>%
+  mutate(freq = freq/ sum(freq))%>%
+  spread(outcome_type,freq)
+```
+
+A far higher percentage of pitbulls are euthanized than other breeds. Other dogs are adopted, returned to owners, and trasfered at a higher rate. 
+
+## Differences between dogs and cats
+
+```{r}
+adoptions %>%
+  filter(dog == 1 | cat == 1) %>%
+  mutate(DogCat = ifelse(dog == 1, "Dog", "Cat")) %>%
+  group_by(DogCat) %>%
+  summarise(count = n(),
+            meanDays = mean(shelter_days, na.rm = TRUE), 
+            prop_euth = sum(euthanized)/count,
+            prop_adopt = sum(adopted)/count, 
+            prop_stray = sum(stray)/count)
+```
+
+
+```{r}
+adoptions %>% 
+  filter(dog == 1 | cat == 1) %>%
+  filter(shelter_days < 100) %>%
+  mutate(DogCat = ifelse(dog == 1, "Dog", "Cat")) %>%
+  ggplot(aes(x=shelter_days, y=..density..)) +
+  geom_histogram()+
+  facet_grid(~DogCat)
+
+```
 
 #### 1. Exploratory data analysis. Calculate or prepare appropriate numeric and graphical summaries for all relevant variables. Summarize the data using methods that are appropriate to the data type.
 
