@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.9.20)  18 APR 2019 00:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.9.20)  18 APR 2019 12:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -660,34 +660,34 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 ) (./Stage_2.aux)
 \openout1 = `Stage_2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 142.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 142.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 144.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 144.
 
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 142.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 144.
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Info: Redefining \microtypecontext on input line 142.
+LaTeX Info: Redefining \microtypecontext on input line 144.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
@@ -736,7 +736,7 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box47
-Package hyperref Info: Link coloring OFF on input line 142.
+Package hyperref Info: Link coloring OFF on input line 144.
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/home/rstudio/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -744,9 +744,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count140
 )
-LaTeX Info: Redefining \ref on input line 142.
-LaTeX Info: Redefining \pageref on input line 142.
-LaTeX Info: Redefining \nameref on input line 142.
+LaTeX Info: Redefining \ref on input line 144.
+LaTeX Info: Redefining \pageref on input line 144.
+LaTeX Info: Redefining \nameref on input line 144.
 (./Stage_2.out) (./Stage_2.out)
 \@outlinefile=\write4
 \openout4 = `Stage_2.out'.
@@ -779,386 +779,447 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 158.
-
-(/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 176.
-
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 189.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 183.
 
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 189.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 183.
 
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 189
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 183
 .
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 189
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 183
 .
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 189.
+(Font)              <10> on input line 183.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 189.
+(Font)              <7> on input line 183.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 189.
-LaTeX Font Info:    Try loading font information for U+msa on input line 189.
+(Font)              <5> on input line 183.
+LaTeX Font Info:    Try loading font information for U+msa on input line 183.
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/home/rstudio/texlive/2018/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 189.
+LaTeX Font Info:    Try loading font information for U+msb on input line 183.
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/home/rstudio/texlive/2018/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-)
-Overfull \hbox (37.86145pt too wide) in paragraph at lines 189--206
- [][] 
- []
+) [1
 
-[1
-
-{/home/rstudio/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2pd
-fTeX warning (ext4): destination with the same identifier (name{table.1}) has b
-een already used, duplicate ignored
+{/home/rstudio/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}pdfTeX
+ warning (ext4): destination with the same identifier (name{table.1}) has been 
+already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.257 
+l.227 
       ]
+<Stage_2_files/figure-latex/DogCat Figure-1.pdf, id=84, 315.1775pt x 206.7725pt
+>
+File: Stage_2_files/figure-latex/DogCat Figure-1.pdf Graphic file (type pdf)
+<use Stage_2_files/figure-latex/DogCat Figure-1.pdf>
+Package pdftex.def Info: Stage_2_files/figure-latex/DogCat Figure-1.pdf  used o
+n input line 230.
+(pdftex.def)             Requested size: 281.87291pt x 184.92297pt.
+<Stage_2_files/figure-latex/Month Figure-1.pdf, id=85, 314.17375pt x 205.76875p
+t>
+File: Stage_2_files/figure-latex/Month Figure-1.pdf Graphic file (type pdf)
+<use Stage_2_files/figure-latex/Month Figure-1.pdf>
+Package pdftex.def Info: Stage_2_files/figure-latex/Month Figure-1.pdf  used on
+ input line 260.
+(pdftex.def)             Requested size: 281.86688pt x 184.60928pt.
+[2pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
+has been already used, duplicate ignored
 
-Package xcolor Warning: Incompatible color definition on input line 283.
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.266 
+       <./Stage_2_files/figure-latex/DogCat Figure-1.pdf>] [3pdfTeX warning (ex
+t4): destination with the same identifier (name{figure.2}) has been already use
+d, duplicate ignored
 
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 284.
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.275 
+       <./Stage_2_files/figure-latex/Month Figure-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 328.
+
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 329.
 
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 286.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 331.
 
-Package xcolor Warning: Incompatible color definition on input line 291.
-
-
-Package xcolor Warning: Incompatible color definition on input line 291.
+Package xcolor Warning: Incompatible color definition on input line 335.
 
 
-Package xcolor Warning: Incompatible color definition on input line 309.
+Package xcolor Warning: Incompatible color definition on input line 335.
 
 
-Package xcolor Warning: Incompatible color definition on input line 318.
+Package xcolor Warning: Incompatible color definition on input line 350.
+
+[4pdfTeX warning (ext4): destination with the same identifier (name{table.2}) h
+as been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.350 \begin{Shaded}
+                    ]
+
+Package xcolor Warning: Incompatible color definition on input line 357.
 
 
-Package xcolor Warning: Incompatible color definition on input line 318.
+Package xcolor Warning: Incompatible color definition on input line 357.
 
-[3]
-
-Package xcolor Warning: Incompatible color definition on input line 343.
-
-
-Package xcolor Warning: Incompatible color definition on input line 354.
-
-
-Package xcolor Warning: Incompatible color definition on input line 354.
-
-<Stage_2_files/figure-latex/unnamed-chunk-2-1.pdf, id=78, 462.72874pt x 312.166
-24pt>
+<Stage_2_files/figure-latex/unnamed-chunk-2-1.pdf, id=127, 314.17375pt x 206.77
+25pt>
 File: Stage_2_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type pdf)
 <use Stage_2_files/figure-latex/unnamed-chunk-2-1.pdf>
 Package pdftex.def Info: Stage_2_files/figure-latex/unnamed-chunk-2-1.pdf  used
- on input line 356.
-(pdftex.def)             Requested size: 462.73466pt x 312.17024pt.
-
-Package xcolor Warning: Incompatible color definition on input line 358.
-
+ on input line 359.
+(pdftex.def)             Requested size: 314.18256pt x 206.77829pt.
 
 Package xcolor Warning: Incompatible color definition on input line 367.
 
 
-Package xcolor Warning: Incompatible color definition on input line 367.
-
-[4 <./Stage_2_files/figure-latex/unnamed-chunk-2-1.pdf>]
-
-Package xcolor Warning: Incompatible color definition on input line 387.
+Package xcolor Warning: Incompatible color definition on input line 376.
 
 
-Package xcolor Warning: Incompatible color definition on input line 398.
+Package xcolor Warning: Incompatible color definition on input line 376.
+
+[5 <./Stage_2_files/figure-latex/unnamed-chunk-2-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 401.
 
 
-Package xcolor Warning: Incompatible color definition on input line 398.
-
-<Stage_2_files/figure-latex/unnamed-chunk-2-2.pdf, id=90, 462.72874pt x 312.166
-24pt>
-File: Stage_2_files/figure-latex/unnamed-chunk-2-2.pdf Graphic file (type pdf)
-<use Stage_2_files/figure-latex/unnamed-chunk-2-2.pdf>
-Package pdftex.def Info: Stage_2_files/figure-latex/unnamed-chunk-2-2.pdf  used
- on input line 400.
-(pdftex.def)             Requested size: 462.73466pt x 312.17024pt.
-
-Package xcolor Warning: Incompatible color definition on input line 402.
+Package xcolor Warning: Incompatible color definition on input line 412.
 
 
-Package xcolor Warning: Incompatible color definition on input line 411.
+Package xcolor Warning: Incompatible color definition on input line 412.
 
-
-Package xcolor Warning: Incompatible color definition on input line 411.
-
-[5 <./Stage_2_files/figure-latex/unnamed-chunk-2-2.pdf>]
-
-Package xcolor Warning: Incompatible color definition on input line 433.
-
-
-Package xcolor Warning: Incompatible color definition on input line 441.
-
-
-Package xcolor Warning: Incompatible color definition on input line 441.
-
-<Stage_2_files/figure-latex/unnamed-chunk-3-1.pdf, id=102, 458.71375pt x 315.17
-75pt>
+<Stage_2_files/figure-latex/unnamed-chunk-3-1.pdf, id=139, 320.19624pt x 203.76
+125pt>
 File: Stage_2_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
 <use Stage_2_files/figure-latex/unnamed-chunk-3-1.pdf>
 Package pdftex.def Info: Stage_2_files/figure-latex/unnamed-chunk-3-1.pdf  used
- on input line 443.
-(pdftex.def)             Requested size: 458.73363pt x 315.19115pt.
+ on input line 414.
+(pdftex.def)             Requested size: 320.20033pt x 203.76384pt.
 
-Package xcolor Warning: Incompatible color definition on input line 447.
+Package xcolor Warning: Incompatible color definition on input line 421.
+
+
+Package xcolor Warning: Incompatible color definition on input line 430.
+
+
+Package xcolor Warning: Incompatible color definition on input line 430.
+
+
+Package xcolor Warning: Incompatible color definition on input line 450.
 
 [6 <./Stage_2_files/figure-latex/unnamed-chunk-3-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 456.
+Package xcolor Warning: Incompatible color definition on input line 461.
 
 
-Package xcolor Warning: Incompatible color definition on input line 456.
+Package xcolor Warning: Incompatible color definition on input line 461.
 
-<Stage_2_files/figure-latex/unnamed-chunk-4-1.pdf, id=114, 458.71375pt x 315.17
-75pt>
+<Stage_2_files/figure-latex/unnamed-chunk-4-1.pdf, id=151, 318.18875pt x 203.76
+125pt>
 File: Stage_2_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
 <use Stage_2_files/figure-latex/unnamed-chunk-4-1.pdf>
 Package pdftex.def Info: Stage_2_files/figure-latex/unnamed-chunk-4-1.pdf  used
- on input line 458.
-(pdftex.def)             Requested size: 458.73363pt x 315.19115pt.
+ on input line 463.
+(pdftex.def)             Requested size: 318.18796pt x 203.76074pt.
 
-Package xcolor Warning: Incompatible color definition on input line 460.
+Package xcolor Warning: Incompatible color definition on input line 467.
 
-
-Package xcolor Warning: Incompatible color definition on input line 470.
-
-
-Package xcolor Warning: Incompatible color definition on input line 470.
-
-<Stage_2_files/figure-latex/unnamed-chunk-4-2.pdf, id=115, 452.69125pt x 315.17
-75pt>
-File: Stage_2_files/figure-latex/unnamed-chunk-4-2.pdf Graphic file (type pdf)
-<use Stage_2_files/figure-latex/unnamed-chunk-4-2.pdf>
-Package pdftex.def Info: Stage_2_files/figure-latex/unnamed-chunk-4-2.pdf  used
- on input line 472.
-(pdftex.def)             Requested size: 452.69014pt x 315.17673pt.
-[7 <./Stage_2_files/figure-latex/unnamed-chunk-4-1.pdf>]
 
 Package xcolor Warning: Incompatible color definition on input line 476.
 
 
-Package xcolor Warning: Incompatible color definition on input line 484.
+Package xcolor Warning: Incompatible color definition on input line 476.
 
 
-Package xcolor Warning: Incompatible color definition on input line 484.
+Package xcolor Warning: Incompatible color definition on input line 502.
 
-[8 <./Stage_2_files/figure-latex/unnamed-chunk-4-2.pdf>]
+[7 <./Stage_2_files/figure-latex/unnamed-chunk-4-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 512.
-
-
-Package xcolor Warning: Incompatible color definition on input line 525.
+Package xcolor Warning: Incompatible color definition on input line 511.
 
 
-Package xcolor Warning: Incompatible color definition on input line 525.
+Package xcolor Warning: Incompatible color definition on input line 511.
 
-<Stage_2_files/figure-latex/unnamed-chunk-6-1.pdf, id=139, 458.71375pt x 314.17
-375pt>
+<Stage_2_files/figure-latex/unnamed-chunk-6-1.pdf, id=165, 314.17375pt x 206.77
+25pt>
 File: Stage_2_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
 <use Stage_2_files/figure-latex/unnamed-chunk-6-1.pdf>
 Package pdftex.def Info: Stage_2_files/figure-latex/unnamed-chunk-6-1.pdf  used
- on input line 527.
-(pdftex.def)             Requested size: 458.73363pt x 314.18735pt.
+ on input line 513.
+(pdftex.def)             Requested size: 314.18256pt x 206.77829pt.
+
+Package xcolor Warning: Incompatible color definition on input line 522.
+
 
 Package xcolor Warning: Incompatible color definition on input line 531.
 
 
-Package xcolor Warning: Incompatible color definition on input line 540.
+Package xcolor Warning: Incompatible color definition on input line 531.
 
-
-Package xcolor Warning: Incompatible color definition on input line 540.
-
-<Stage_2_files/figure-latex/unnamed-chunk-7-1.pdf, id=140, 452.69125pt x 315.17
-75pt>
+<Stage_2_files/figure-latex/unnamed-chunk-7-1.pdf, id=166, 314.17375pt x 206.77
+25pt>
 File: Stage_2_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type pdf)
 <use Stage_2_files/figure-latex/unnamed-chunk-7-1.pdf>
 Package pdftex.def Info: Stage_2_files/figure-latex/unnamed-chunk-7-1.pdf  used
- on input line 542.
-(pdftex.def)             Requested size: 452.69014pt x 315.17673pt.
-[9 <./Stage_2_files/figure-latex/unnamed-chunk-6-1.pdf>]
+ on input line 533.
+(pdftex.def)             Requested size: 314.18256pt x 206.77829pt.
 
-Package xcolor Warning: Incompatible color definition on input line 548.
+Package xcolor Warning: Incompatible color definition on input line 535.
 
+[8 <./Stage_2_files/figure-latex/unnamed-chunk-6-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 557.
-
-
-Package xcolor Warning: Incompatible color definition on input line 557.
-
-<Stage_2_files/figure-latex/unnamed-chunk-8-1.pdf, id=152, 452.69125pt x 315.17
-75pt>
-File: Stage_2_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (type pdf)
-<use Stage_2_files/figure-latex/unnamed-chunk-8-1.pdf>
-Package pdftex.def Info: Stage_2_files/figure-latex/unnamed-chunk-8-1.pdf  used
- on input line 559.
-(pdftex.def)             Requested size: 452.69014pt x 315.17673pt.
-[10 <./Stage_2_files/figure-latex/unnamed-chunk-7-1.pdf>]
-
-Package xcolor Warning: Incompatible color definition on input line 565.
+Package xcolor Warning: Incompatible color definition on input line 546.
 
 
-Package xcolor Warning: Incompatible color definition on input line 574.
+Package xcolor Warning: Incompatible color definition on input line 546.
+
+<Stage_2_files/figure-latex/unnamed-chunk-7-2.pdf, id=178, 308.15125pt x 206.77
+25pt>
+File: Stage_2_files/figure-latex/unnamed-chunk-7-2.pdf Graphic file (type pdf)
+<use Stage_2_files/figure-latex/unnamed-chunk-7-2.pdf>
+Package pdftex.def Info: Stage_2_files/figure-latex/unnamed-chunk-7-2.pdf  used
+ on input line 548.
+(pdftex.def)             Requested size: 308.15988pt x 206.77829pt.
+
+Package xcolor Warning: Incompatible color definition on input line 558.
 
 
-Package xcolor Warning: Incompatible color definition on input line 574.
+Package xcolor Warning: Incompatible color definition on input line 566.
 
-<Stage_2_files/figure-latex/unnamed-chunk-9-1.pdf, id=165, 452.69125pt x 315.17
-75pt>
+
+Package xcolor Warning: Incompatible color definition on input line 566.
+
+
+Overfull \vbox (0.31425pt too high) detected at line 566
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 566.
+
+[9 <./Stage_2_files/figure-latex/unnamed-chunk-7-1.pdf> <./Stage_2_files/figure
+-latex/unnamed-chunk-7-2.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 566.
+
+
+Package xcolor Warning: Incompatible color definition on input line 566.
+
+
+Package xcolor Warning: Incompatible color definition on input line 594.
+
+
+Package xcolor Warning: Incompatible color definition on input line 607.
+
+
+Package xcolor Warning: Incompatible color definition on input line 607.
+
+<Stage_2_files/figure-latex/unnamed-chunk-9-1.pdf, id=197, 314.17375pt x 205.76
+875pt>
 File: Stage_2_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
 <use Stage_2_files/figure-latex/unnamed-chunk-9-1.pdf>
 Package pdftex.def Info: Stage_2_files/figure-latex/unnamed-chunk-9-1.pdf  used
- on input line 576.
-(pdftex.def)             Requested size: 452.69014pt x 315.17673pt.
+ on input line 609.
+(pdftex.def)             Requested size: 314.17297pt x 205.76823pt.
 
-Package xcolor Warning: Incompatible color definition on input line 578.
+Package xcolor Warning: Incompatible color definition on input line 615.
 
-[11 <./Stage_2_files/figure-latex/unnamed-chunk-8-1.pdf>]
+[10 <./Stage_2_files/figure-latex/unnamed-chunk-9-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 591.
-
-
-Package xcolor Warning: Incompatible color definition on input line 591.
+Package xcolor Warning: Incompatible color definition on input line 624.
 
 
-Overfull \hbox (328.95126pt too wide) in paragraph at lines 593--602
-[][] 
- []
+Package xcolor Warning: Incompatible color definition on input line 624.
 
+<Stage_2_files/figure-latex/unnamed-chunk-10-1.pdf, id=209, 308.15125pt x 206.7
+725pt>
+File: Stage_2_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
 
-Package xcolor Warning: Incompatible color definition on input line 610.
-
-
-Package xcolor Warning: Incompatible color definition on input line 622.
-
-
-Package xcolor Warning: Incompatible color definition on input line 622.
-
-
-Overfull \vbox (1.7462pt too high) detected at line 622
- []
-
-
-Package xcolor Warning: Incompatible color definition on input line 622.
-
-[12 <./Stage_2_files/figure-latex/unnamed-chunk-9-1.pdf>]
-
-Package xcolor Warning: Incompatible color definition on input line 622.
-
-
-Package xcolor Warning: Incompatible color definition on input line 622.
-
+<use Stage_2_files/figure-latex/unnamed-chunk-10-1.pdf>
+Package pdftex.def Info: Stage_2_files/figure-latex/unnamed-chunk-10-1.pdf  use
+d on input line 626.
+(pdftex.def)             Requested size: 308.15988pt x 206.77829pt.
 
 Package xcolor Warning: Incompatible color definition on input line 632.
 
 
-Package xcolor Warning: Incompatible color definition on input line 642.
+Package xcolor Warning: Incompatible color definition on input line 641.
 
 
-Package xcolor Warning: Incompatible color definition on input line 642.
+Package xcolor Warning: Incompatible color definition on input line 641.
 
-LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 646
-.
-(/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/ts1lmtt.fd
-File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-<Stage_2_files/figure-latex/unnamed-chunk-11-1.pdf, id=188, 463.7325pt x 315.17
-75pt>
+<Stage_2_files/figure-latex/unnamed-chunk-11-1.pdf, id=210, 308.15125pt x 206.7
+725pt>
 File: Stage_2_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (type pdf)
 
 <use Stage_2_files/figure-latex/unnamed-chunk-11-1.pdf>
 Package pdftex.def Info: Stage_2_files/figure-latex/unnamed-chunk-11-1.pdf  use
-d on input line 648.
-(pdftex.def)             Requested size: 463.73842pt x 315.18153pt.
+d on input line 643.
+(pdftex.def)             Requested size: 308.15988pt x 206.77829pt.
+[11 <./Stage_2_files/figure-latex/unnamed-chunk-10-1.pdf> <./Stage_2_files/figu
+re-latex/unnamed-chunk-11-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 652.
+Package xcolor Warning: Incompatible color definition on input line 649.
 
 
-Package xcolor Warning: Incompatible color definition on input line 661.
+Package xcolor Warning: Incompatible color definition on input line 658.
 
 
-Package xcolor Warning: Incompatible color definition on input line 661.
+Package xcolor Warning: Incompatible color definition on input line 658.
 
-<Stage_2_files/figure-latex/unnamed-chunk-12-1.pdf, id=189, 458.71375pt x 313.1
-7pt>
+<Stage_2_files/figure-latex/unnamed-chunk-12-1.pdf, id=229, 308.15125pt x 210.7
+875pt>
 File: Stage_2_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type pdf)
 
 <use Stage_2_files/figure-latex/unnamed-chunk-12-1.pdf>
 Package pdftex.def Info: Stage_2_files/figure-latex/unnamed-chunk-12-1.pdf  use
-d on input line 663.
-(pdftex.def)             Requested size: 458.72662pt x 313.17877pt.
-[13 <./Stage_2_files/figure-latex/unnamed-chunk-11-1.pdf>]
+d on input line 660.
+(pdftex.def)             Requested size: 308.15518pt x 210.79019pt.
 
-Package xcolor Warning: Incompatible color definition on input line 668.
-
-
-Package xcolor Warning: Incompatible color definition on input line 679.
+Package xcolor Warning: Incompatible color definition on input line 662.
 
 
-Package xcolor Warning: Incompatible color definition on input line 679.
+Package xcolor Warning: Incompatible color definition on input line 674.
 
-<Stage_2_files/figure-latex/unnamed-chunk-13-1.pdf, id=203, 457.71pt x 313.17pt
->
+
+Package xcolor Warning: Incompatible color definition on input line 674.
+
+LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 685
+.
+(/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/ts1lmtt.fd
+File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+
+Package xcolor Warning: Incompatible color definition on input line 694.
+
+
+Package xcolor Warning: Incompatible color definition on input line 713.
+
+
+Package xcolor Warning: Incompatible color definition on input line 713.
+
+
+Package xcolor Warning: Incompatible color definition on input line 713.
+
+[12 <./Stage_2_files/figure-latex/unnamed-chunk-12-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 713.
+
+
+Package xcolor Warning: Incompatible color definition on input line 713.
+
+<Stage_2_files/figure-latex/unnamed-chunk-13-1.pdf, id=242, 315.1775pt x 206.77
+25pt>
 File: Stage_2_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
 
 <use Stage_2_files/figure-latex/unnamed-chunk-13-1.pdf>
 Package pdftex.def Info: Stage_2_files/figure-latex/unnamed-chunk-13-1.pdf  use
-d on input line 681.
-(pdftex.def)             Requested size: 457.72285pt x 313.17877pt.
-[14 <./Stage_2_files/figure-latex/unnamed-chunk-12-1.pdf>] [15 <./Stage_2_files
-/figure-latex/unnamed-chunk-13-1.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 731.
-[16]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 731.
+d on input line 715.
+(pdftex.def)             Requested size: 315.18634pt x 206.77829pt.
+
+Package xcolor Warning: Incompatible color definition on input line 720.
+
+
+Package xcolor Warning: Incompatible color definition on input line 730.
+
+
+Package xcolor Warning: Incompatible color definition on input line 730.
+
+<Stage_2_files/figure-latex/unnamed-chunk-14-1.pdf, id=243, 315.1775pt x 206.77
+25pt>
+File: Stage_2_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type pdf)
+
+<use Stage_2_files/figure-latex/unnamed-chunk-14-1.pdf>
+Package pdftex.def Info: Stage_2_files/figure-latex/unnamed-chunk-14-1.pdf  use
+d on input line 736.
+(pdftex.def)             Requested size: 315.18634pt x 206.77829pt.
+[13 <./Stage_2_files/figure-latex/unnamed-chunk-13-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 742.
+
+
+Package xcolor Warning: Incompatible color definition on input line 751.
+
+
+Package xcolor Warning: Incompatible color definition on input line 751.
+
+<Stage_2_files/figure-latex/unnamed-chunk-15-1.pdf, id=256, 314.17375pt x 204.7
+65pt>
+File: Stage_2_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type pdf)
+
+<use Stage_2_files/figure-latex/unnamed-chunk-15-1.pdf>
+Package pdftex.def Info: Stage_2_files/figure-latex/unnamed-chunk-15-1.pdf  use
+d on input line 753.
+(pdftex.def)             Requested size: 314.18735pt x 204.77385pt.
+
+Package xcolor Warning: Incompatible color definition on input line 758.
+
+
+Package xcolor Warning: Incompatible color definition on input line 769.
+
+
+Package xcolor Warning: Incompatible color definition on input line 769.
+
+
+Package xcolor Warning: Incompatible color definition on input line 769.
+
+[14 <./Stage_2_files/figure-latex/unnamed-chunk-14-1.pdf> <./Stage_2_files/figu
+re-latex/unnamed-chunk-15-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 769.
+
+
+Package xcolor Warning: Incompatible color definition on input line 769.
+
+<Stage_2_files/figure-latex/unnamed-chunk-16-1.pdf, id=275, 313.17pt x 204.765p
+t>
+File: Stage_2_files/figure-latex/unnamed-chunk-16-1.pdf Graphic file (type pdf)
+
+<use Stage_2_files/figure-latex/unnamed-chunk-16-1.pdf>
+Package pdftex.def Info: Stage_2_files/figure-latex/unnamed-chunk-16-1.pdf  use
+d on input line 771.
+(pdftex.def)             Requested size: 313.17877pt x 204.77072pt.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 776.
+[15 <./Stage_2_files/figure-latex/unnamed-chunk-16-1.pdf>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 776.
 (./Stage_2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 731.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 731.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 776.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 776.
 Package rerunfilecheck Info: File `Stage_2.out' has not changed.
-(rerunfilecheck)             Checksum: F980716D174F7BC77ABAAD6D7D2773E1;2188.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 731.
+(rerunfilecheck)             Checksum: 90879A5979DC1EE946DC5D8CFF8B37CF;2656.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 776.
  ) 
 Here is how much of TeX's memory you used:
- 14847 strings out of 492641
- 219122 string characters out of 6127902
- 343337 words of memory out of 5000000
- 18408 multiletter control sequences out of 15000+600000
- 45497 words of font info for 66 fonts, out of 8000000 for 9000
+ 14855 strings out of 492641
+ 218351 string characters out of 6127902
+ 342107 words of memory out of 5000000
+ 18406 multiletter control sequences out of 15000+600000
+ 45630 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,11n,38p,1817b,455s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,12n,38p,970b,455s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/home/rstudio/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/home/r
 studio/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</home/rstudio/texl
 ive/2018/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></home/rstudio/texlive/201
@@ -1169,10 +1230,10 @@ nts/type1/public/lm/lmr17.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/type
 c/lm/lmtk10.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/type1/public/lm/lm
 tt10.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtti10.p
 fb>
-Output written on Stage_2.pdf (16 pages, 281603 bytes).
+Output written on Stage_2.pdf (15 pages, 294916 bytes).
 PDF statistics:
- 280 PDF objects out of 1000 (max. 8388607)
- 215 compressed objects within 3 object streams
- 39 named destinations out of 1000 (max. 500000)
- 8349 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 330 PDF objects out of 1000 (max. 8388607)
+ 254 compressed objects within 3 object streams
+ 41 named destinations out of 1000 (max. 500000)
+ 8409 words of extra memory for PDF output out of 10000 (max. 10000000)
 
