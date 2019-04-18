@@ -1,6 +1,6 @@
 ---
 title: "Stage 2: Exploratory Data Analysis"
-author: "Isaac Slagel, Jack Welsh, Va Yang"
+author: "Isaac Slagel and Jack Welsh"
 date: "4/18/2019"
 output: pdf_document
 editor_options: 
@@ -10,10 +10,13 @@ editor_options:
 ```{r, include=FALSE}
 library(tidyverse)
 library(readr)
+library(lubridate)
+library(kableExtra)
 adoptions <- read_csv("~/Stats 316 S19/Project/adoptions/adoptions.csv")
 
 ```
-#EDA Main Report
+
+
 
 2. EDA Report.  In no more than 3 pages, summarize the main findings of your exploratory analysis, referring to specific plots and summary statistics where necessary.  In addition, describe your plans for building models to address important research questions, including which variables will be important to consider in light of your exploratory analyses.
 
@@ -24,8 +27,83 @@ adoptions <- read_csv("~/Stats 316 S19/Project/adoptions/adoptions.csv")
 •	Preview directions you plan to go with modeling.  What models will you begin by fitting, and what variables will be involved.
 •	Write well!  Complete sentences, good flow, proper grammar, the works…
 
+# EDA Main Report
+
+### Introduction
+
+  Our project plans to look into trend in animal treatment in Dallas animal shelters. Using a dataset containing information on all recent animals brought into the shelter, we are going to try to answer some of the following questions. What traits affect a dog's probability of adoption? Are there seasonal trends in the adoption of different animals? Are animals who enter the animal shelter with chips more likely to be returned to their owner? On the table below you can see some of the variables we are working with in the dataset.
+  
+```{r variable table, echo = FALSE}
+
+variables <- c("Variable Name", "Variable Role", "Variable Type", "Range of Values", "Units of Measurement")
+
+breed <- c("animal_breed", "explanatory", "categorical", "296 unique breeds", "NA")
+origin <- c("animal_origin", "explanatory", "categorical", "4 sources of shelter animals", "NA")
+type <- c("animal_type", "explanatory", "categorical", "5 species of animal", "NA")
+chip <- c("chip_status", "explanatory", "bianary", "(0,1)", "NA")
+
+intake_type <- c("intake_type", "potential confounder", "categorial", "how animal came to be at the shelter", "NA")
+outcome_type <- c("outcome_type", "reponse", "categorial", "how animals was removed from shelter", "NA")
+
+intake_condition <- c("intake_condition", "potential confounder", "categorial", "keyword description of animal status at intake", "NA")
+outcome_condition <- c("outcome_condition", "potential confounder", "categorial", "keyword description of animal status at outcome", "NA")
+
+intake_date <- c("intake_date", "response", "date", "(2017-10-01, 2019-04-03)", "y-m-d")
+outcome_date <- c("outcome_date", "response", "date", "(2017-10-01, 2019-04-03)", "y-m-d")
+
+tab <- rbind(breed, origin, type, chip, intake_type, outcome_type, intake_condition, outcome_condition, intake_date, outcome_date)
+
+colnames(tab) <- variables
+rownames(tab) <- NULL
+
+kable(tab, format = "latex", booktabs = T) %>%
+  column_spec( 4, width = "4cm") %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+
+```
+  
+  
+### What's the deal with the dogs? 
+
+  Dogs are the most common animal winding up in the animal shelters which form our dataset. From our total of 44,194 dogs, 35% were adopted, 30% were returned to owners, 16% were trasfered, and 15% were euthanized. The most common breed of dog in our dataset is the pitbull, with 10,033 being admited to animal shelters in between 10/01/2017 and 04/03/2019. We are especially interested in how pitbulls are treated within our datasets as these dogs have an infamous reputation of being overly agressive. Is it possible that this reputation results in a lower adoption rate for pitbulls that other breeds? 
+  
+#### Pitbulls
+
+
+  To look into how pitbulls are handled within animal shelters, we decided to explore how the outcomes of pitbulls may differ from non-pitbulls. Table 1 describes the differences in outcome rates for non-pitbulls compared to pitbulls. 
+  
+  
+  
+```{r pitbull table, echo = FALSE}
+proper=function(x) paste0(toupper(substr(x, 1, 1)), tolower(substring(x, 2)))
+
+adoptions %>%
+  filter(dog == 1) %>%
+  mutate(outcome = as.factor(outcome_type), 
+         pitbull = as.factor(pitbull)) %>%
+  group_by(pitbull, outcome_type) %>%
+  count(name = "freq") %>%
+  group_by(pitbull)%>%
+  mutate(freq = freq/ sum(freq))%>%
+  spread(outcome_type,freq) %>%
+  gather(key = Outcome, value = value, -pitbull) %>% 
+  spread(key = pitbull, value = value) %>%
+  select(1,3,2) %>%
+  rename( "Pitbull (%)" = `1`, "Non-Pitbull (%)" = `0`) %>%
+  mutate(Outcome = proper(Outcome), `Pitbull (%)` =100*`Pitbull (%)` , `Non-Pitbull (%)`=`Non-Pitbull (%)`*100 )%>%
+  arrange(desc(`Pitbull (%)`))%>%
+  kable(digits = 2, format = "latex", booktabs = T, caption = "Pitbull Outcomes")%>%
+  kable_styling(latex_options =  c("striped", "hold_position"))
+
+```
+
+
+  We see that pitbulls, while only adopted at a slightly lower rate (~5%), are euthanized at well over double the rate of other dogs. Further, we see that other dogs have a much higher chance of being trasfered to another facility. 
+
+
 \pagebreak
-#Annotated Appendix and References 
+
+# Annotated Appendix and References 
 
 
 
@@ -38,6 +116,11 @@ adoptions <- read_csv("~/Stats 316 S19/Project/adoptions/adoptions.csv")
 
 ## Exploring animal_breed
 ```{r}
+# animal type
+adoptions %>%
+  filter(animal_type=="DOG") %>%
+  group_by(outcome_type) %>%
+  summarise(count = n(), prop = count/44194)
 
 ## Which dog breeds are in our data? 
 adoptions %>%
@@ -175,7 +258,8 @@ adoptions %>%
   count(name = "freq") %>%
   group_by(pitbull)%>%
   mutate(freq = freq/ sum(freq))%>%
-  spread(outcome_type,freq)
+  spread(outcome_type,freq) %>%
+  kable()
 ```
 
 A far higher percentage of pitbulls are euthanized than other breeds. Other dogs are adopted, returned to owners, and trasfered at a higher rate. 
