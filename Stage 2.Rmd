@@ -206,6 +206,31 @@ adoptions %>%
 
 ```
 
+
+## What about rabbits? 
+
+```{r}
+adoptions  %>%
+  filter(animal_breed== "RABBIT SH") %>%
+  filter(adopted == 1) %>%
+  mutate(month = lubridate::month(outcome_date, label = TRUE)) %>%
+  ggplot(aes(x=month)) +
+  geom_bar()
+```
+
+Alright, so maybe it is not the case that more rabits are adopted over easter. Are there trends in dog adoptions? 
+
+```{r}
+adoptions  %>%
+  filter(dog == 1 | cat == 1) %>%
+  mutate(DogCat = ifelse(dog == 1, "Dog", "Cat")) %>%
+  filter(adopted == 1, !is.na(month)) %>%
+  mutate(month = lubridate::month(outcome_date, label = TRUE)) %>%
+  ggplot(aes(x=month, y = ..prop.., group = 1)) +
+  geom_bar()+
+  facet_grid(rows = vars(DogCat), switch = "both")
+```
+
 #### 1. Exploratory data analysis. Calculate or prepare appropriate numeric and graphical summaries for all relevant variables. Summarize the data using methods that are appropriate to the data type.
 
 #### (a) Most likely you will need to “clean” your dataset first. Make note of any problematic data and observations that need to be removed. Consider implications about any decisions you make about missing data.  
