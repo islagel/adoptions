@@ -46,12 +46,31 @@ adoptions %>%
   group_by(animal_breed) %>%
   count(sort = TRUE)
 
+adoptions %>%
+  filter(animal_type == "DOG") %>%
+  mutate(animal_breed = fct_lump(animal_breed, n=15)) %>%
+  group_by(animal_breed) %>%
+  count(sort = TRUE)%>%
+  ggplot(aes(x=fct_reorder(animal_breed,n), y=n))+
+  geom_bar(stat="identity")+
+  coord_flip()
+
 ## Which cat breeds are in our data?
 adoptions %>%
   filter(animal_type == "CAT") %>%
   mutate(animal_breed = fct_lump(animal_breed, n=10)) %>%
   group_by(animal_breed) %>%
   count(sort = TRUE)
+
+adoptions %>%
+  filter(animal_type == "CAT") %>%
+  mutate(animal_breed = fct_lump(animal_breed, n=15)) %>%
+  group_by(animal_breed) %>%
+  count(sort = TRUE)%>%
+  ggplot(aes(x=fct_reorder(animal_breed,n), y=n))+
+  geom_bar(stat="identity")+
+  coord_flip()
+
 
 ## Which types of wildlife are in our data?
 adoptions %>%
