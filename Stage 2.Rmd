@@ -10,6 +10,7 @@ editor_options:
 ```{r, include=FALSE}
 library(tidyverse)
 library(readr)
+library(lubridate)
 adoptions <- read_csv("~/Stats 316 S19/Project/adoptions/adoptions.csv")
 
 ```
@@ -124,7 +125,9 @@ adoptions %>%
 intake <- adoptions %>%
   mutate(intake_month = month(intake_date, label = TRUE)) %>%
   ggplot(aes(x=intake_month))+
-  geom_bar()+ggtitle("Intake Month")
+  geom_bar()+
+  ggtitle("Intake Month")
+
 outcome <- adoptions %>%
   filter(!is.na(outcome_date)) %>%
   mutate(outcome_month = month(outcome_date, label = TRUE)) %>%
@@ -132,6 +135,38 @@ outcome <- adoptions %>%
   geom_bar()+ ggtitle("Outcome Month")
 gridExtra::grid.arrange(intake, outcome)
 ```
+
+```{r}
+# Ammount of time spent at the humane society looks to be about the same from month to month.
+
+adoptions %>%
+  mutate(diff_time=difftime(outcome_date, intake_date))%>%
+  select(diff_time, month)%>%
+  ggplot(aes(x=diff_time))+
+  geom_density()+
+  facet_wrap(~as.factor(month))
+  
+
+```
+
+### Differences in income day
+
+```{r}
+adoptions%>%
+  mutate(out_day=day(outcome_date))%>%
+  ggplot(aes(x=out_day))+
+  geom_bar()+ ggtitle("Outcome day")
+  
+
+adoptions%>%
+  mutate(in_day=day(intake_date))%>%
+  ggplot(aes(x=in_day))+
+  geom_bar()+ ggtitle("Outcome day")
+
+```
+
+
+
 
 ## Pitbulls and Adoptions
 ```{r}
