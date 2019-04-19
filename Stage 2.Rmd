@@ -645,7 +645,8 @@ adoptions%>%
 ```{r}
 adoptions%>%
   filter(animal_type=="LIVESTOCK")%>%
-  group_by(animal_breed)
+  group_by(animal_breed)%>%
+  count()
 ```
 
 
