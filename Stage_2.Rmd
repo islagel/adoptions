@@ -584,24 +584,8 @@ adoptions%>%
   group_by(animal_breed)%>%
   count()
 
-# Badger that was returned to owner
 adoptions%>%
-  filter(animal_breed=="BADGER")
-
-adoptions%>%
-  filter(animal_breed=="CALIFORNIAN")
-
-# Coyote that was handed over the counter (This means that someone dropeed of a coyote at the animal shelter.)
-adoptions%>%
-  filter(animal_breed=="COYOTE",
-         animal_origin=="OVER THE COUNTER")
+  filter(animal_breed=="BADGER")%>%
+  
 ```
-## Livestock
-
-```{r}
-adoptions%>%
-  filter(animal_type=="LIVESTOCK")%>%
-  group_by(animal_breed)
-```
-
 
