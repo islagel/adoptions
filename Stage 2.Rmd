@@ -3,12 +3,12 @@ title: 'Stage 2: Exploratory Data Analysis'
 author: "Isaac Slagel and Jack Welsh"
 date: "4/18/2019"
 output:
-  html_document:
-    df_print: paged
   pdf_document:
     fig_caption: yes
     fig_height: 3
     fig_width: 4.5
+  html_document:
+    df_print: paged
 header-includes: \usepackage{float}
 editor_options:
   chunk_output_type: console
@@ -446,6 +446,7 @@ adoptions_expanded_intake=adoptions%>%
   mutate(healthy_intake=ifelse(grepl("^HEALTHY.*",intake_condition),1,0),
          contagious_intake=ifelse(grepl(".*[^NON-]CONTAGIOUS", intake_condition),1,0),
          untreatable_intake=ifelse(grepl(".*(UNTREATABLE).*", intake_condition),1,0),
+         treatable_intake=ifelse(grepl("^TREATABLE.*", intake_condition),1,0),
          manageable_intake=ifelse(grepl(".*MANAGEABLE.*", intake_condition),1,0),
          rehabitable_intake=ifelse(grepl(".*REHABILITABLE.*", intake_condition),1,0),
          normal_intake=ifelse(grepl(".*NORMAL.*", intake_condition),1,0))
