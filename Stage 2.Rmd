@@ -1,17 +1,17 @@
 ---
-title: "Stage 2: Exploratory Data Analysis"
+title: 'Stage 2: Exploratory Data Analysis'
 author: "Isaac Slagel and Jack Welsh"
 date: "4/18/2019"
 output:
+  html_document:
+    df_print: paged
   pdf_document:
+    fig_caption: yes
     fig_height: 3
     fig_width: 4.5
-    fig_caption: yes
+header-includes: \usepackage{float}
 editor_options:
   chunk_output_type: console
-
-header-includes:
-- \usepackage{float}
 ---
 
 ```{r, include=FALSE}
@@ -19,7 +19,8 @@ library(tidyverse)
 library(readr)
 library(lubridate)
 library(kableExtra)
-adoptions <- read_csv("~/Stats 316 S19/Project/adoptions/adoptions.csv")
+library(knitr)
+adoptions <- read_csv("adoptions.csv")
 ```
 
 # EDA Main Report
@@ -49,7 +50,8 @@ adoptions %>%
   mutate(outcome = as.factor(outcome_type),
          pitbull = as.factor(pitbull)) %>%
   group_by(pitbull, outcome_type) %>%
-  count(name = "freq") %>%
+  dplyr::count()%>%
+  rename("freq"=n)%>%
   group_by(pitbull)%>%
   mutate(freq = freq/ sum(freq))%>%
   spread(outcome_type,freq) %>%
@@ -363,7 +365,8 @@ adoptions %>%
   mutate(outcome = as.factor(outcome_type),
          pitbull = as.factor(pitbull)) %>%
   group_by(pitbull, outcome_type) %>%
-  count(name = "freq") %>%
+  count() %>%
+  rename("freq"=n)%>%
   group_by(pitbull)%>%
   mutate(freq = freq/ sum(freq))%>%
   spread(outcome_type,freq)
@@ -433,3 +436,133 @@ adoptions  %>%
 ```
 
 These both seem to follow the trend of fewer adoptions in the summer.
+
+## Intake Condition
+
+We are doing a preliminar investigation into this. There is no domunetation on what exactly all the different levels mean. For example we do not know what the difference between a manageable animal and a treatable animal are or what the differnce between a normal and a healthy animal are. 
+
+```{r}
+adoptions_expanded_intake=adoptions%>%
+  mutate(healthy_intake=ifelse(grepl("^HEALTHY.*",intake_condition),1,0),
+         contagious_intake=ifelse(grepl(".*[^NON-]CONTAGIOUS", intake_condition),1,0),
+         untreatable_intake=ifelse(grepl(".*(UNTREATABLE).*", intake_condition),1,0),
+         manageable_intake=ifelse(grepl(".*MANAGEABLE.*", intake_condition),1,0),
+         rehabitable_intake=ifelse(grepl(".*REHABILITABLE.*", intake_condition),1,0),
+         normal_intake=ifelse(grepl(".*NORMAL.*", intake_condition),1,0))
+```
+
+## Healthy
+
+It looks like a slightly higher proportion of cats are healthy (0.0314) than dogs (0.0131), however both of there are suprisingly low. 
+
+```{r}
+adoptions_expanded_intake%>%
+  filter(cat==1|dog==1)%>%
+  group_by(animal_type)%>%
+  summarise(Healthy=mean(healthy_intake))
+
+adoptions_expanded_intake%>%
+  filter(cat==1|dog==1)%>%
+  group_by(animal_type)%>%
+  summarise(Healthy=mean(healthy_intake))%>%
+  ggplot(aes(x=animal_type, y=Healthy))+
+  geom_bar(stat="identity")
+```
+
+## Contagious
+
+Even though a larger proportion of cats are found or given up healthy, a larger proportion of cats are contagious on intage (cats 0.0565 and dogs 0.0159).
+
+```{r}
+adoptions_expanded_intake%>%
+  filter(cat==1|dog==1)%>%
+  group_by(animal_type)%>%
+  summarise(contagious=mean(contagious_intake))%>%
+  ggplot(aes(x=animal_type, y=contagious))+
+  geom_bar(stat="identity")
+
+adoptions_expanded_intake%>%
+  filter(cat==1|dog==1)%>%
+  group_by(animal_type)%>%
+  summarise(contagious=mean(contagious_intake))
+
+```
+
+##Treatable
+
+It looks like there is little difference in the proportion of cats and dogs that on intake are treatable. 
+
+```{r}
+adoptions_expanded_intake%>%
+  filter(cat==1|dog==1)%>%
+  group_by(animal_type)%>%
+  summarise(treatable=mean(treatable_intake))%>%
+  ggplot(aes(x=animal_type, y=treatable))+
+  geom_bar(stat="identity")
+
+adoptions_expanded_intake%>%
+  filter(cat==1|dog==1)%>%
+  group_by(animal_type)%>%
+  summarise(treatable=mean(treatable_intake))
+
+```
+
+
+## Manageable
+
+It appears that these are about the same for both cats and dogs 
+
+```{r}
+adoptions_expanded_intake%>%
+  filter(cat==1|dog==1)%>%
+  group_by(animal_type)%>%
+  summarise(manageable=mean(manageable_intake))%>%
+  ggplot(aes(x=animal_type, y=manageable))+
+  geom_bar(stat="identity")
+
+adoptions_expanded_intake%>%
+  filter(cat==1|dog==1)%>%
+  group_by(animal_type)%>%
+  summarise(manageable=mean(manageable_intake))
+
+```
+
+
+
+## Rehabilatable
+
+It appears that these are about the same for both cats and dogs.
+
+```{r}
+adoptions_expanded_intake%>%
+  filter(cat==1|dog==1)%>%
+  group_by(animal_type)%>%
+  summarise(rehab=mean(rehabitable_intake))%>%
+  ggplot(aes(x=animal_type, y=rehab))+
+  geom_bar(stat="identity")
+
+adoptions_expanded_intake%>%
+  filter(cat==1|dog==1)%>%
+  group_by(animal_type)%>%
+  summarise(rehabitable=mean(rehabitable_intake))
+```
+
+# Normal
+
+It looks like this was only used a few times and most likely is not important. 
+
+```{r}
+adoptions_expanded_intake%>%
+  filter(cat==1|dog==1)%>%
+  group_by(animal_type)%>%
+  summarise(normal=mean(normal_intake))%>%
+  ggplot(aes(x=animal_type, y=normal))+
+  geom_bar(stat="identity")
+
+adoptions_expanded_intake%>%
+  filter(cat==1|dog==1)%>%
+  group_by(animal_type)%>%
+  summarise(normal=mean(normal_intake))
+```
+
+
