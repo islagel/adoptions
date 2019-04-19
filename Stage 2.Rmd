@@ -30,13 +30,11 @@ adoptions <- read_csv("adoptions.csv")
   Our project plans to look into trend in animal treatment in Dallas animal shelters. Using a dataset containing information on all recent animals brought into the shelter, we are going to try to answer some of the following questions. What traits affect a dog's probability of adoption? Are there seasonal trends in the adoption of different animals? Are animals who enter the animal shelter with chips more likely to be returned to their owner? On the table below you can see some of the variables we are working with in the dataset.
 
 
-
 ## Dogs
 
   Dogs are the most common animal winding up in the animal shelters which form our dataset. From our total of 44,194 dogs, 35% were adopted, 30% were returned to owners, 16% were trasfered, and 15% were euthanized. The most common breed of dog in our dataset is the pitbull, with 10,033 being admited to animal shelters in between 10/01/2017 and 04/03/2019. We are especially interested in how pitbulls are treated within our datasets as these dogs have an infamous reputation of being overly agressive. Is it possible that this reputation results in a lower adoption rate for pitbulls that other breeds?
 
 #### Pitbulls
-
 
   To look into how pitbulls are handled within animal shelters, we decided to explore how the outcomes of pitbulls may differ from non-pitbulls. Table 1 describes the differences in outcome rates for non-pitbulls compared to pitbulls.
 
@@ -74,7 +72,7 @@ adoptions %>%
   In Minnesota and Iowa, our home states, animal shelters often report having more difficulty dealing with stray cats. There are lots of problems that feral cats cause including environmental damage and spread of disease. We were interested if we can see these kinds of differences in our data. Do cats spend longer in animal shelters? Are they euthanized at higher rates? To describe some of these differences we looked we created a summary graph of different characteristics of dogs and cats. Since our dataset contains observations of 44194 dogs and only 12891 cats, we created this chart in terms of proportion of each animal matching a certain critera.
 
 
-```{r DogCat Figure, echo = FALSE, fig.align='center', out.width = "60%", fig.pos='H', fig.cap="Cat vs Dog Characteristics"}
+```{r DogCat Figure, echo = FALSE, fig.align='center', out.width = "55%", fig.pos='H', fig.cap="Cat vs Dog Characteristics"}
 adoptions %>%
   filter(dog == 1 | cat == 1) %>%
   mutate(Species = ifelse(dog == 1, "Dog", "Cat")) %>%
@@ -82,11 +80,11 @@ adoptions %>%
   group_by(Species) %>%
   summarise(count = n(),
             meanDays = mean(shelter_days, na.rm = TRUE),
-            `Prop. Euthanized` = sum(euthanized)/count,
-            `Prop. Adopted` = sum(adopted)/count,
-            `Prop. Stray` = sum(stray)/count,
-           `Prop. Returned` = sum(returned)/count,
-           `Prop. Chipped` = sum(chip_status == "SCAN CHIP", na.rm = TRUE)/count)%>%
+            `Euthanized` = sum(euthanized)/count,
+            `Adopted` = sum(adopted)/count,
+            `Stray` = sum(stray)/count,
+           `Returned` = sum(returned)/count,
+           `Chipped` = sum(chip_status == "SCAN CHIP", na.rm = TRUE)/count)%>%
   gather(key = key, value = proportion, 4:8) %>%
   ggplot(aes(x=Species, y= proportion)) +
     geom_bar(stat = "identity")+
@@ -101,7 +99,7 @@ Interestingly enough, we see that the difference between proportions of cats and
 
 Another question that we had in our Stage 1 report was what seasonal trends exists in adoptions. One could imagine a situation where more puppies are adopted in December or more rabbits are adopted in early spring. To explore this we did some ploting to see how many animals were adopted in each months.
 
-```{r Month Figure, echo = FALSE, fig.align='center', out.width = "60%", fig.pos='H', fig.cap="Animal Adoptions by Month"}
+```{r Month Figure, echo = FALSE, fig.align='center', out.width = "55%", fig.pos='H', fig.cap="Animal Adoptions by Month"}
 intake <- adoptions %>%
   mutate(intake_month = month(intake_date, label = TRUE)) %>%
   ggplot(aes(x=intake_month))+
@@ -115,6 +113,33 @@ gridExtra::grid.arrange(intake, outcome)
 ```
 
 These trends surprised us. We see a large drop in adoptions during the summer but a spike in the fall, winter, and early spring.  These trends were true for both Dog and Cat adoptions (see appendix). For rabbits, many were adopted in February and July. While we are unable to put together a rigourus defense for why these trends are occuring, we see that we may need to control for it in our binomial analysis.
+
+## Rehabilitatable
+
+Many animals coming into the animal shelter may be in bad shape. Because of this, euthanasia may be the best outcome for the animal. In our data, the `intake_subtype` variable summarises the condition of the animals coming into the shelter. This variable is in the form of a string with 3 descriptors. We are in the midst of using a string analysis to take out relevant infomration. One key word that appeared in many of the obersevations was "REHABILIITATABLE". It is logical that animals which come in in better condition and show promise of getting better are less likely to be euthanized. We may want to adjust for this in our binomial analysis. 
+
+```{r Rehab Figure, echo = FALSE, fig.align='center', out.width = "55%", fig.pos='H', fig.cap="Intake Status in Cats and Dogs"}
+
+adoptions_expanded_intake=adoptions%>%
+  mutate(healthy_intake=ifelse(grepl("^HEALTHY.*",intake_condition),1,0),
+         contagious_intake=ifelse(grepl(".*[^NON-]CONTAGIOUS", intake_condition),1,0),
+         untreatable_intake=ifelse(grepl(".*(UNTREATABLE).*", intake_condition),1,0),
+         treatable_intake=ifelse(grepl("^TREATABLE.*", intake_condition),1,0),
+         manageable_intake=ifelse(grepl(".*MANAGEABLE.*", intake_condition),1,0),
+         rehabitable_intake=ifelse(grepl(".*REHABILITABLE.*", intake_condition),1,0),
+         normal_intake=ifelse(grepl(".*NORMAL.*", intake_condition),1,0))
+
+adoptions_expanded_intake%>%
+   filter(cat==1|dog==1)%>%
+   group_by(animal_type)%>%
+   summarise(rehab=mean(rehabitable_intake))%>%
+   ggplot(aes(x=animal_type, y=rehab))+
+  geom_bar(stat="identity")
+```
+
+From this plot we can see that a higher proportion of dogs (85%) come in with rehabilitable compared to 76% of cats. This infomration could be used in our comparison of cats and dogs. In the coming weeks we plan to dig more into this variable and consult a current vet-med student to learn more about what these key words indicate. 
+
+
 
 \pagebreak
 
@@ -158,6 +183,25 @@ kable(tab, format = "latex", booktabs = T , caption = "Description of Variables"
 2. [Posage, J. M., Bartlett, P. C., & Thomas, D. K. (1998). Determining factors for successful adoption of dogs from an animal shelter. Journal of the American Veterinary Medical Association, 213(4), 478-482.](https://europepmc.org/abstract/med/9713528)
 
 3. [Lampe, R., & Witte, T. H. (2015). Speed of dog adoption: Impact of online photo traits. Journal of applied animal welfare science, 18(4), 343-354.](https://www.tandfonline.com/doi/abs/10.1080/10888705.2014.982796)
+
+## Interesting Stories in our data
+
+  In the wild, there are badgers. Therefore it makes sense that now and then a animal shelter would occasionally encounter a rouge badger that ended up in the wrong neighborhood. However, this is not what we expected:
+
+```{r, echo = FALSE}
+adoptions %>%
+  select(animal_breed, animal_origin, outcome_type) %>%
+  filter(animal_breed == "BADGER")
+```
+
+  You'll find them on the beaches soaking in the rays, but rarely do you find them in a Dallas animal shelter. 
+  
+```{r, echo = FALSE}
+adoptions %>%
+  select(animal_type, animal_origin, animal_breed, outcome_type)%>%
+  filter(animal_breed == "CALIFORNIAN") 
+```
+
 
 ## Exploring animal_type
 
