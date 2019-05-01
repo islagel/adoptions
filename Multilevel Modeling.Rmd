@@ -1,0 +1,53 @@
+---
+title: "Multi-Level Model"
+author: "Jack Welsh"
+date: "May 1, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+library(readr)
+library(lubridate)
+library(lme4)
+library(kableExtra)
+library(knitr)
+adoptions <- read_csv("adoptions.csv")
+```
+
+
+
+Making a slightly smaller dataset
+```{r}
+just_dog_adoptions=adoptions%>%
+  filter(animal_type=="DOG")%>%
+  mutate(animal_breed=as.factor(animal_breed))%>%
+  mutate(healthy_intake=ifelse(grepl("^HEALTHY.*",intake_condition),1,0),
+         contagious_intake=ifelse(grepl(".*[^NON-]CONTAGIOUS", intake_condition),1,0),
+         untreatable_intake=ifelse(grepl(".*(UNTREATABLE).*", intake_condition),1,0),
+         treatable_intake=ifelse(grepl("^TREATABLE.*", intake_condition),1,0),
+         manageable_intake=ifelse(grepl(".*MANAGEABLE.*", intake_condition),1,0),
+         rehabitable_intake=ifelse(grepl(".*REHABILITABLE.*", intake_condition),1,0),
+         normal_intake=ifelse(grepl(".*NORMAL.*", intake_condition),1,0))
+```
+
+
+Random Intercepts
+```{r}
+mod.1=lmer(adopted~1+(1|animal_breed), data=just_dog_adoptions)
+summary(mod.1)
+```
+
+```{r}
+mod.2=lmer(adopted~month+chip_status+untreatable_intake+(1|animal_breed), data=just_dog_adoptions)
+summary(mod.2)
+```
+
+
+
+
