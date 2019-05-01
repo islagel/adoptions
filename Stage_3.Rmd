@@ -33,6 +33,7 @@ Initially we fit a model which factors in the chip status, whether or not the ou
 
 ```{r}
 pitbull_binom <- adoptions %>%
+  filter(!str_detect(intake_subtype, "(DEAD)|(DIED")) %>%
   filter(dog == 1) %>%
   mutate(out_dead = outcome_type %in% c("DEAD ON ARRIVAL", "EUTHANIZED", "DIED"),
          summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0)) %>%
@@ -54,3 +55,60 @@ exp(confint(model1_quasi))
 
 Initially we see that all variables included have a significant relationship to the proportion of dogs who are dead at the end of their time in the shelter, even after inflating our standard errors to account for the variance structure of our data.  
 
+
+Next lets try to control for whether or not a animal was contagious when it was brought into the shelter. 
+
+```{r}
+pitbull_binom <- adoptions %>%
+  filter(!str_detect(intake_subtype, "(DEAD)|(DIED)")) %>%
+  filter(dog == 1) %>%
+  mutate(out_dead = outcome_type %in% c("DEAD ON ARRIVAL", "EUTHANIZED", "DIED"),
+         summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0),
+         chip_status = ifelse(chip_status=="SCAN CHIP", 1, 0),
+         contagious=ifelse(grepl(".*[^NON-]CONTAGIOUS", intake_condition),1,0)) %>%
+  group_by(pitbull, chip_status, summer, month, contagious) %>%
+  summarize(prop_dead = sum(out_dead)/n(), count = n())
+
+model2_binom <- glm(prop_dead ~ pitbull + chip_status + 
+                      summer + contagious, weights = count, 
+                    family = binomial, data = pitbull_binom)
+
+model2_quasi <- glm(prop_dead ~ pitbull + chip_status + 
+                      summer + contagious , weights = count, 
+                    family = quasibinomial, data = pitbull_binom)
+
+summary(model2_binom)
+exp(confint(model2_binom))
+
+summary(model2_quasi)
+exp(confint(model2_quasi))
+```
+
+Next lets try to control for whether or not a animal was treatable when it was brought into the shelter. 
+
+```{r}
+pitbull_binom <- adoptions %>%
+  filter(!str_detect(intake_subtype, "(DEAD)|(DIED)")) %>%
+  filter(dog == 1) %>%
+  mutate(out_dead = outcome_type %in% c("DEAD ON ARRIVAL", "EUTHANIZED", "DIED"),
+         summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0),
+         chip_status = ifelse(chip_status=="SCAN CHIP", 1, 0),
+         contagious=ifelse(grepl(".*[^NON-]CONTAGIOUS", intake_condition),1,0),
+         treatable=ifelse(grepl("^TREATABLE.*", intake_condition),1,0)) %>%
+  group_by(pitbull, chip_status, summer, month, contagious, treatable) %>%
+  summarize(prop_dead = sum(out_dead)/n(), count = n())
+
+model3_binom <- glm(prop_dead ~ pitbull + chip_status + 
+                      summer + contagious + treatable, weights = count, 
+                    family = binomial, data = pitbull_binom)
+
+model3_quasi <- glm(prop_dead ~ pitbull + chip_status + 
+                      summer + contagious + treatable , weights = count, 
+                    family = quasibinomial, data = pitbull_binom)
+
+summary(model3_binom)
+exp(confint(model3_binom))
+
+summary(model3_quasi)
+exp(confint(model3_quasi))
+```
