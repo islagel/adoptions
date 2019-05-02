@@ -33,7 +33,7 @@ Initially we fit a model which factors in the chip status, whether or not the ou
 
 ```{r}
 pitbull_binom <- adoptions %>%
-  filter(!str_detect(intake_subtype, "(DEAD)|(DIED")) %>%
+  filter(!str_detect(intake_subtype, "(DEAD)|(DIED)")) %>%
   filter(dog == 1) %>%
   mutate(out_dead = outcome_type %in% c("DEAD ON ARRIVAL", "EUTHANIZED", "DIED"),
          summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0)) %>%
@@ -41,7 +41,8 @@ pitbull_binom <- adoptions %>%
   group_by(pitbull, chip_status, summer, month) %>%
   summarize(prop_dead = sum(out_dead)/n(), count = n())
 
-model1_binom <- glm(prop_dead ~ pitbull + chip_status + summer , weights = count, family = binomial, data = pitbull_binom)
+
+model1_binom <- glm(adopted ~ pitbull + chip_status + summer , weights = count, family = binomial, data = pitbull_binom)
 
 model1_quasi <- glm(prop_dead ~ pitbull + chip_status + summer , weights = count, family = quasibinomial, data = pitbull_binom)
 
