@@ -33,7 +33,7 @@ Initially we fit a model which factors in the chip status, whether or not the ou
 
 ```{r}
 pitbull_binom <- adoptions %>%
-  filter(!str_detect(intake_subtype, "(DEAD)|(DIED")) %>%
+  filter(!str_detect(intake_subtype, "(DEAD)|(DIED)")) %>%
   filter(dog == 1) %>%
   mutate(out_dead = outcome_type %in% c("DEAD ON ARRIVAL", "EUTHANIZED", "DIED"),
          summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0)) %>%
