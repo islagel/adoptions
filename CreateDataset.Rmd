@@ -34,7 +34,7 @@ pets <- pets %>%
 pets <- pets %>%
   filter(intake_total == 1)%>%
   select(-intake_total) %>%
-  select(-council_district) %>%
+  #select(-council_district) %>%
   select(-outcome_subtype) %>%
   mutate(pitbull = if_else(animal_breed == "PIT BULL", 1, 0 ), 
          adopted = if_else(outcome_type == "ADOPTION", 1, 0),
@@ -47,7 +47,9 @@ pets <- pets %>%
   mutate(shelter_days = difftime(outcome_date,intake_date, units = "days"), 
          december = if_else(month(outcome_date) == 12, 1, 0), 
          month = month(outcome_date),
-         year = year(outcome_date)
+         year = year(outcome_date), 
+        council_district = parse_integer(council_district),
+        council_district = ifelse(council_district %in% 1:14, council_district, NA )
         ) 
 
 ```
