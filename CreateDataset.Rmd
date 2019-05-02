@@ -55,6 +55,6 @@ pets <- pets %>%
 ```
 
 ```{r}
-write.csv(pets, "~/Stats 316 S19/Project/adoptions/adoptions.csv")
+write.csv(pets, "~/Stats 316 S19/Project/Jack and Isaac/adoptions/adoptions.csv")
 #write.csv(pets, "~/Documents/GitHub/adoptions/adoptions.csv")
 ```
