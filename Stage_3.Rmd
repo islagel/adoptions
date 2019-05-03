@@ -111,7 +111,6 @@ anova(pitbull_model2_quasi, pitbull_model3_quasi, test = "F")
 We see in Table 1 that all of our models have variable estimates that are significant including Model 3 which accounted for whether or not an animal was deemed "treatable" at the time of intake. Further, by two F tests we see each of our models is an improvement on the one before it (Model 1 $\rightarrow$ Model 2: F = 5.1141, p-value = 0.031) (Model 2 $\rightarrow$ Model 3: F = 313.62, p-value <<< .05). Before our final draft we will continue to explore these trends and look for other variables that contribute to dog outcomes.
 =======
 See from the above table that all of our models have variable estimates that are significant including Model 3 which accounted for whether or not an animal was deemed "treatable" at the time of intake. For some reason our table does not indicate the significance of the treatable intake variable in model 3, it is indeed significant. Further, by two F tests we see each of our models is an improvement on the one before it (Model 1 $\rightarrow$ Model 2: F = 5.1141, p-value = 0.031) (Model 2 $\rightarrow$ Model 3: F = 313.62, p-value <<< .05). 
->>>>>>> 1570d4eda85a6ad1523473518b4b82d61027adfa
 
 Using model 3 as our best model of dog outcomes from the animal shelter, we glean several insights about how certain characteristics of dogs have relationships with those animal's outcome from the animal shelter. For instance, if a dog is a pitbull, we expect it's odds of leaving the animal shelter dead increase by 348%, after controlling for chip status, season, and intake condition. Yikes! On the other hand, if a dog comes into the shelter with a scannable chip, we expect the animals odds of dying within the shelter system to drop by about 22%, after controlling for pitbull, season, and intake condition. Interestingly enough, if a dog has its outcome in the summer, the odds of that outcome being death are about 47% higher, controlling for breed, chip status, and intake condition.  
 
@@ -119,7 +118,45 @@ Using model 3 as our best model of dog outcomes from the animal shelter, we glea
 
 Interestingly enough, we were not able to find any significant relationships between dog and cat outcomes. We tried multiple binomial models accounting for stray, summer, and chip status. None of these models showed any significance. This suprised us a lot, as we saw a few trends in our EDA and have heard stories about poorer outcomes for cats in animal shelters. We may consider looking into a few other outcomes for our final report (we only considered death at outcome).
 
+### Conrtolling for City Council District
 
+To control for differnces between city council districts we chose to use multilevel logistic regresison. We began by fitting two random intercepts models with no level 1 or level 2 terms, one for adopted as the response and one for death within the shelter system as a response. 
+
+
+While looking at adoptions as our response we found that our one fixed effect $\alpha_0=-0.4930$, which if you exponentiate and convert to a proportion we see that the average proportion of dogs being adopted is 0.379. It is sad to think that only about one out of every three dogs gets adopted. We fonud a $\sigma_u=0.2438$ so the average deviance between city council districts 0.2438. 
+
+Next we repeated the same model with out_dead as the outcome. We fonud a fixed effect for our $\alpha_0=-1.65465$, which after you exponentiate and convert to a proportion we get 0.160. So only 16% of the dogs that enter the animal shelter system exit dead. We found a $\sigma_u=0.1395$, so the average deciance between city council districts is 0.1395. 
+
+```{r}
+mod.1=glmer(adopted~1+(1|council_district), data=just_dog_adoptions, family = "binomial")
+summary(mod.1)
+exp(fixef(mod.1))/(1+exp(fixef(mod.1)))
+mod.1_dead=glmer(out_dead~1+(1|council_district), data=just_dog_adoptions, family = "binomial")
+summary(mod.1_dead)
+exp(fixef(mod.1_dead))/(1+exp(fixef(mod.1_dead)))
+```
+
+
+We repeated the same procedure as above just this time adding in summer, chip status and treatable intake. We found with adopted as the response the average proportion adopted is 0.126 not durring the summer for dogs that are untreatable and the chip was not readable or not present. We found that all of our predictors are significant, see table. We fonud that the summer on average increase the odds of a dog being adopted by 7.4% compared not during the summer controlling for chip status, and treatable intake. Suprisingly we fonud that if a dog has a readable chip on average the odds of them being adopted decreases by 11.5% compared to a dog with a unreadable chip or no chip controlling for summer and treatable intake. This suprised us at first, but then we realized that dogs that have a chip tend to be dogs that are returned to owner. Unsuprisingly, a dog with a treatable intake odds of being adopted are 393% higher than dogs without a treatable intake controlling for whether it is summer and chip status. 
+
+When looking at death as our response we found that the average proportion of dogs dying in the animal shelter system not durring the summer, without a chip, and with a non treateable intake is 0.52. We found that on average summer increases the odds of death increase by 45.5% controlling for chip status and treatable intake. On average having a chip decreases the odds of death by 21% acconuting for summer and treatable intake. On average treatable intake decreases the odds of death ny 89.3% accounting for summer and chip status. 
+
+
+```{r}
+mod.2.adopted=glmer(adopted~summer+chip_status+treatable_intake+(1|council_district), data=just_dog_adoptions, family = "binomial")
+summary(mod.2.adopted)
+
+exp(fixef(mod.2.adopted))
+
+exp(fixef(mod.2.adopted))/(1+exp(fixef(mod.2.adopted)))
+
+
+mod.2.dead=glmer(out_dead~summer+chip_status+treatable_intake+(1|council_district), data=just_dog_adoptions, family = "binomial")
+summary(mod.2.dead)
+exp(fixef(mod.2.dead))
+exp(fixef(mod.2.dead))/(1+exp(fixef(mod.2.dead)))
+
+```
 
 
 # Annotated Appendix
