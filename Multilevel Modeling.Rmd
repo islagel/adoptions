@@ -43,16 +43,20 @@ Random Intercepts
 ```{r}
 mod.1=glmer(adopted~1+(1|animal_breed), data=just_dog_adoptions, family = "binomial")
 summary(mod.1)
+
+mod.1=glmer(adopted~1+(1|council_district), data=just_dog_adoptions, family = "binomial")
+summary(mod.1)
+
 ```
 
 
 
 ```{r}
-mod.2=glmer(adopted~summer+chip_status+untreatable_intake+(1|animal_breed), data=just_dog_adoptions, family = "binomial")
-summary(mod.2)
+mod.2.adopted=glmer(adopted~summer+chip_status+treatable_intake+(1|council_district), data=just_dog_adoptions, family = "binomial")
+summary(mod.2.adopted)
 
-mod.2=glmer(out_dead~summer+chip_status+untreatable_intake+(1|animal_breed), data=just_dog_adoptions, family = "binomial")
-summary(mod.2)
+mod.2.dead=glmer(out_dead~summer+chip_status+treatable_intake+(1|council_district), data=just_dog_adoptions, family = "binomial")
+summary(mod.2.dead)
 
 ```
 
