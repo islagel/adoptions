@@ -107,13 +107,13 @@ anova(pitbull_model2_quasi, pitbull_model3_quasi, test = "F")
 
 ```
 
-<<<<<<< HEAD
+
 We see in Table 1 that all of our models have variable estimates that are significant including Model 3 which accounted for whether or not an animal was deemed "treatable" at the time of intake. Further, by two F tests we see each of our models is an improvement on the one before it (Model 1 $\rightarrow$ Model 2: F = 5.1141, p-value = 0.031) (Model 2 $\rightarrow$ Model 3: F = 313.62, p-value <<< .05). Before our final draft we will continue to explore these trends and look for other variables that contribute to dog outcomes.
-=======
-See from the above table that all of our models have variable estimates that are significant including Model 3 which accounted for whether or not an animal was deemed "treatable" at the time of intake. For some reason our table does not indicate the significance of the treatable intake variable in model 3, it is indeed significant. Further, by two F tests we see each of our models is an improvement on the one before it (Model 1 $\rightarrow$ Model 2: F = 5.1141, p-value = 0.031) (Model 2 $\rightarrow$ Model 3: F = 313.62, p-value <<< .05). 
->>>>>>> 1570d4eda85a6ad1523473518b4b82d61027adfa
+
 
 Using model 3 as our best model of dog outcomes from the animal shelter, we glean several insights about how certain characteristics of dogs have relationships with those animal's outcome from the animal shelter. For instance, if a dog is a pitbull, we expect it's odds of leaving the animal shelter dead increase by 348%, after controlling for chip status, season, and intake condition. Yikes! On the other hand, if a dog comes into the shelter with a scannable chip, we expect the animals odds of dying within the shelter system to drop by about 22%, after controlling for pitbull, season, and intake condition. Interestingly enough, if a dog has its outcome in the summer, the odds of that outcome being death are about 47% higher, controlling for breed, chip status, and intake condition.  
+
+One interesting issue that we encountered in this section of our modeling was the significance of the dataset we fit on SE estimates. If we summarized our data for each specific model, parameter estimates had increase SEs and more insignificant p-values. However, if we fit all of our models on the same, more extensive, summary table, SEs were small and parameters were more likely to be significant. We decided to proceed with the latter option, as it allows us to carry out nested F tests and would be more like a modeling process for true grouped data. This could mean that our SEs are artifically low. 
 
 ### Dogs and Cats
 
