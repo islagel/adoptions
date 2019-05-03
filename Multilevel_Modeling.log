@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.9.20)  3 MAY 2019 11:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.9.20)  3 MAY 2019 11:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Stage_3.tex
-(./Stage_3.tex
+**Multilevel_Modeling.tex
+(./Multilevel_Modeling.tex
 LaTeX2e <2018-04-01> patch level 5
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
@@ -657,39 +657,37 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
-) (/home/rstudio/texlive/2018/texmf-dist/tex/latex/tools/dcolumn.sty
-Package: dcolumn 2014/10/28 v1.06 decimal alignment package (DPC)
-) (./Stage_3.aux)
-\openout1 = `Stage_3.aux'.
+) (./Multilevel_Modeling.aux)
+\openout1 = `Multilevel_Modeling.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 144.
-LaTeX Font Info:    ... okay on input line 144.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 144.
-LaTeX Font Info:    ... okay on input line 144.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 144.
-LaTeX Font Info:    ... okay on input line 144.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 144.
-LaTeX Font Info:    ... okay on input line 144.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 144.
-LaTeX Font Info:    ... okay on input line 144.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 144.
-LaTeX Font Info:    ... okay on input line 144.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 144.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 144.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 142.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 142.
 
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 144.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 144.
-LaTeX Font Info:    ... okay on input line 144.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 144.
-LaTeX Font Info:    ... okay on input line 144.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 144.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 142.
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Info: Redefining \microtypecontext on input line 144.
+LaTeX Info: Redefining \microtypecontext on input line 142.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
@@ -738,7 +736,7 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box47
-Package hyperref Info: Link coloring OFF on input line 144.
+Package hyperref Info: Link coloring OFF on input line 142.
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/home/rstudio/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -746,12 +744,12 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count140
 )
-LaTeX Info: Redefining \ref on input line 144.
-LaTeX Info: Redefining \pageref on input line 144.
-LaTeX Info: Redefining \nameref on input line 144.
-(./Stage_3.out) (./Stage_3.out)
+LaTeX Info: Redefining \ref on input line 142.
+LaTeX Info: Redefining \pageref on input line 142.
+LaTeX Info: Redefining \nameref on input line 142.
+(./Multilevel_Modeling.out) (./Multilevel_Modeling.out)
 \@outlinefile=\write4
-\openout4 = `Stage_3.out'.
+\openout4 = `Multilevel_Modeling.out'.
 
 (/home/rstudio/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -782,424 +780,285 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 150.
+Package xcolor Warning: Incompatible color definition on input line 145.
 
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 164.
-
-(/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/ot1lmr.fd
-File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 164.
-
-(/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/omllmm.fd
-File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 164
-.
-(/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/omslmsy.fd
-File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 164
-.
-(/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/omxlmex.fd
-File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 164.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 164.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 164.
-LaTeX Font Info:    Try loading font information for U+msa on input line 164.
-(/home/rstudio/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-) (/home/rstudio/texlive/2018/texmf-dist/tex/latex/microtype/mt-msa.cfg
-File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 164.
-(/home/rstudio/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (/home/rstudio/texlive/2018/texmf-dist/tex/latex/microtype/mt-msb.cfg
-File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-) [1
-
-{/home/rstudio/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}pdfTeX
- warning (ext4): destination with the same identifier (name{table.1}) has been 
-already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.221 
-      ]
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 244.
-
-
-Package xcolor Warning: Incompatible color definition on input line 256.
-
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 257.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 146.
 
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 258.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 147.
 
-Package xcolor Warning: Incompatible color definition on input line 274.
+Package xcolor Warning: Incompatible color definition on input line 149.
 
 
-Package xcolor Warning: Incompatible color definition on input line 274.
+Package xcolor Warning: Incompatible color definition on input line 149.
 
-[2]
-LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 303
+
+Overfull \hbox (181.24309pt too wide) in paragraph at lines 153--153
+[]\T1/lmtt/m/n/10 ## -- Attaching packages ------------------------------------
+-------------------------------------------- tidyverse 1.2.1 --[] 
+ []
+
+
+Overfull \hbox (181.24309pt too wide) in paragraph at lines 166--166
+[]\T1/lmtt/m/n/10 ## -- Conflicts ---------------------------------------------
+-------------------------------------- tidyverse_conflicts() --[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 168.
+
+
+Package xcolor Warning: Incompatible color definition on input line 173.
+
+
+Package xcolor Warning: Incompatible color definition on input line 173.
+
+LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 178
 .
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 
-Package xcolor Warning: Incompatible color definition on input line 305.
+Package xcolor Warning: Incompatible color definition on input line 186.
 
 
-Package xcolor Warning: Incompatible color definition on input line 309.
+Package xcolor Warning: Incompatible color definition on input line 190.
 
 
-Package xcolor Warning: Incompatible color definition on input line 309.
+Package xcolor Warning: Incompatible color definition on input line 190.
 
 
-Package xcolor Warning: Incompatible color definition on input line 323.
+Package xcolor Warning: Incompatible color definition on input line 207.
 
 
-Package xcolor Warning: Incompatible color definition on input line 327.
+Package xcolor Warning: Incompatible color definition on input line 211.
 
 
-Package xcolor Warning: Incompatible color definition on input line 327.
+Package xcolor Warning: Incompatible color definition on input line 211.
 
-[3]
 
-Package xcolor Warning: Incompatible color definition on input line 358.
+Package xcolor Warning: Incompatible color definition on input line 224.
 
 
-Package xcolor Warning: Incompatible color definition on input line 362.
+Package xcolor Warning: Incompatible color definition on input line 229.
 
 
-Package xcolor Warning: Incompatible color definition on input line 362.
+Package xcolor Warning: Incompatible color definition on input line 229.
 
 
-Package xcolor Warning: Incompatible color definition on input line 384.
-
-
-Package xcolor Warning: Incompatible color definition on input line 406.
-
-
-Package xcolor Warning: Incompatible color definition on input line 406.
-
-[4]
-
-Package xcolor Warning: Incompatible color definition on input line 438.
-
-
-Package xcolor Warning: Incompatible color definition on input line 442.
-
-
-Package xcolor Warning: Incompatible color definition on input line 442.
-
-
-Package xcolor Warning: Incompatible color definition on input line 457.
-
-
-Package xcolor Warning: Incompatible color definition on input line 461.
-
-
-Package xcolor Warning: Incompatible color definition on input line 461.
-
-
-Package xcolor Warning: Incompatible color definition on input line 493.
-
-
-Package xcolor Warning: Incompatible color definition on input line 497.
-
-
-Package xcolor Warning: Incompatible color definition on input line 497.
-
-[5]
-
-Package xcolor Warning: Incompatible color definition on input line 515.
-
-
-Package xcolor Warning: Incompatible color definition on input line 539.
-
-
-Package xcolor Warning: Incompatible color definition on input line 539.
-
-[6]
-
-Package xcolor Warning: Incompatible color definition on input line 572.
-
-
-Package xcolor Warning: Incompatible color definition on input line 576.
-
-
-Package xcolor Warning: Incompatible color definition on input line 576.
-
-
-Package xcolor Warning: Incompatible color definition on input line 592.
-
-
-Package xcolor Warning: Incompatible color definition on input line 596.
-
-
-Package xcolor Warning: Incompatible color definition on input line 596.
-
-
-Package xcolor Warning: Incompatible color definition on input line 630.
-
-
-Package xcolor Warning: Incompatible color definition on input line 634.
-
-
-Package xcolor Warning: Incompatible color definition on input line 634.
-
-[7]
-
-Package xcolor Warning: Incompatible color definition on input line 659.
-
-
-Package xcolor Warning: Incompatible color definition on input line 678.
-
-
-Package xcolor Warning: Incompatible color definition on input line 678.
-
-
-Package xcolor Warning: Incompatible color definition on input line 706.
-
-
-Package xcolor Warning: Incompatible color definition on input line 710.
-
-
-Package xcolor Warning: Incompatible color definition on input line 710.
-
-[8]
-
-Package xcolor Warning: Incompatible color definition on input line 722.
-
-
-Package xcolor Warning: Incompatible color definition on input line 726.
-
-
-Package xcolor Warning: Incompatible color definition on input line 726.
-
-
-Package xcolor Warning: Incompatible color definition on input line 754.
-
-
-Package xcolor Warning: Incompatible color definition on input line 758.
-
-
-Package xcolor Warning: Incompatible color definition on input line 758.
-
-
-Package xcolor Warning: Incompatible color definition on input line 770.
-
-
-Package xcolor Warning: Incompatible color definition on input line 780.
-
-
-Package xcolor Warning: Incompatible color definition on input line 780.
-
-[9]
-
-Package xcolor Warning: Incompatible color definition on input line 808.
-
-
-Package xcolor Warning: Incompatible color definition on input line 812.
-
-
-Package xcolor Warning: Incompatible color definition on input line 812.
-
-
-Package xcolor Warning: Incompatible color definition on input line 824.
-
-
-Package xcolor Warning: Incompatible color definition on input line 828.
-
-
-Package xcolor Warning: Incompatible color definition on input line 828.
-
-
-Package xcolor Warning: Incompatible color definition on input line 856.
-
-
-Package xcolor Warning: Incompatible color definition on input line 860.
-
-
-Package xcolor Warning: Incompatible color definition on input line 860.
-
-
-Package xcolor Warning: Incompatible color definition on input line 872.
-
-
-Package xcolor Warning: Incompatible color definition on input line 882.
-
-
-Package xcolor Warning: Incompatible color definition on input line 882.
-
-
-Overfull \vbox (1.28291pt too high) detected at line 882
+Overfull \hbox (18.49356pt too wide) in paragraph at lines 238--238
+[]\T1/lmtt/m/n/10 ##  Hlavac, Marek (2018). stargazer: Well-Formatted Regressio
+n and Summary Statistics Tables.[] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 882.
+Package xcolor Warning: Incompatible color definition on input line 244.
 
-[10]
+[1
 
-Package xcolor Warning: Incompatible color definition on input line 882.
+{/home/rstudio/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
+Package xcolor Warning: Incompatible color definition on input line 248.
 
-Package xcolor Warning: Incompatible color definition on input line 882.
 
+Package xcolor Warning: Incompatible color definition on input line 248.
 
-Package xcolor Warning: Incompatible color definition on input line 912.
 
+Package xcolor Warning: Incompatible color definition on input line 284.
 
-Package xcolor Warning: Incompatible color definition on input line 916.
 
+Package xcolor Warning: Incompatible color definition on input line 293.
 
-Package xcolor Warning: Incompatible color definition on input line 916.
 
+Package xcolor Warning: Incompatible color definition on input line 293.
 
-Package xcolor Warning: Incompatible color definition on input line 929.
+<Multilevel_Modeling_files/figure-latex/unnamed-chunk-3-1.pdf, id=19, 459.7175p
+t x 315.1775pt>
+File: Multilevel_Modeling_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file
+ (type pdf)
+<use Multilevel_Modeling_files/figure-latex/unnamed-chunk-3-1.pdf>
+Package pdftex.def Info: Multilevel_Modeling_files/figure-latex/unnamed-chunk-3
+-1.pdf  used on input line 295.
+(pdftex.def)             Requested size: 459.74442pt x 315.19595pt.
+[2]
 
+Package xcolor Warning: Incompatible color definition on input line 303.
 
-Package xcolor Warning: Incompatible color definition on input line 933.
 
+Package xcolor Warning: Incompatible color definition on input line 312.
 
-Package xcolor Warning: Incompatible color definition on input line 933.
 
-[11]
+Package xcolor Warning: Incompatible color definition on input line 312.
 
-Package xcolor Warning: Incompatible color definition on input line 963.
+<Multilevel_Modeling_files/figure-latex/unnamed-chunk-4-1.pdf, id=25, 459.7175p
+t x 315.1775pt>
+File: Multilevel_Modeling_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file
+ (type pdf)
+<use Multilevel_Modeling_files/figure-latex/unnamed-chunk-4-1.pdf>
+Package pdftex.def Info: Multilevel_Modeling_files/figure-latex/unnamed-chunk-4
+-1.pdf  used on input line 314.
+(pdftex.def)             Requested size: 459.74442pt x 315.19595pt.
+[3 <./Multilevel_Modeling_files/figure-latex/unnamed-chunk-3-1.pdf>]
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 322.
 
+(/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 322.
 
-Package xcolor Warning: Incompatible color definition on input line 967.
+(/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 322
+.
+(/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 322
+.
+(/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 322.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 322.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 322.
+LaTeX Font Info:    Try loading font information for U+msa on input line 322.
+(/home/rstudio/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+) (/home/rstudio/texlive/2018/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 322.
+(/home/rstudio/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) (/home/rstudio/texlive/2018/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
 
+Package xcolor Warning: Incompatible color definition on input line 334.
 
-Package xcolor Warning: Incompatible color definition on input line 967.
 
+Package xcolor Warning: Incompatible color definition on input line 339.
 
-Package xcolor Warning: Incompatible color definition on input line 980.
 
+Package xcolor Warning: Incompatible color definition on input line 339.
 
-Package xcolor Warning: Incompatible color definition on input line 990.
+[4 <./Multilevel_Modeling_files/figure-latex/unnamed-chunk-4-1.pdf>]
 
+Package xcolor Warning: Incompatible color definition on input line 367.
 
-Package xcolor Warning: Incompatible color definition on input line 990.
 
+Package xcolor Warning: Incompatible color definition on input line 371.
 
-Package xcolor Warning: Incompatible color definition on input line 1020.
 
+Package xcolor Warning: Incompatible color definition on input line 371.
 
-Package xcolor Warning: Incompatible color definition on input line 1024.
 
+Package xcolor Warning: Incompatible color definition on input line 378.
 
-Package xcolor Warning: Incompatible color definition on input line 1024.
 
-[12]
+Package xcolor Warning: Incompatible color definition on input line 383.
 
-Package xcolor Warning: Incompatible color definition on input line 1038.
 
+Package xcolor Warning: Incompatible color definition on input line 383.
 
-Package xcolor Warning: Incompatible color definition on input line 1042.
 
+Package xcolor Warning: Incompatible color definition on input line 411.
 
-Package xcolor Warning: Incompatible color definition on input line 1042.
 
+Package xcolor Warning: Incompatible color definition on input line 415.
 
-Package xcolor Warning: Incompatible color definition on input line 1072.
 
+Package xcolor Warning: Incompatible color definition on input line 415.
 
-Package xcolor Warning: Incompatible color definition on input line 1076.
 
+Package xcolor Warning: Incompatible color definition on input line 428.
 
-Package xcolor Warning: Incompatible color definition on input line 1076.
 
+Package xcolor Warning: Incompatible color definition on input line 433.
 
-Package xcolor Warning: Incompatible color definition on input line 1090.
 
+Package xcolor Warning: Incompatible color definition on input line 433.
 
-Package xcolor Warning: Incompatible color definition on input line 1100.
+[5]
 
+Package xcolor Warning: Incompatible color definition on input line 471.
 
-Package xcolor Warning: Incompatible color definition on input line 1100.
 
-[13]
+Package xcolor Warning: Incompatible color definition on input line 475.
 
-Package xcolor Warning: Incompatible color definition on input line 1128.
 
+Package xcolor Warning: Incompatible color definition on input line 475.
 
-Package xcolor Warning: Incompatible color definition on input line 1132.
 
+Package xcolor Warning: Incompatible color definition on input line 482.
 
-Package xcolor Warning: Incompatible color definition on input line 1132.
 
+Package xcolor Warning: Incompatible color definition on input line 487.
 
-Package xcolor Warning: Incompatible color definition on input line 1144.
 
+Package xcolor Warning: Incompatible color definition on input line 487.
 
-Package xcolor Warning: Incompatible color definition on input line 1148.
+[6]
 
+Package xcolor Warning: Incompatible color definition on input line 525.
 
-Package xcolor Warning: Incompatible color definition on input line 1148.
 
+Package xcolor Warning: Incompatible color definition on input line 529.
 
-Package xcolor Warning: Incompatible color definition on input line 1176.
 
+Package xcolor Warning: Incompatible color definition on input line 529.
 
-Package xcolor Warning: Incompatible color definition on input line 1180.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 576.
+[7pdfTeX warning (ext4): destination with the same identifier (name{table.1}) h
+as been already used, duplicate ignored
 
-
-Package xcolor Warning: Incompatible color definition on input line 1180.
-
-[14]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1196.
-[15]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1196.
-(./Stage_3.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1196.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1196.
-
-Package rerunfilecheck Info: File `Stage_3.out' has not changed.
-(rerunfilecheck)             Checksum: 4436DF4441D59D62F2F11A1926EC0CC1;989.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1196.
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.576 \end{document}
+                    ]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 576.
+(./Multilevel_Modeling.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 576.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 576.
+Package rerunfilecheck Info: File `Multilevel_Modeling.out' has not changed.
+(rerunfilecheck)             Checksum: 7B8A0F85C0A78729EBBD9BBE5620767D;205.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 576.
  ) 
 Here is how much of TeX's memory you used:
- 14763 strings out of 492641
- 214130 string characters out of 6127902
- 344892 words of memory out of 5000000
- 18324 multiletter control sequences out of 15000+600000
- 46836 words of font info for 72 fonts, out of 8000000 for 9000
+ 14700 strings out of 492641
+ 213967 string characters out of 6127902
+ 340041 words of memory out of 5000000
+ 18305 multiletter control sequences out of 15000+600000
+ 39760 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,17n,38p,970b,455s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/home/rstudio/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/home/r
-studio/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/home/rstudio/texl
-ive/2018/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/home/rstudio/texlive/201
-8/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/home/rstudio/texlive/2018/texmf
--dist/fonts/enc/dvips/lm/lm-rm.enc}</home/rstudio/texlive/2018/texmf-dist/fonts
+ 34i,11n,38p,982b,455s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/home/rstudio/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/hom
+e/rstudio/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/home/rstudio/t
+exlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/home/rstudio/texlive/
+2018/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/home/rstudio/texlive/2018/texmf-
+dist/fonts/enc/dvips/lm/lm-ts1.enc}</home/rstudio/texlive/2018/texmf-dist/fonts
 /type1/public/lm/lmbx10.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/type1/
-public/lm/lmbx12.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/type1/public/
-lm/lmmi10.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr1
-0.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr17.pfb></
-home/rstudio/texlive/2018/texmf-dist/fonts/type1/public/lm/lmri10.pfb></home/rs
-tudio/texlive/2018/texmf-dist/fonts/type1/public/lm/lmri12.pfb></home/rstudio/t
-exlive/2018/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></home/rstudio/texlive/
-2018/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></home/rstudio/texlive/2018/tex
-mf-dist/fonts/type1/public/lm/lmtk10.pfb></home/rstudio/texlive/2018/texmf-dist
-/fonts/type1/public/lm/lmtt10.pfb>
-Output written on Stage_3.pdf (15 pages, 229850 bytes).
+public/lm/lmmi10.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/type1/public/
+lm/lmmi7.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr10
+.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr17.pfb></h
+ome/rstudio/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></home/rstud
+io/texlive/2018/texmf-dist/fonts/type1/public/lm/lmri10.pfb></home/rstudio/texl
+ive/2018/texmf-dist/fonts/type1/public/lm/lmri12.pfb></home/rstudio/texlive/201
+8/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></home/rstudio/texlive/2018/texmf
+-dist/fonts/type1/public/lm/lmsy7.pfb></home/rstudio/texlive/2018/texmf-dist/fo
+nts/type1/public/lm/lmtk10.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/typ
+e1/public/lm/lmtt10.pfb>
+Output written on Multilevel_Modeling.pdf (7 pages, 213919 bytes).
 PDF statistics:
- 160 PDF objects out of 1000 (max. 8388607)
- 130 compressed objects within 2 object streams
- 24 named destinations out of 1000 (max. 500000)
- 10297 words of extra memory for PDF output out of 12000 (max. 10000000)
+ 120 PDF objects out of 1000 (max. 8388607)
+ 92 compressed objects within 1 object stream
+ 10 named destinations out of 1000 (max. 500000)
+ 10259 words of extra memory for PDF output out of 12000 (max. 10000000)
 
