@@ -9,7 +9,8 @@ output:
     fig_width: 4.5
   html_document:
     df_print: paged
-header-includes: \usepackage{float}
+header-includes: \usepackage{dcolumn}
+                  \usepackage{float}
 editor_options:
   chunk_output_type: console
 ---
@@ -20,10 +21,91 @@ library(readr)
 library(lubridate)
 library(kableExtra)
 library(knitr)
+library(stargazer)
 adoptions <- read_csv("adoptions.csv")
+set.seed(112233)
 ```
 
-#Annotated Appendix
+#Main Report 
+
+### Pitbulls in Dallas Shelters
+
+In our EDA we found a distinct difference between outcomes for pitbulls compared to other breeds of dogs. What we saw was that pitbulls tend to be killed at a higher rate than other dogs. However we also found there were other variables that influence the outcome of dogs like chip status, outcome month, and intake condition. Inorder to quantify the difference in treatment between dog breeds, we condensed our large dataset into a smaller form and conducted a series of binomial regressions described in Table 1. 
+
+
+```{r pitbull table, results = "asis", echo = FALSE, message=FALSE}
+
+pitbull_binom <- adoptions %>%
+  filter(!str_detect(intake_subtype, "(DEAD)|(DIED)")) %>%
+  filter(dog == 1) %>%
+  mutate(out_dead = outcome_type %in% c("DEAD ON ARRIVAL", "EUTHANIZED", "DIED"),
+         summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0),
+         chip_status = ifelse(chip_status=="SCAN CHIP", 1, 0),
+         contagious=ifelse(grepl(".*[^NON-]CONTAGIOUS", intake_condition),1,0),
+         treatable=ifelse(grepl("^TREATABLE.*", intake_condition),1,0)) %>%
+  group_by(pitbull, chip_status, summer, contagious, treatable) %>%
+  summarize(prop_dead = sum(out_dead)/n(), count = n())
+
+#### MODEL 1 ####
+
+
+
+pitbull_model1_quasi <- glm(prop_dead ~ pitbull + chip_status + summer , weights = count, family = quasibinomial, data = pitbull_binom)
+
+#### MODEL 2 ####
+
+pitbull_model2_quasi <- glm(prop_dead ~ pitbull + chip_status + 
+                      summer + contagious , weights = count, 
+                    family = quasibinomial, data = pitbull_binom)
+
+
+#### MODEL 3 ####
+
+
+pitbull_model3_quasi <- glm(prop_dead ~ pitbull + chip_status + 
+                      summer + contagious + treatable , weights = count, 
+                    family = quasibinomial, data = pitbull_binom)
+
+#### TABLE ####
+ci.func <- function(model){
+  exp(confint(model))
+}
+
+stargazer(pitbull_model1_quasi, pitbull_model2_quasi, pitbull_model3_quasi, 
+          title="Modeling Dog Outcomes in Dallas Animal Shelters", 
+          align=TRUE,
+          apply.coef = exp,
+          ci=TRUE, 
+          ci.custom = list(ci.func(pitbull_model1_quasi), 
+                           ci.func(pitbull_model2_quasi), 
+                           ci.func(pitbull_model3_quasi)),
+          dep.var.labels=c("Proportion of dogs who died"),
+          header=FALSE, 
+          type='latex',
+          covariate.labels = c("Intercept","Pitbull", 
+                              "Scannable Chip", "Summer Outcome",
+                              "Contagious", "Treatable At Intake"),
+          intercept.bottom = FALSE, 
+          nobs = FALSE)
+
+```
+
+
+```{r, include = FALSE}
+anova(pitbull_model1_quasi, pitbull_model2_quasi, test = "F")
+anova(pitbull_model2_quasi, pitbull_model3_quasi, test = "F")
+
+```
+
+See from the above table that all of our models has variable estimates that are significant including Model 3 which accounted for whether or not an animal was deemed "treatable" at the time of intake. For some reason our table does not indicate the significance of the treatable intake variable in model 3, it is indeed significant. Further, by two F tests we see each of our models is an improvement on the one before it (Model 1 $\rightarrow$ Model 2: F = 5.1141, p-value = 0.031) (Model 2 $\rightarrow$ Model 3: F = 313.62, p-value <<< .05). 
+
+Using model 3 as our best model of dog outcomes from the animal shelter, we glean several insights about how certain characteristics of dogs have relationships with those animal's outcome from the animal shelter. For instance, if a dog is a pitbull, we expect it's odds of leaving the animal shelter dead increase by 348%, after controlling for chip status, season, and intake condition. Yikes! On the other hand, if a dog comes into the shelter with a scannable chip, we expect the animals odds of dying within the shelter system to drop by about 22%, after controlling for pitbull, season, and intake condition. Interestingly enough, if a dog has its outcome in the summer, the odds of that outcome being death are about 47% higher, controlling for breed, chip status, and intake condition.  
+
+### Dogs and Cats
+
+Interestingly enough, we were not able to find any significant relationships between dog and cat outcomes. We tried multiple binomial models accounting for stray, summer, and chip status. None of these models showed any significance. This suprised us a lot, as we saw a few trends in our EDA and have heard stories about poorer outcomes for cats in animal shelters. We may consider looking into a few other outcomes for our final report (we only considered death at outcome).
+
+# Annotated Appendix
 
 ### Pitbulls
 
@@ -42,16 +124,15 @@ pitbull_binom <- adoptions %>%
   summarize(prop_dead = sum(out_dead)/n(), count = n())
 
 
-model1_binom <- glm(adopted ~ pitbull + chip_status + summer , weights = count, family = binomial, data = pitbull_binom)
+pitbull_model1_binom <- glm(prop_dead ~ pitbull + chip_status + summer , weights = count, family = binomial, data = pitbull_binom)
 
-model1_quasi <- glm(prop_dead ~ pitbull + chip_status + summer , weights = count, family = quasibinomial, data = pitbull_binom)
+pitbull_model1_quasi <- glm(prop_dead ~ pitbull + chip_status + summer , weights = count, family = quasibinomial, data = pitbull_binom)
 
-summary(model1_binom)
-exp(confint(model1_binom))
+summary(pitbull_model1_binom)
+exp(confint(pitbull_model1_binom))
 
-summary(model1_quasi)
-exp(confint(model1_quasi))
-
+summary(pitbull_model1_quasi)
+exp(confint(pitbull_model1_quasi))
 ```
 
 Initially we see that all variables included have a significant relationship to the proportion of dogs who are dead at the end of their time in the shelter, even after inflating our standard errors to account for the variance structure of our data.  
@@ -67,22 +148,22 @@ pitbull_binom <- adoptions %>%
          summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0),
          chip_status = ifelse(chip_status=="SCAN CHIP", 1, 0),
          contagious=ifelse(grepl(".*[^NON-]CONTAGIOUS", intake_condition),1,0)) %>%
-  group_by(pitbull, chip_status, summer, month, contagious) %>%
+  group_by(pitbull, chip_status, summer, contagious) %>%
   summarize(prop_dead = sum(out_dead)/n(), count = n())
 
-model2_binom <- glm(prop_dead ~ pitbull + chip_status + 
+pitbull_model2_binom <- glm(prop_dead ~ pitbull + chip_status + 
                       summer + contagious, weights = count, 
                     family = binomial, data = pitbull_binom)
 
-model2_quasi <- glm(prop_dead ~ pitbull + chip_status + 
+pitbull_model2_quasi <- glm(prop_dead ~ pitbull + chip_status + 
                       summer + contagious , weights = count, 
                     family = quasibinomial, data = pitbull_binom)
 
-summary(model2_binom)
-exp(confint(model2_binom))
+summary(pitbull_model2_binom)
+exp(confint(pitbull_model2_binom))
 
-summary(model2_quasi)
-exp(confint(model2_quasi))
+summary(pitbull_model2_quasi)
+exp(confint(pitbull_model2_quasi))
 ```
 
 Next lets try to control for whether or not a animal was treatable when it was brought into the shelter. 
@@ -99,17 +180,97 @@ pitbull_binom <- adoptions %>%
   group_by(pitbull, chip_status, summer, month, contagious, treatable) %>%
   summarize(prop_dead = sum(out_dead)/n(), count = n())
 
-model3_binom <- glm(prop_dead ~ pitbull + chip_status + 
+pitbull_model3_binom <- glm(prop_dead ~ pitbull + chip_status + 
                       summer + contagious + treatable, weights = count, 
                     family = binomial, data = pitbull_binom)
 
-model3_quasi <- glm(prop_dead ~ pitbull + chip_status + 
-                      summer + contagious + treatable , weights = count, 
-                    family = quasibinomial, data = pitbull_binom)
+pitbull_model3_quasi <- glm(prop_dead ~ pitbull + chip_status + 
+                      summer + contagious + treatable, 
+                      weights = count, 
+                      family = quasibinomial, data = pitbull_binom)
 
-summary(model3_binom)
-exp(confint(model3_binom))
+summary(pitbull_model3_binom)
+exp(confint(pitbull_model3_binom))
 
-summary(model3_quasi)
-exp(confint(model3_quasi))
+summary(pitbull_model3_quasi)
+exp(confint(pitbull_model3_quasi))
 ```
+
+Note that these models have different confidence intervals than the ones mentioned in the main report of our paper. While each of the three models in the appendix was fit on a dataset summarised specifically for each model, the models in the main report were all fit using the same dataset. By using the same dataset we can compare models using nested F tests, but SEs may be artificially small.
+
+
+### Dogs vs Cats
+
+```{r}
+cat_dog_binom <- adoptions %>%
+  filter(!str_detect(intake_subtype, "(DEAD)|(DIED)")) %>%
+  filter(dog == 1 | cat == 1) %>%
+  mutate(out_dead = outcome_type %in% c("DEAD ON ARRIVAL", "EUTHANIZED", "DIED"),
+         summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0))%>%
+  mutate(chip_status = ifelse(chip_status=="SCAN CHIP", 1, 0)) %>%
+  group_by(dog, chip_status, summer, stray) %>%
+  summarize(prop_dead = sum(out_dead)/n(), count = n())
+
+####### MODEL 1: dog ######### 
+
+dogcat_model1_binom <- glm(prop_dead ~ dog, weights = count, family = binomial, data = cat_dog_binom)
+
+dogcat_model1_quasi <- glm(prop_dead ~ dog, weights = count, family = quasibinomial, data = cat_dog_binom)
+
+summary(dogcat_model1_binom)
+exp(confint(dogcat_model1_binom))
+
+summary(dogcat_model1_quasi)
+exp(confint(dogcat_model1_quasi))
+
+####### MODEL 2: summer ######### 
+
+dogcat_model2_binom <- glm(prop_dead ~ summer, weights = count, family = binomial, data = cat_dog_binom)
+
+dogcat_model2_quasi <- glm(prop_dead ~ summer, weights = count, family = quasibinomial, data = cat_dog_binom)
+
+summary(dogcat_model2_binom)
+exp(confint(dogcat_model2_binom))
+
+summary(dogcat_model2_quasi)
+exp(confint(dogcat_model2_quasi))
+
+
+####### MODEL 3: chip ###### 
+
+dogcat_model3_binom <- glm(prop_dead ~ dog + chip_status, weights = count, family = binomial, data = cat_dog_binom)
+
+dogcat_model3_quasi <- glm(prop_dead ~ dog + chip_status, weights = count, family = quasibinomial, data = cat_dog_binom)
+
+summary(dogcat_model3_binom)
+exp(confint(dogcat_model3_binom))
+
+summary(dogcat_model3_quasi)
+exp(confint(dogcat_model3_quasi))
+
+####### MODEL 4: summer + dog + summer:dog ###### 
+
+dogcat_model4_binom <- glm(prop_dead ~ summer+dog+ summer:dog, weights = count, family = binomial, data = cat_dog_binom)
+
+dogcat_model4_quasi <- glm(prop_dead ~ summer+dog+ summer:dog, weights = count, family = quasibinomial, data = cat_dog_binom)
+
+summary(dogcat_model4_binom)
+exp(confint(dogcat_model4_binom))
+
+summary(dogcat_model4_quasi)
+exp(confint(dogcat_model4_quasi))
+
+####### MODEL 5: stray ###### 
+
+dogcat_model5_binom <- glm(prop_dead ~ stray, weights = count, family = binomial, data = cat_dog_binom)
+
+dogcat_model5_quasi <- glm(prop_dead ~ stray, weights = count, family = quasibinomial, data = cat_dog_binom)
+
+summary(dogcat_model5_binom)
+exp(confint(dogcat_model5_binom))
+
+summary(dogcat_model5_quasi)
+exp(confint(dogcat_model5_quasi))
+```
+
+### Multilevel on Council District
