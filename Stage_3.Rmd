@@ -3,12 +3,12 @@ title: 'Stage 2: Exploratory Data Analysis'
 author: "Isaac Slagel and Jack Welsh"
 date: "4/18/2019"
 output:
-  html_document:
-    df_print: paged
   pdf_document:
     fig_caption: yes
     fig_height: 3
     fig_width: 4.5
+  html_document:
+    df_print: paged
 header-includes: \usepackage{dcolumn} \usepackage{float}
 editor_options:
   chunk_output_type: console
@@ -173,9 +173,9 @@ While looking at adoptions as our response we found that our one fixed effect $\
 Next we repeated the same model with out_dead as the outcome. We fonud a fixed effect for our $\alpha_0=-1.65465$, which after you exponentiate and convert to a proportion we get 0.160. So only 16% of the dogs that enter the animal shelter system exit dead. We found a $\sigma_u=0.1395$, so the average deciance between city council districts is 0.1395. This fixed effect was also found to be significant, see table 2. 
 
 
-```{r, results = "asis", message=FALSE}
+```{r, results = "asis", message=FALSE, echo=FALSE}
 stargazer(mod.1_dead, mod.1,
-          add.lines = list(c("Between District $\\sigma$", "0.1395", "0.1408")),
+          add.lines = list(c("Between District $\\sigma$", "0.1395", "0.2438 ")),
           title="Predicting Dead Outcomes and Adopted outcomes with Multilevel Structure No level 1 Predictors",
           type='latex',
           align=TRUE,
@@ -189,9 +189,9 @@ We repeated the same procedure as above just this time adding in summer, chip st
 
 When looking at death as our response we found that the average proportion of dogs dying in the animal shelter system not durring the summer, without a chip, and with a non treateable intake is 0.52. We found that on average summer increases the odds of death increase by 45.5% controlling for chip status and treatable intake. On average having a chip decreases the odds of death by 21% acconuting for summer and treatable intake. On average treatable intake decreases the odds of death ny 89.3% accounting for summer and chip status.
 
-```{r, results = "asis",  message=FALSE}
+```{r, results = "asis",  message=FALSE, echo= FALSE}
 stargazer(mod.2.dead, mod.2.adopted,
-          add.lines = list(c("Between District $\\sigma$", "0.2438", "0.2896")),
+          add.lines = list(c("Between District $\\sigma$", "0.1408", "0.2896")),
           title="Predicting Dead Outcomes and Adoption Outcomes with Multilevel Structure with Level 1 Predictors",
           type='latex',
           align=TRUE,
