@@ -33,9 +33,30 @@ just_dog_adoptions=adoptions%>%
          treatable_intake=ifelse(grepl("^TREATABLE.*", intake_condition),1,0),
          manageable_intake=ifelse(grepl(".*MANAGEABLE.*", intake_condition),1,0),
          rehabitable_intake=ifelse(grepl(".*REHABILITABLE.*", intake_condition),1,0),
-         normal_intake=ifelse(grepl(".*NORMAL.*", intake_condition),1,0))%>%
+         normal_intake=ifelse(grepl(".*NORMAL.*", intake_condition),1,0),
+         chip_status = ifelse(chip_status=="SCAN CHIP", 1, 0))%>% #Isaac added this just to see how models change
          mutate(out_dead = outcome_type %in% c("DEAD ON ARRIVAL", "EUTHANIZED", "DIED"),
          summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0))
+```
+
+### Look for correlation by council district
+
+```{r}
+just_dog_adoptions %>%
+  group_by(council_district)%>%
+  summarise(prop_dead = sum(out_dead)/n())%>%
+  filter(!is.na(council_district)) %>%
+  ggplot(aes(x=as.factor(council_district), y = prop_dead)) +
+  geom_bar(stat = "identity")
+```
+
+```{r}
+just_dog_adoptions %>%
+  group_by(council_district)%>%
+  summarise(prop_adopted = sum(adopted)/n())%>%
+  filter(!is.na(council_district)) %>%
+  ggplot(aes(x=as.factor(council_district), y = prop_adopted)) +
+  geom_bar(stat = "identity")
 ```
 
 
