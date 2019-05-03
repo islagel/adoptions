@@ -20,10 +20,11 @@ library(knitr)
 adoptions <- read_csv("adoptions.csv")
 ```
 
+### Mulltilevel Logistic Regression
 
+During further EDA we found that there are differences between city council district in the proportion of dogs adopted and dogs that do not leave the shelter system alive. So we tried a multilevel modeling to account for these differences. 
 
-Making a slightly smaller dataset
-```{r}
+```{r, echo=FALSE}
 just_dog_adoptions=adoptions%>%
   filter(animal_type=="DOG")%>%
   mutate(animal_breed=as.factor(animal_breed))%>%
@@ -39,16 +40,18 @@ just_dog_adoptions=adoptions%>%
          summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0))
 ```
 
-### Look for correlation by council district
 
 ```{r}
 just_dog_adoptions %>%
   group_by(council_district)%>%
   summarise(prop_dead = sum(out_dead)/n())%>%
-  filter(!is.na(council_district)) %>%
+  filter(!is.na(council_district))%>%
   ggplot(aes(x=as.factor(council_district), y = prop_dead)) +
   geom_bar(stat = "identity")
 ```
+
+
+Above you can see that certain city council districts have higher rates of dogs dying in the shelter system. City council district 12 seems to be the highest at 20.7% of the dogs are dying in the shelter system, and city council district 11 has the lowest at only 13.1% of the dogs dying in the shelter system.
 
 ```{r}
 just_dog_adoptions %>%
@@ -59,25 +62,37 @@ just_dog_adoptions %>%
   geom_bar(stat = "identity")
 ```
 
+For proportion adopted we see a range of values. City council district 12 has 54.5% of the dogs adopted, while city council district 5 has the lowest proportion adopted at only 0.297. 
 
-Random Intercepts
+
+First we made a random intercepts model with no level one or level two predictors. While looking at adoptions as our response we found that our one fixed effect $\alpha_0=-0.4930$, which if you exponentiate and convert to a proportion we see that the average proportion of dogs being adopted is 0.379. It is sad to think that only about one out of every three dogs gets adopted. We fonud a $\sigma_u=0.2438$ so the average de
+
+Next we repeated the same model with out_dead as the outcome. We fonud a fixed effect for our $\alpha_0=-1.65465$, which after you exponentiate and convert to a proportion we get 0.160. So only 16% of the dogs that enter the animal shelter system exit dead. We found a $\sigma_u=0.1395$, so the
+
 ```{r}
-mod.1=glmer(adopted~1+(1|animal_breed), data=just_dog_adoptions, family = "binomial")
-summary(mod.1)
-
 mod.1=glmer(adopted~1+(1|council_district), data=just_dog_adoptions, family = "binomial")
 summary(mod.1)
-
+exp(fixef(mod.1))/(1+exp(fixef(mod.1)))
+mod.1_dead=glmer(out_dead~1+(1|council_district), data=just_dog_adoptions, family = "binomial")
+summary(mod.1_dead)
+exp(fixef(mod.1_dead))/(1+exp(fixef(mod.1_dead)))
 ```
 
+
+We repeated the same procedure as above just this time adding in summer, chip status and treatable intake. We found with adopted as the response the average proportion adopted is 0.126 not durring the summer for dogs that are untreatable and the chip was not readable or not present. We fonud
 
 
 ```{r}
 mod.2.adopted=glmer(adopted~summer+chip_status+treatable_intake+(1|council_district), data=just_dog_adoptions, family = "binomial")
 summary(mod.2.adopted)
 
+exp(fixef(mod.2.adopted))/(1+exp(fixef(mod.2.adopted)))
+
+
 mod.2.dead=glmer(out_dead~summer+chip_status+treatable_intake+(1|council_district), data=just_dog_adoptions, family = "binomial")
 summary(mod.2.dead)
+
+exp(fixef(mod.2.dead))/(1+exp(fixef(mod.2.dead)))
 
 ```
 

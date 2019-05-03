@@ -105,6 +105,9 @@ Using model 3 as our best model of dog outcomes from the animal shelter, we glea
 
 Interestingly enough, we were not able to find any significant relationships between dog and cat outcomes. We tried multiple binomial models accounting for stray, summer, and chip status. None of these models showed any significance. This suprised us a lot, as we saw a few trends in our EDA and have heard stories about poorer outcomes for cats in animal shelters. We may consider looking into a few other outcomes for our final report (we only considered death at outcome).
 
+
+
+
 # Annotated Appendix
 
 ### Pitbulls
