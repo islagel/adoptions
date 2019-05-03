@@ -68,9 +68,9 @@ just_dog_adoptions %>%
 For proportion adopted we see a range of values. City council district 12 has 54.5% of the dogs adopted, while city council district 5 has the lowest proportion adopted at only 0.297. 
 
 
-First we made a random intercepts model with no level one or level two predictors. While looking at adoptions as our response we found that our one fixed effect $\alpha_0=-0.4930$, which if you exponentiate and convert to a proportion we see that the average proportion of dogs being adopted is 0.379. It is sad to think that only about one out of every three dogs gets adopted. We fonud a $\sigma_u=0.2438$ so the average deviance between city council districts 0.2438. 
+First we made a random intercepts model with no level one or level two predictors. While looking at adoptions as our response we found that our one fixed effect $\alpha_0=-0.4930$, which if you exponentiate and convert to a proportion we see that the average proportion of dogs being adopted is 0.379. It is sad to think that only about one out of every three dogs gets adopted. We fonud a $\sigma_u=0.2438$ so the average de
 
-Next we repeated the same model with out_dead as the outcome. We fonud a fixed effect for our $\alpha_0=-1.65465$, which after you exponentiate and convert to a proportion we get 0.160. So only 16% of the dogs that enter the animal shelter system exit dead. We found a $\sigma_u=0.1395$, so the average deciance between city council districts is 0.1395. 
+Next we repeated the same model with out_dead as the outcome. We fonud a fixed effect for our $\alpha_0=-1.65465$, which after you exponentiate and convert to a proportion we get 0.160. So only 16% of the dogs that enter the animal shelter system exit dead. We found a $\sigma_u=0.1395$, so the
 
 ```{r random intercept}
 mod.1=glmer(adopted~1+(1|council_district), data=just_dog_adoptions, family = "binomial")
@@ -84,23 +84,19 @@ exp(fixef(mod.1_dead))/(1+exp(fixef(mod.1_dead)))
 ```
 
 
-We repeated the same procedure as above just this time adding in summer, chip status and treatable intake. We found with adopted as the response the average proportion adopted is 0.126 not durring the summer for dogs that are untreatable and the chip was not readable or not present. We found that all of our predictors are significant, see table. We fonud that the summer on average increase the odds of a dog being adopted by 7.4% compared not during the summer controlling for chip status, and treatable intake. Suprisingly we fonud that if a dog has a readable chip on average the odds of them being adopted decreases by 11.5% compared to a dog with a unreadable chip or no chip controlling for summer and treatable intake. This suprised us at first, but then we realized that dogs that have a chip tend to be dogs that are returned to owner. Unsuprisingly, a dog with a treatable intake odds of being adopted are 393% higher than dogs without a treatable intake controlling for whether it is summer and chip status. 
-
-When looking at death as our response we found that the average proportion of dogs dying in the animal shelter system not durring the summer, without a chip, and with a non treateable intake is 0.52. We found that on average summer increases the odds of death increase by 45.5% controlling for chip status and treatable intake. On average having a chip decreases the odds of death by 21% acconuting for summer and treatable intake. On average treatable intake decreases the odds of death ny 89.3% accounting for summer and chip status. 
+We repeated the same procedure as above just this time adding in summer, chip status and treatable intake. We found with adopted as the response the average proportion adopted is 0.126 not durring the summer for dogs that are untreatable and the chip was not readable or not present. We fonud
 
 
 ```{r}
 mod.2.adopted=glmer(adopted~summer+chip_status+treatable_intake+(1|council_district), data=just_dog_adoptions, family = "binomial")
 summary(mod.2.adopted)
 
-exp(fixef(mod.2.adopted))
-
 exp(fixef(mod.2.adopted))/(1+exp(fixef(mod.2.adopted)))
 
 
 mod.2.dead=glmer(out_dead~summer+chip_status+treatable_intake+(1|council_district), data=just_dog_adoptions, family = "binomial")
 summary(mod.2.dead)
-exp(fixef(mod.2.dead))
+
 exp(fixef(mod.2.dead))/(1+exp(fixef(mod.2.dead)))
 
 ```
@@ -109,7 +105,7 @@ exp(fixef(mod.2.dead))/(1+exp(fixef(mod.2.dead)))
 
 ```{r, results = "asis", echo = FALSE, message=FALSE}
 stargazer(mod.1_dead, mod.2.dead,
-          add.lines = list(c("District $\\sigma$", "0.1395", "0.1408")))
+          add.lines = list(c("Between District $\\sigma$", "0.1395", "0.1408")))
 
 ```
 
