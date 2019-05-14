@@ -4,7 +4,7 @@ author: "Isaac Slagel and Jack Welsh"
 output: pdf_document
 ---
 
-```{r}
+```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(readr)
@@ -17,8 +17,14 @@ adoptions <- read_csv("adoptions.csv")
 
 1. Introduction  A few paragraphs that contain background information, motivation for your research, and a statement of your research goals.  Be sure to incorporate your supporting references into the text.  The purpose of the background is to place your work in the greater context of the literature in the area you are investigating.  Then you should explicitly identify a hypothesis that you will investigate with your analysis.
 
+ # include some more general stuff about the effect fo 
 
-Our project looks into animal shelters in the Dallas area using a dataset provided by the ciry of Dallas through dallasopendata.com. This data includes information about every animal that has been brought into an animal shelter in the Dallas area. There are `r nrow(adoptions)` individual animals in this dataset with 
+  Our project looks into animal shelters in the Dallas area using a dataset provided by the ciry of Dallas through dallasopendata.com. This data includes information about every animal that has been brought into an animal shelter in the Dallas area. There are `r nrow(adoptions)` individual animals in this dataset with with information about when and where the animal was found, the health of the animal on arrival, and whether the animal was adopted, euthinized or transfered. We will be investigating the factors that influence the death of an animal and the ammount of time the animal will spend in the shelter before dying, being adopted, or being transfered. We hyppothesize that pitbulls will be adopted at lower rates and euthinized at higher rates. In addition, we hypothesize that dogs without chips are less likely to survive their time at the animal shelter than dogs with chips. We believe that this work is important to help better understand what factors influence the death of animals in animal shelters and improve the outcomes of for animals in animal shelters. 
+  
+  # Talk about the literature and recent movements to get rid of pitbulls. 
+  In recent years there has been a movement to regulate pit bulls, many people believe that pitbulls are inherintly not safe and a movement to make them illegal. # add some citations and stuff.
+  # Also find some papers about chip status.
+  
 
     
 
