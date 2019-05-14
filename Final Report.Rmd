@@ -4,18 +4,23 @@ author: "Isaac Slagel and Jack Welsh"
 output: pdf_document
 ---
 
-```{r setup, include=FALSE}
+```{r}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readr)
+library(lubridate)
+library(kableExtra)
+library(knitr)
+adoptions <- read_csv("adoptions.csv")
 ```
 
 
 1. Introduction  A few paragraphs that contain background information, motivation for your research, and a statement of your research goals.  Be sure to incorporate your supporting references into the text.  The purpose of the background is to place your work in the greater context of the literature in the area you are investigating.  Then you should explicitly identify a hypothesis that you will investigate with your analysis.
 
 
-    What factors influence how long an animal will stay in the humane shelter? Are certain breeds euthanized at a higher rate than others? Are certain animals adopted more during certain times of the year (ex. are more rabbits adopted around easter?). What differences do we see between the conditions of dogs and cats in the humane society? This project is of interest to us because we love animals and are intrigued about how different animals are handled in the humane shelter system. The dataset we found to look into this made us even more motivated to look into these questions as it is detailed and clean! 
+Our project looks into animal shelters in the Dallas area using a dataset provided by the ciry of Dallas through dallasopendata.com. This data includes information about every animal that has been brought into an animal shelter in the Dallas area. There are `r nrow(adoptions)` individual animals in this dataset with 
 
-    The variables `animal_breed`, `animal_origin`, `animal_type`, and `chip_status` are all important variables to our observational units. We may end up subtyping by any of these variables. We can glean insights on how animals fare in the animal shelters by the variables `intake_condition`, `intake_date`, `intake_subtype`, `intake_type`, `outcome_condition`, `outcome_date`,`outcome_subtype`, `outcome_type`. We will use these variables to create different response metrics that we are interested in (like total shelter days or euthanized). 
-
+    
 
 
 2. Materials and Methods Three to five paragraphs (or fewer) that…
