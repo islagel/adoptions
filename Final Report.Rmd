@@ -8,22 +8,56 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+1. Introduction  A few paragraphs that contain background information, motivation for your research, and a statement of your research goals.  Be sure to incorporate your supporting references into the text.  The purpose of the background is to place your work in the greater context of the literature in the area you are investigating.  Then you should explicitly identify a hypothesis that you will investigate with your analysis.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
-```
+    What factors influence how long an animal will stay in the humane shelter? Are certain breeds euthanized at a higher rate than others? Are certain animals adopted more during certain times of the year (ex. are more rabbits adopted around easter?). What differences do we see between the conditions of dogs and cats in the humane society? This project is of interest to us because we love animals and are intrigued about how different animals are handled in the humane shelter system. The dataset we found to look into this made us even more motivated to look into these questions as it is detailed and clean! 
 
-## Including Plots
+    The variables `animal_breed`, `animal_origin`, `animal_type`, and `chip_status` are all important variables to our observational units. We may end up subtyping by any of these variables. We can glean insights on how animals fare in the animal shelters by the variables `intake_condition`, `intake_date`, `intake_subtype`, `intake_type`, `outcome_condition`, `outcome_date`,`outcome_subtype`, `outcome_type`. We will use these variables to create different response metrics that we are interested in (like total shelter days or euthanized). 
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+2. Materials and Methods Three to five paragraphs (or fewer) that…
+  -	Briefly describe your data, where it came from (source), definitions of important variables, and how it was collected
+  -	Indicate any modifications made to the data, recoding, or decisions about missing data
+  -	Briefly but thoroughly describe the statistical inference methods used to quantify the association between your outcome and predictor variables (at least one method must have been introduced in Stat 316).  What summary statistics were calculated?  What statistical tests were performed?
+  -	Specify strategies employed when building your models
+  -	Do not report results in the Materials and Methods section!
+Note:  If you are using a method not covered in Stat 316, you may choose to expand Materials and Methods a bit to describe your statistical method.
+
+
+
+
+
+3. Results  The meat of your report, which should include…
+  -	A general description of your data (completed via your exploratory data analysis)
+  -	A description of the results from your analyses, including interpretations of parameter estimates, tests, and confidence intervals in context.
+  -	Tables that summarize results and figures that illustrate results. These tables and figures should be well-labeled, numbered (e.g. Figure 1), and have a good, descriptive caption.  Each report should have a minimum of two plots; rarely are residual plots part of the main body of the report unless they are an integral part of the story.
+  -	While you should interpret tests, confidence intervals, and coefficients in this section, you should not editorialize here!  Save that for the Discussion.
+  
+  
+  
+  
+4. Discussion  A few paragraphs that:
+  -	Begin with an accurate summary statement; describe how the results help answer your research questions and what was most interesting from your analysis.  In fact, the first paragraph of the Discussion is very important – in professional journals, it is often the first and sometimes the only paragraph that is read in a paper.  After the first sentence highlights primary results, the remainder of the first paragraph might compare your results to others in the literature or include interesting secondary results.
+  -	Discuss possible implications of the results in the context of the research question.
+  -	Make a statement regarding potential confounding variables in your study
+  -	Make a statement about the generalizability of your results.  Don’t give generic statements of possible causation and generalizability, but thoughtfully discuss relevant issues – confounding variables, representativeness of the sample, etc.
+  -	Identify any limitations of your study. Discuss the potential impact of such limitations on the conclusions.
+  -	Identify strengths and weaknesses of your analysis.
+  -	Make suggestions for future research. Identify important next steps that a researcher could take to build on your work.
+  -	Do not include test statistics or p-values in this section.
+  
+  
+  
+  
+  
+  
+5. Annotated Appendix 
+  -	Tables and figures that are informative but were not referenced specifically in the main report.  Include a short annotation – one or two sentences on what they show.
+  -	R scripts and output (annotated) so that I can trace how you constructed your final data set, what models you ran to produce the results quoted in your report, and what intermediate models you also considered. 
+  -	Description of statistical modeling steps that were not included in the main body of your report.  Possible entries here include: How you handled missing data. Evaluation of assumptions. Outlier analysis and how you decided to deal with any outliers along with rationale for your decision. Describe hypotheses testing you performed during model building and how you decided on the explanatory variables you ultimately included in your final model. Assessment of the final model.
+  -	How you went from the model output in R to interpretations in your report (e.g. exponentiate coefficients, then take inverse)
+  -	Anticipate questions someone might have after reading your report, and make sure those questions can be answered with information in the appendix.
+  -	A citation for each reference article (in APA format or something similar) you included in your proposal.  Also include a link, if appropriate.  Remember that you must have the entire paper and not just an abstract, and at least two must be from peer-reviewed journals.
