@@ -12,7 +12,6 @@ editor_options:
 ---
 
 ```{r, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(readr)
 library(lubridate)
@@ -25,15 +24,14 @@ adoptions <- read_csv("adoptions.csv")
 
 1. Introduction  A few paragraphs that contain background information, motivation for your research, and a statement of your research goals.  Be sure to incorporate your supporting references into the text.  The purpose of the background is to place your work in the greater context of the literature in the area you are investigating.  Then you should explicitly identify a hypothesis that you will investigate with your analysis.
 
- # include some more general stuff about the effect fo
 
-  Our project looks into animal shelters in the Dallas area using a dataset provided by the ciry of Dallas through dallasopendata.com. This data includes information about every animal that has been brought into an animal shelter in the Dallas area. There are `r nrow(adoptions)` individual animals in this dataset with with information about when and where the animal was found, the health of the animal on arrival, and whether the animal was adopted, euthinized or transfered. We will be investigating the factors that influence the death of an animal and the ammount of time the animal will spend in the shelter before dying, being adopted, or being transfered. We hyppothesize that pitbulls will be adopted at lower rates and euthinized at higher rates. In addition, we hypothesize that dogs without chips are less likely to survive their time at the animal shelter than dogs with chips. We believe that this work is important to help better understand what factors influence the death of animals in animal shelters and improve the outcomes of for animals in animal shelters.
 
-  # Talk about the literature and recent movements to get rid of pitbulls.
- 
-  In recent years there has been a movement to regulate pit bulls, many people believe that pitbulls are inherintly not safe and a movement to make them illegal. # add some citations and stuff.
+  According to an ASPCA estimate, over 6.5 millions animals enter a shelter system every year. (Cite 1). After entering the shelter system animals are either rehabilitated and sent to homes or euthanized. Animal shelters, while running mostly on revenue from donations and adoption fees, routinely run into perminant defieciets and must be supported with money from local governments (Cite 2). Knowing more about the outcomes of animals from these shelters could help us minimize the percent of animals that need to be euthanized. Further, by identifying which animals are less likely to be adopted, we can help shelters allocate resources to minimize the time these animals spend in the shelter system.
+
+  Our research looks into animal shelters in the Dallas area using a dataset provided by the city of Dallas on dallasopendata.com. This data includes information about every animal that has been brought into an animal shelter in the Dallas area. There are `r nrow(adoptions)` individual animals in this dataset with with information about when and where the animal was found, the health of the animal on arrival, and whether the animal was adopted, euthinized or transfered. 
   
-  # Also find some papers about chip status.
+  Recent research on animal shelters have consistantly shown that outcomes for pitbulls are consistantly worse than other dog breeds (Patronek & Crowe 2018, Lepper et al 2002). We are interested in seeing if these this trends exist in the Dallas animal shelter system. 
+
 
 
 
@@ -247,9 +245,18 @@ Procceding with model 3 as our best model of dog outcomes from the animal shelte
   -	Do not include test statistics or p-values in this section.
 
 
+# Works Cited 
 
+1. https://www.aspca.org/animal-homelessness/shelter-intake-and-surrender
+2. https://rucore.libraries.rutgers.edu/rutgers-lib/38418/PDF/1/play/
 
+Patronek, G. J., & Crowe, A. (2018). Factors Associated with High Live Release for Dogs at a Large, Open-Admission, Municipal Shelter. Animals : an open access journal from MDPI, 8(4), 45. doi:10.3390/ani8040045
 
+[Lepper, M., Kass, P. H., & Hart, L. A. (2002). Prediction of adoption versus euthanasia among dogs and cats in a California animal shelter. Journal of Applied Animal Welfare Science, 5(1), 29-42.](https://www.tandfonline.com/doi/abs/10.1207/S15327604JAWS0501_3)
+
+[Posage, J. M., Bartlett, P. C., & Thomas, D. K. (1998). Determining factors for successful adoption of dogs from an animal shelter. Journal of the American Veterinary Medical Association, 213(4), 478-482.](https://europepmc.org/abstract/med/9713528)
+
+[Lampe, R., & Witte, T. H. (2015). Speed of dog adoption: Impact of online photo traits. Journal of applied animal welfare science, 18(4), 343-354.](https://www.tandfonline.com/doi/abs/10.1080/10888705.2014.982796)
 
 5. Annotated Appendix
   -	Tables and figures that are informative but were not referenced specifically in the main report.  Include a short annotation – one or two sentences on what they show.
