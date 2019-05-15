@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.9.20)  15 MAY 2019 11:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.9.20)  15 MAY 2019 11:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -659,11 +659,7 @@ Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 ) (/home/rstudio/texlive/2018/texmf-dist/tex/latex/tools/dcolumn.sty
 Package: dcolumn 2014/10/28 v1.06 decimal alignment package (DPC)
-) (./Final_Report.aux
-
-LaTeX Warning: Label `' multiply defined.
-
-)
+) (./Final_Report.aux)
 \openout1 = `Final_Report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 143.
@@ -806,11 +802,11 @@ LaTeX Font Info:    Try loading font information for OMX+lmex on input line 202
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 202.
+(Font)              <12> on input line 202.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 202.
+(Font)              <8> on input line 202.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 202.
+(Font)              <6> on input line 202.
 LaTeX Font Info:    Try loading font information for U+msa on input line 202.
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -823,274 +819,268 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/home/rstudio/texlive/2018/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 206.
 
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [1
 
-{/home/rstudio/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2pd
-fTeX warning (ext4): destination with the same identifier (name{table.1}) has b
-een already used, duplicate ignored
+{/home/rstudio/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}pdfTeX
+ warning (ext4): destination with the same identifier (name{table.1}) has been 
+already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.281 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.2
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.281 
+l.235 
       ]
-<Final_Report_files/figure-latex/unnamed-chunk-2-1.pdf, id=47, 318.18875pt x 20
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 256.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 256.
+<Final_Report_files/figure-latex/unnamed-chunk-2-1.pdf, id=41, 318.18875pt x 20
 7.77625pt>
 File: Final_Report_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type 
 pdf)
 <use Final_Report_files/figure-latex/unnamed-chunk-2-1.pdf>
 Package pdftex.def Info: Final_Report_files/figure-latex/unnamed-chunk-2-1.pdf 
- used on input line 285.
+ used on input line 294.
 (pdftex.def)             Requested size: 318.18796pt x 207.77573pt.
-[3 <./Final_Report_files/figure-latex/unnamed-chunk-2-1.pdf>] [4pdfTeX warning 
-(ext4): destination with the same identifier (name{table.3}) has been already u
-sed, duplicate ignored
+[2pdfTeX warning (ext4): destination with the same identifier (name{table.2}) h
+as been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.369 \[
-        ] [5pdfTeX warning (ext4): destination with the same identifier (name{t
-able.4}) has been already used, duplicate ignored
+l.297 Differences}
+                  \label{eda-results-dog-and-cat-differences}]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 305.
+[3pdfTeX warning (ext4): destination with the same identifier (name{table.3}) h
+as been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.435 
-      ]
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 440.
+l.347 
+       <./Final_Report_files/figure-latex/unnamed-chunk-2-1.pdf>]
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 371.
 
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [6]
+) [4] [5]
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 585.
+(hyperref)                than one, level fixed on input line 571.
 
 
-Package xcolor Warning: Incompatible color definition on input line 587.
+Package xcolor Warning: Incompatible color definition on input line 573.
 
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 589.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 575.
 
-Package xcolor Warning: Incompatible color definition on input line 606.
+Package xcolor Warning: Incompatible color definition on input line 592.
 
 
-Package xcolor Warning: Incompatible color definition on input line 606.
+Package xcolor Warning: Incompatible color definition on input line 592.
 
-[7]
-LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 632
+[6]
+LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 618
 .
 (/home/rstudio/texlive/2018/texmf-dist/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 
-Package xcolor Warning: Incompatible color definition on input line 634.
+Package xcolor Warning: Incompatible color definition on input line 620.
 
 
-Package xcolor Warning: Incompatible color definition on input line 638.
+Package xcolor Warning: Incompatible color definition on input line 624.
 
 
-Package xcolor Warning: Incompatible color definition on input line 638.
+Package xcolor Warning: Incompatible color definition on input line 624.
 
 
-Package xcolor Warning: Incompatible color definition on input line 650.
+Package xcolor Warning: Incompatible color definition on input line 636.
 
 
-Package xcolor Warning: Incompatible color definition on input line 654.
+Package xcolor Warning: Incompatible color definition on input line 640.
 
 
-Package xcolor Warning: Incompatible color definition on input line 654.
+Package xcolor Warning: Incompatible color definition on input line 640.
 
 
-Package xcolor Warning: Incompatible color definition on input line 682.
+Package xcolor Warning: Incompatible color definition on input line 668.
 
 
-Package xcolor Warning: Incompatible color definition on input line 686.
+Package xcolor Warning: Incompatible color definition on input line 672.
 
 
-Package xcolor Warning: Incompatible color definition on input line 686.
+Package xcolor Warning: Incompatible color definition on input line 672.
 
 
-Package xcolor Warning: Incompatible color definition on input line 698.
+Package xcolor Warning: Incompatible color definition on input line 684.
+
+[7]
+
+Package xcolor Warning: Incompatible color definition on input line 694.
+
+
+Package xcolor Warning: Incompatible color definition on input line 694.
+
+
+Package xcolor Warning: Incompatible color definition on input line 723.
+
+
+Package xcolor Warning: Incompatible color definition on input line 727.
+
+
+Package xcolor Warning: Incompatible color definition on input line 727.
+
+
+Package xcolor Warning: Incompatible color definition on input line 740.
+
+
+Package xcolor Warning: Incompatible color definition on input line 744.
+
+
+Package xcolor Warning: Incompatible color definition on input line 744.
 
 [8]
 
-Package xcolor Warning: Incompatible color definition on input line 708.
+Package xcolor Warning: Incompatible color definition on input line 773.
 
 
-Package xcolor Warning: Incompatible color definition on input line 708.
+Package xcolor Warning: Incompatible color definition on input line 777.
 
 
-Package xcolor Warning: Incompatible color definition on input line 737.
+Package xcolor Warning: Incompatible color definition on input line 777.
 
 
-Package xcolor Warning: Incompatible color definition on input line 741.
+Package xcolor Warning: Incompatible color definition on input line 790.
 
 
-Package xcolor Warning: Incompatible color definition on input line 741.
+Package xcolor Warning: Incompatible color definition on input line 800.
 
 
-Package xcolor Warning: Incompatible color definition on input line 754.
+Package xcolor Warning: Incompatible color definition on input line 800.
 
 
-Package xcolor Warning: Incompatible color definition on input line 758.
-
-
-Package xcolor Warning: Incompatible color definition on input line 758.
+Package xcolor Warning: Incompatible color definition on input line 830.
 
 [9]
 
-Package xcolor Warning: Incompatible color definition on input line 787.
+Package xcolor Warning: Incompatible color definition on input line 834.
 
 
-Package xcolor Warning: Incompatible color definition on input line 791.
+Package xcolor Warning: Incompatible color definition on input line 834.
 
 
-Package xcolor Warning: Incompatible color definition on input line 791.
+Package xcolor Warning: Incompatible color definition on input line 847.
 
 
-Package xcolor Warning: Incompatible color definition on input line 804.
+Package xcolor Warning: Incompatible color definition on input line 851.
 
 
-Package xcolor Warning: Incompatible color definition on input line 814.
+Package xcolor Warning: Incompatible color definition on input line 851.
 
 
-Package xcolor Warning: Incompatible color definition on input line 814.
+Package xcolor Warning: Incompatible color definition on input line 881.
 
 
-Package xcolor Warning: Incompatible color definition on input line 844.
+Package xcolor Warning: Incompatible color definition on input line 885.
+
+
+Package xcolor Warning: Incompatible color definition on input line 885.
+
+
+Package xcolor Warning: Incompatible color definition on input line 898.
+
+
+Package xcolor Warning: Incompatible color definition on input line 908.
+
+
+Package xcolor Warning: Incompatible color definition on input line 908.
 
 [10]
 
-Package xcolor Warning: Incompatible color definition on input line 848.
+Package xcolor Warning: Incompatible color definition on input line 938.
 
 
-Package xcolor Warning: Incompatible color definition on input line 848.
+Package xcolor Warning: Incompatible color definition on input line 942.
 
 
-Package xcolor Warning: Incompatible color definition on input line 861.
+Package xcolor Warning: Incompatible color definition on input line 942.
 
 
-Package xcolor Warning: Incompatible color definition on input line 865.
+Package xcolor Warning: Incompatible color definition on input line 956.
 
 
-Package xcolor Warning: Incompatible color definition on input line 865.
+Package xcolor Warning: Incompatible color definition on input line 960.
 
 
-Package xcolor Warning: Incompatible color definition on input line 895.
-
-
-Package xcolor Warning: Incompatible color definition on input line 899.
-
-
-Package xcolor Warning: Incompatible color definition on input line 899.
-
-
-Package xcolor Warning: Incompatible color definition on input line 912.
-
-
-Package xcolor Warning: Incompatible color definition on input line 922.
-
-
-Package xcolor Warning: Incompatible color definition on input line 922.
+Package xcolor Warning: Incompatible color definition on input line 960.
 
 [11]
 
-Package xcolor Warning: Incompatible color definition on input line 952.
+Package xcolor Warning: Incompatible color definition on input line 990.
 
 
-Package xcolor Warning: Incompatible color definition on input line 956.
+Package xcolor Warning: Incompatible color definition on input line 994.
 
 
-Package xcolor Warning: Incompatible color definition on input line 956.
+Package xcolor Warning: Incompatible color definition on input line 994.
 
 
-Package xcolor Warning: Incompatible color definition on input line 970.
+Package xcolor Warning: Incompatible color definition on input line 1008.
 
 
-Package xcolor Warning: Incompatible color definition on input line 974.
+Package xcolor Warning: Incompatible color definition on input line 1018.
 
 
-Package xcolor Warning: Incompatible color definition on input line 974.
+Package xcolor Warning: Incompatible color definition on input line 1018.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1047.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1051.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1051.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1064.
 
 [12]
 
-Package xcolor Warning: Incompatible color definition on input line 1004.
+Package xcolor Warning: Incompatible color definition on input line 1068.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1008.
+Package xcolor Warning: Incompatible color definition on input line 1068.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1008.
+Package xcolor Warning: Incompatible color definition on input line 1097.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1022.
+Package xcolor Warning: Incompatible color definition on input line 1101.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1032.
+Package xcolor Warning: Incompatible color definition on input line 1101.
 
-
-Package xcolor Warning: Incompatible color definition on input line 1032.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1061.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1065.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1065.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1078.
-
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1115.
 [13]
-
-Package xcolor Warning: Incompatible color definition on input line 1082.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1082.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1111.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1115.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1115.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1129.
-[14]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1129.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1115.
 (./Final_Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1129.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1129.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1115.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1115.
 
 Package rerunfilecheck Info: File `Final_Report.out' has not changed.
 (rerunfilecheck)             Checksum: A189973A4F094A26A58D714D397633C0;658.
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1129.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1115.
  ) 
 Here is how much of TeX's memory you used:
- 14837 strings out of 492641
- 215832 string characters out of 6127902
- 345121 words of memory out of 5000000
- 18366 multiletter control sequences out of 15000+600000
- 50946 words of font info for 83 fonts, out of 8000000 for 9000
+ 14892 strings out of 492641
+ 216648 string characters out of 6127902
+ 343068 words of memory out of 5000000
+ 18404 multiletter control sequences out of 15000+600000
+ 66393 words of font info for 104 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  34i,17n,38p,975b,455s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/home/rstudio/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/home/r
@@ -1104,18 +1094,18 @@ lm/lmbx12.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/type1/public/lm/lmex
 10.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/type1/public/lm/lmmi10.pfb>
 </home/rstudio/texlive/2018/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></home/r
 studio/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr10.pfb></home/rstudio/t
-exlive/2018/texmf-dist/fonts/type1/public/lm/lmr17.pfb></home/rstudio/texlive/2
-018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></home/rstudio/texlive/2018/texmf
--dist/fonts/type1/public/lm/lmri10.pfb></home/rstudio/texlive/2018/texmf-dist/f
-onts/type1/public/lm/lmri12.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/ty
-pe1/public/lm/lmsy10.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/type1/pub
-lic/lm/lmsy7.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/type1/public/lm/l
-mtk10.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt10.p
-fb>
-Output written on Final_Report.pdf (14 pages, 271279 bytes).
+exlive/2018/texmf-dist/fonts/type1/public/lm/lmr12.pfb></home/rstudio/texlive/2
+018/texmf-dist/fonts/type1/public/lm/lmr17.pfb></home/rstudio/texlive/2018/texm
+f-dist/fonts/type1/public/lm/lmr7.pfb></home/rstudio/texlive/2018/texmf-dist/fo
+nts/type1/public/lm/lmri10.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/typ
+e1/public/lm/lmri12.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/type1/publ
+ic/lm/lmsy10.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/type1/public/lm/l
+msy7.pfb></home/rstudio/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtk10.pf
+b></home/rstudio/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
+Output written on Final_Report.pdf (13 pages, 306651 bytes).
 PDF statistics:
- 201 PDF objects out of 1000 (max. 8388607)
- 166 compressed objects within 2 object streams
- 34 named destinations out of 1000 (max. 500000)
- 10294 words of extra memory for PDF output out of 12000 (max. 10000000)
+ 202 PDF objects out of 1000 (max. 8388607)
+ 167 compressed objects within 2 object streams
+ 32 named destinations out of 1000 (max. 500000)
+ 14390 words of extra memory for PDF output out of 14400 (max. 10000000)
 

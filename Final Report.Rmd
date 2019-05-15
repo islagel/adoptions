@@ -57,9 +57,12 @@ tab <- rbind(out_dead, days_in_shelter, summer, pitbull, chip, contagious, treat
 colnames(tab) <- variables
 rownames(tab) <- NULL
 
-kable(tab, format = "latex", booktabs = T , caption = "Description of Variables") %>%
-  column_spec( 4, width = "4cm") %>%
-  kable_styling(latex_options = c("striped", "hold_position", "scale_down"))
+kable(tab, 
+      format = "latex" ,
+      booktabs = T, 
+      linesep = "",
+      caption = "Description of Variables") %>%
+  kable_styling(latex_options = c("striped", "hold_position", "scale_down"), font_size = 12)
 
 ```
 
@@ -102,8 +105,12 @@ adoptions %>%
   rename( "Pitbull (%)" = `1`, "Non-Pitbull (%)" = `0`) %>%
   mutate(Outcome = proper(Outcome), `Pitbull (%)` =100*`Pitbull (%)` , `Non-Pitbull (%)`=`Non-Pitbull (%)`*100 )%>%
   arrange(desc(`Pitbull (%)`))%>%
-  kable(digits = 2, format = "latex", booktabs = T, caption = "Pitbull Outcomes")%>%
-  kable_styling(latex_options =  c("striped", "HOLD_position"))
+  kable(digits = 2, 
+        linesep = "",
+        format = "latex", 
+        booktabs = T, 
+        caption = "Pitbull Outcomes")%>%
+  kable_styling(latex_options =  c("striped", "HOLD_position"), font_size = 7)
 
 ```
 
@@ -224,20 +231,23 @@ Procceding with model 3 as our best model of dog outcomes from the animal shelte
 
 #### Multilevel Model for Dog Outcomes
 
-Our model has two levels, 
+Our model has two levels:
 
-  -Level 1
+- Level 1
+  
   $$log(\frac{p_{ij}}{1-p_{ij}})=a_i+b_i*summer_{ij}+c_i*pitbull_{ij}+d_i*chipstatus_{ij}$$
   
-  where 
+   
 
-  -Level 2
-  $a_i=\alpha_0+u_i$
-  $b_i=\beta_0+v_i$
-  $c_i=\gamma_0+w_i$
-  $d_i=\delta_0+x_i$
+- Level 2
+\begin{eqnarray*}  
+  a_i&=\alpha_0+u_i\\
+  b_i&=\beta_0+v_i\\
+  c_i&=\gamma_0+w_i\\
+  d_i&=\delta_0+x_i.
+\end{eqnarray*}  
   
-  where
+The variance components are described by:
   
 $$
 \begin{bmatrix} u_i \\ v_i \\ w_i\\ x_i \end{bmatrix}=N\begin{pmatrix} \begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} \sigma_u^2 & & & \\ \sigma_{uv} & \sigma_v^2 & & \\ \sigma_{uvw} &\sigma_{vw} & \sigma_w^2 & \\ \sigma_{uvwx} & \sigma{vwx} & \sigma_{wx} & \sigma_x^2 \end{bmatrix} \end{pmatrix}
@@ -245,15 +255,16 @@ $$
 
   This model was chosen based on information from our exploratory data analysis. . It is important to note that the odds of a pitbull dying in the animal shelter are 3.42 times higher than for non pitbulls accounting for season, chip status, and intake condition, see table 4. As expected, the odds of a contagious dog dying at the animal shelter are 3.96 time higher than a non contagious dog accounting for whether the dog is treatable, the season, chip status and pitbull. Also, unsuprisingly if a dog enters the animal shelter with a treatable intake the odds of dying in the animal shelter decrease by 84% controlling for whether the dog is contagious on intake, the season, and chip status. 
 
-```{r, echo=FALSE, include=F}
+```{r, echo=FALSE, include=F, eval = FALSE}
 mod.2.dead=glmer(out_dead~pitbull + chip_status +
                       summer + contagious + treatable
                  +(pitbull+chip_status+summer+treatable|council_district), data=mlm_dead, family = "binomial")
+#(pitbull+chip_status+summer+treatable|council_district)
 summary(mod.2.dead)
 exp(fixef(mod.2.dead))
 ```
 
-```{r,  results = "asis", echo = FALSE, message=FALSE}
+```{r,  results = "asis", echo = FALSE, message=FALSE, eval = FALSE}
 stargazer(mod.2.dead,
           apply.coef = exp,
           title="Predicting Dead Outcomes using Multilevel Logistic Regression",
