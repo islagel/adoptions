@@ -198,6 +198,7 @@ We see in Table 3 that all of our models have variable estimates that are signif
 
 Procceding with model 3 as our best model of dog outcomes from the animal shelter, we glean several insights about the relationships between certain characteristics of dogs and those animal's outcomes from the shelter. For instance, if a dog is a pitbull, we expect it's odds of leaving the animal shelter dead increase by 348%, after controlling for chip status, season, and intake condition. Further, if a dog is a pitbull we are 95% confident that the true increase in odds of death at outcome is between 302% and 402%. Yikes! On the other hand, if a dog comes into the shelter with a scannable chip, we expect the animals odds of dying within the shelter system to drop by about 22%, after controlling for pitbull, season, and intake condition. Interestingly enough, if a dog has its outcome in the summer, the odds of that outcome being death are about 47% higher, controlling for breed, chip status, and intake condition.
 
+
 #### Multilevel Model for Dog Outcomes
 
 
@@ -221,6 +222,14 @@ stargazer(mod.1_dead, mod.1,
 
 
 #### Modeling Dog and Cat Differences
+
+ In our modeling of Dog and Cat differences we used used binomial regression. To model this we considered the following model: 
+
+\begin{equation}
+log(\frac{p_{i}}{1-p_{i}})=\beta_0+\beta_1 DogYN + \beta_i(Confounder_i). 
+\end{equation}
+
+We considered several models with different confounders controled for based on findings in the literature and our EDA. We were not able to find any significant difference in the odds of death between dogs and cat. We conclude that there is not evidence of a significant difference between dogs and cats in odds of dying in an animal shelter after accounting for chip_status, season of outcome, and intake condition. These models can be found in the Dog Cat portion of our appendix. 
 
 ## Discussion
 
