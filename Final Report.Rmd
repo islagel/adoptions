@@ -76,7 +76,7 @@ kable(tab, format = "latex", booktabs = T , caption = "Description of Variables"
 
   We used binomial regression to compare how the outcomes of pitbulls differ from other breeds of dog. In fitting this model we had to control for a plethora of cofounding variables including season of outcome, chip status, and intake condition of the animal. We also considered a multilevel model to account for difference in district correlation. Next we used a binomial regression to compare how the outcomes of dogs and cats differ, after controlling for season of outcome, chip status, and intake condition of the animal. We used findings from our exploratory data analysis to guide decisions on variable selection. Additionally we refered to models fit in the literature to guide decisions about model inclusion.
 
-
+  We also fit multilevel logistic regression models to compare ourcomes after accounting for correlation within city council districts. Our modeling process took on a similar approach to the binomial regression, we examined differences in odds of dying for pitbulls and non-pitbulls after accounting for differences in chip status, and season.  
 
 ## Results
 
@@ -228,7 +228,22 @@ Procceding with model 3 as our best model of dog outcomes from the animal shelte
 
 #### Multilevel Model for Dog Outcomes
 
+Our model has two levels, 
 
+  -Level 1
+  $$ Y_{ij}=a_i+b_i*summer_{ij}+c_i*pitbull_{ij}+d_i*chipstatus_{ij}+\epsilon_{ij}$$
+
+  -Level 2
+  $a_i=\alpha_0+u_i$
+  $b_i=\beta_0+v_i$
+  $c_i=\gamma_0+w_i$
+  $d_i=\delta_0+x_i$
+  
+  where
+  
+  $\begin{bmatrix} u_i \\ v_i \\ w_i\\ x_i \end{bmatrix}=N\begin{pmatrix} \begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} \sigma_u^2 & & & \\ \sigma_{uv} & \sigma_v^2 & & \\ \sigma_{uvw} &\sigma_{vw} & \sigma_w^2 & \\ \sigma_{uvwx} & \sigma{vwx} & \sigma_{wx} & \sigma_x^2 \end{bmatrix} \end{pmatrix} $
+
+This model was chosen based on information from our exploratory data analysis. Again, we found that
 
 ```{r, echo=FALSE, include=F}
 mod.2.dead=glmer(out_dead~summer+chip_status+pitbull+(1|council_district), data=mlm_dead, family = "binomial")
