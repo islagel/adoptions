@@ -30,7 +30,7 @@ adoptions=adoptions%>%
 
 names(adoptions)
 surv.mod=coxph(Surv(days_in_shelter, censored)~pitbull+
-                +chip_status,
+                +chip_status+strata(summer),
                data=adoptions)
 summary(surv.mod)
 
@@ -39,4 +39,3 @@ test.ph
 
 
 # Ok so the proportional hazards condition is not met. 
-
