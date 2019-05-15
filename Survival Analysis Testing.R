@@ -28,32 +28,57 @@ adoptions=adoptions%>%
          chip_status = ifelse(chip_status=="SCAN CHIP", 1, 0),
          summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0))
 
-names(adoptions)
-surv.mod=coxph(Surv(days_in_shelter, censored)~pitbull+strata(chip_status, summer, contagious_intake),
-               data=adoptions)
-summary(surv.mod)
+
+adop.1.1=adoptions%>%
+  filter(summer==1, chip_status==1)
+adop.0.1=adoptions%>%
+  filter(summer==0, chip_status==1)
+adop.1.0=adoptions%>%
+  filter(summer==1, chip_status==0)
+adop.0.0=adoptions%>%
+  filter(summer==0, chip_status==0)
+
+surv.mod.1.1=coxph(Surv(days_in_shelter, censored)~pitbull,
+               data=adop.1.1)
+surv.mod.0.1=coxph(Surv(days_in_shelter, censored)~pitbull,
+                   data=adop.0.1)
+surv.mod.1.0=coxph(Surv(days_in_shelter, censored)~pitbull,
+                   data=adop.1.0)
+surv.mod.0.0=coxph(Surv(days_in_shelter, censored)~pitbull,
+                   data=adop.0.0)
+
+surv.mod.1.1
+surv.mod.1.0
+surv.mod.0.1
+surv.mod.0.0
+
+(surv.mod.1.1$coefficients+surv.mod.1.0$coefficients+surv.mod.0.1$coefficients+surv.mod.0.0$coefficients)/4
+
+surv.mod=coxph(Surv(days_in_shelter, censored)~pitbull+summer+pitbull:summer, adoptions)
 
 
-kp_curve=survfit(Surv(days_in_shelter, censored)~pitbull+strata(chip_status, summer, contagious_intake),
-      data=adoptions)
-kp_curve
-ggsurvplot(kp_curve, data=adoptions)
+kp_curve.1.1=survfit(Surv(days_in_shelter, censored)~pitbull,
+      data=adop.1.1)
+kp_curve.1.0=survfit(Surv(days_in_shelter, censored)~pitbull,
+                     data=adop.1.0)
+kp_curve.0.1=survfit(Surv(days_in_shelter, censored)~pitbull,
+                     data=adop.0.1)
+kp_curve.0.0=survfit(Surv(days_in_shelter, censored)~pitbull,
+                     data=adop.0.0)
 
-test.ph <- cox.zph(surv.mod)
-test.ph
+kp_plot.1.1=ggsurvplot(kp_curve.1.1, data=adoptions)+
+  ggtitle("summer=1, chip=1")
+kp_plot.1.0=ggsurvplot(kp_curve.1.0, data=adoptions)+
+  ggtitle("summer=1, chip=0")
+kp_plot.0.1=ggsurvplot(kp_curve.0.1, data=adoptions)+
+  ggtitle("summer=0, chip=1")
+kp_plot.0.0=ggsurvplot(kp_curve.0.0, data=adoptions)+
+  ggtitle("summer=0, chip=0")
 
+kp_plot.0.0
+kp_plot.0.1
+kp_plot.1.0
+kp_plot.1.1
 
-adoptions$days_in_shelter
-
-# Ok so the proportional hazards condition is not met. 
-
-adoptions%>%
-  ggplot(aes(x=days_in_shelter))+
-  geom_density()
-min(adoptions$days_in_shelter, na.rm = T)
-
-param.surv=flexsurvreg(Surv(time=days_in_shelter, event=censored)~chip_status, data=adoptions, dist="exp")
-survival::
-
-
+library(gridExtra)
 
