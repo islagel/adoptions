@@ -40,23 +40,19 @@ adoptions <- read_csv("adoptions.csv")
 We accessed our data from the Dallas Open Data website. This website contains many public datasets, including [animal shelter records](https://www.dallasopendata.com/City-Services/Dallas-Animal-Shelter-Data/7h2m-3um5). Anyone can request an access key to this dataset and then download it. We downloaded the data, selected the variables of interest to us, and created a .csv file in the CreateDataset.Rmd file. Our dataset is saved as adoptions.csv. The initial variables from this dataset are described below in Table 1.
 
 ```{r variable table, echo = FALSE}
-variables <- c("Variable Name", "Variable Role", "Variable Type", "Range of Values", "Units")
+variables <- c("Variable Name", "Variable Role", "Variable Type", "Description")
 
-breed <- c("animal_breed", "explanatory", "categorical", "296 unique breeds", "NA")
-origin <- c("animal_origin", "explanatory", "categorical", "4 sources of shelter animals", "NA")
-type <- c("animal_type", "explanatory", "categorical", "5 species of animal", "NA")
-chip <- c("chip_status", "explanatory", "bianary", "(0,1)", "NA")
+out_dead  <- c("out_dead", "response", "bianary", "Whether or not an animal was dead at the outcome")
+days_in_shelter <- c("days_in_shelter", "response", "time", "The number of days an animal spent in the animal shelter")
+summer <- c("summer", "explanatory", "bianary", "Whether or not an animal had its outcome in May-Sept")
+pitbull <- c("pitbull", "explanatory", "bianary", "Whether or not a dog was a pitbull")
 
-intake_type <- c("intake_type", "potential confounder", "categorial", "how animal came to be at the shelter", "NA")
-outcome_type <- c("outcome_type", "reponse", "categorial", "how animals was removed from shelter", "NA")
+chip <- c("chip_status", "explanatory", "bianary", "Whether or not an animal had a scannable chip")
 
-intake_condition <- c("intake_condition", "potential confounder", "categorial", "keyword description of animal status at intake", "NA")
-outcome_condition <- c("outcome_condition", "potential confounder", "categorial", "keyword description of animal status at outcome", "NA")
+contagious <- c("contagious", "potential confounder", "bianary", "Whether or not an animal was described as 'contagious' at intake")
+treatable <- c("treatable", "potential confounder", "bianary", "Whether or not an animal was described as 'treatable' at intake")
 
-intake_date <- c("intake_date", "response", "date", "(2017-10-01, 2019-04-03)", "y-m-d")
-outcome_date <- c("outcome_date", "response", "date", "(2017-10-01, 2019-04-03)", "y-m-d")
-
-tab <- rbind(breed, origin, type, chip, intake_type, outcome_type, intake_condition, outcome_condition, intake_date, outcome_date)
+tab <- rbind(out_dead, days_in_shelter, summer, pitbull, chip, contagious, treatable)
 
 colnames(tab) <- variables
 rownames(tab) <- NULL
@@ -234,8 +230,6 @@ Our model has two levels,
   $$ Y_{ij}=a_i+b_i*summer_{ij}+c_i*pitbull_{ij}+d_i*chipstatus_{ij}+\epsilon_{ij}$$
   
   where 
-  
-  $
 
   -Level 2
   $a_i=\alpha_0+u_i$
@@ -245,7 +239,9 @@ Our model has two levels,
   
   where
   
-  $$\begin{bmatrix} u_i \\ v_i \\ w_i\\ x_i \end{bmatrix}=N\begin{pmatrix} \begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} \sigma_u^2 & & & \\ \sigma_{uv} & \sigma_v^2 & & \\ \sigma_{uvw} &\sigma_{vw} & \sigma_w^2 & \\ \sigma_{uvwx} & \sigma{vwx} & \sigma_{wx} & \sigma_x^2 \end{bmatrix} \end{pmatrix}$$
+$$
+\begin{bmatrix} u_i \\ v_i \\ w_i\\ x_i \end{bmatrix}=N\begin{pmatrix} \begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} \sigma_u^2 & & & \\ \sigma_{uv} & \sigma_v^2 & & \\ \sigma_{uvw} &\sigma_{vw} & \sigma_w^2 & \\ \sigma_{uvwx} & \sigma{vwx} & \sigma_{wx} & \sigma_x^2 \end{bmatrix} \end{pmatrix}
+$$
 
   This model was chosen based on information from our exploratory data analysis. . It is important to note that the odds of a pitbull dying in the animal shelter are 3.42 times higher than for non pitbulls accounting for season, chip status, and intake condition, see table 4. As expected, the odds of a contagious dog dying at the animal shelter are 3.96 time higher than a non contagious dog accounting for whether the dog is treatable, the season, chip status and pitbull.
 
@@ -264,7 +260,8 @@ stargazer(mod.2.dead,
           type='latex',
           align=TRUE,
           header=FALSE,
-          intercept.bottom = FALSE)
+          intercept.bottom = FALSE,
+          table.placement = "H")
 
 ```
 
