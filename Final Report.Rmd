@@ -22,8 +22,7 @@ adoptions <- read_csv("adoptions.csv")
 ```
 
 
-1. Introduction  A few paragraphs that contain background information, motivation for your research, and a statement of your research goals.  Be sure to incorporate your supporting references into the text.  The purpose of the background is to place your work in the greater context of the literature in the area you are investigating.  Then you should explicitly identify a hypothesis that you will investigate with your analysis.
-
+## Introduction  
 
 
   According to an ASPCA estimate, over 6.5 millions animals enter a shelter system every year. (Cite 1). After entering the shelter system animals are either rehabilitated and sent to homes or euthanized. Animal shelters, while running mostly on revenue from donations and adoption fees, routinely run into perminant defieciets and must be supported with money from local governments (Cite 2). Knowing more about the outcomes of animals from these shelters could help us minimize the percent of animals that need to be euthanized. Further, by identifying which animals are less likely to be adopted, we can help shelters allocate resources to minimize the time these animals spend in the shelter system.
@@ -34,11 +33,8 @@ adoptions <- read_csv("adoptions.csv")
 
 
 
+## Materials and Methods 
 
-
-
-2. Materials and Methods Three to five paragraphs (or fewer) that…
-  -	Briefly describe your data, where it came from (source), definitions of important variables, and how it was collected
 
 We accessed our data from the Dallas Open Data website. This website contains many public datasets, including [animal shelter records](https://www.dallasopendata.com/City-Services/Dallas-Animal-Shelter-Data/7h2m-3um5). Anyone can request an access key to this dataset and then download it. We downloaded the data, selected the variables of interest to us, and created a .csv file in the CreateDataset.Rmd file. Our dataset is saved as adoptions.csv. The initial variables from this dataset are described below in Table 1.
 
@@ -70,34 +66,19 @@ kable(tab, format = "latex", booktabs = T , caption = "Description of Variables"
 
 ```
 
-  -	Indicate any modifications made to the data, recoding, or decisions about missing data
 
-We used the imported data described in table 1 to create a fleet of indicator variables: `adopted`, `chip_status`, `summer`, `treatable_intake`, `adopted`, `dead`. These indicator variables were created to streamline our modleing process. They allow us to increase the interpretability of variables with multiple categories (like outcome_type).
-
-In order to fit a binomial regression, we had to summarise our dataset with respect to certain variables we controlled for in our model. One interesting issue that we encountered was the significance of the dataset we fit on SE estimates. If we summarized our data for each specific model, parameter estimates had increased SEs and more insignificant p-values. However, if we fit all of our models on the same, more extensive, summary table, SEs were small and parameters were more likely to be significant. We decided to proceed with the latter option, as it allows us to carry out nested F tests and would be more like a modeling process for true grouped data. This could mean that our SEs are artifically low.
-
-  -	Briefly but thoroughly describe the statistical inference methods used to quantify the association between your outcome and predictor variables (at least one method must have been introduced in Stat 316).  What summary statistics were calculated?  What statistical tests were performed?
-
-We used binomial regression to compare how the outcomes of pitbulls differ from other breeds of dog. In fitting this model we had to control for a plethora of cofounding variables including season of outcome, chip status, and intake condition of the animal. 
-
-We used a Cox Proportional hazard test to compare how the outcomes of ...
-
-  -	Specify strategies employed when building your models
+  We used the imported data described in Table 1 to create a fleet of indicator variables: `adopted`, `chip_status`, `summer`, `treatable_intake`, `adopted`, `dead`. These indicator variables were created to streamline our modleing process. They allow us to increase the interpretability of variables with multiple categories (like outcome_type).
 
 
-We used findings from our exploratory data analysis to guide decisions on variable selection. Additionally we refered to models fit in the literature to guide decisions about model inclusion.
-
-  -	Do not report results in the Materials and Methods section!
+  In order to fit a binomial regression, we had to summarise our dataset with respect to certain variables we controlled for in our model. One interesting issue that we encountered was the significance of the dataset we fit on SE estimates. If we summarized our data for each specific model, parameter estimates had increased SEs and more insignificant p-values. However, if we fit all of our models on the same, more extensive, summary table, SEs were small and parameters were more likely to be significant. We decided to proceed with the latter option, as it allows us to carry out nested F tests and would be more like a modeling process for true grouped data. This could mean that our SEs are artifically low.
 
 
-Note:  If you are using a method not covered in Stat 316, you may choose to expand Materials and Methods a bit to describe your statistical method.
+  We used binomial regression to compare how the outcomes of pitbulls differ from other breeds of dog. In fitting this model we had to control for a plethora of cofounding variables including season of outcome, chip status, and intake condition of the animal. We also considered a multilevel model to account for difference in district correlation. Next we used a binomial regression to compare how the outcomes of dogs and cats differ, after controlling for season of outcome, chip status, and intake condition of the animal. We used findings from our exploratory data analysis to guide decisions on variable selection. Additionally we refered to models fit in the literature to guide decisions about model inclusion.
 
 
 
+## Results
 
-
-3. Results  The meat of your report, which should include…
-  -	A general description of your data (completed via your exploratory data analysis)
 
 #### EDA Results: Pitbull
 
@@ -132,7 +113,13 @@ adoptions %>%
 
   We see that pit bulls, while only adopted at a slightly lower rate (~5%), are euthanized at well over double the rate of other dogs. Further, we see that other dogs have a much higher chance of being transferred to another facility or returned to their owner. To get a better understanding of this relationship, but we likely need to control for things like chip status, intake condition, and season of outcome in a binomial regression. 
   
-  -	A description of the results from your analyses, including interpretations of parameter estimates, tests, and confidence intervals in context.
+#### EDA Results: Effect of Council District 
+
+
+#### EDA Results: Dog and Cat Differences
+
+
+#### Binomial Models for Dog Outcomes
 
 ```{r pitbull model table, results = "asis", echo = FALSE, message=FALSE}
 
@@ -212,15 +199,14 @@ We see in Table 3 that all of our models have variable estimates that are signif
 
 Procceding with model 3 as our best model of dog outcomes from the animal shelter, we glean several insights about the relationships between certain characteristics of dogs and those animal's outcomes from the shelter. For instance, if a dog is a pitbull, we expect it's odds of leaving the animal shelter dead increase by 348%, after controlling for chip status, season, and intake condition. Further, if a dog is a pitbull we are 95% confident that the true increase in odds of death at outcome is between 302% and 402%. Yikes! On the other hand, if a dog comes into the shelter with a scannable chip, we expect the animals odds of dying within the shelter system to drop by about 22%, after controlling for pitbull, season, and intake condition. Interestingly enough, if a dog has its outcome in the summer, the odds of that outcome being death are about 47% higher, controlling for breed, chip status, and intake condition.
 
+#### Multilevel Model for Dog Outcomes
+
+#### Modeling Dog and Cat Differences
 
 
 
-  -	While you should interpret tests, confidence intervals, and coefficients in this section, you should not editorialize here!  Save that for the Discussion.
 
-
-
-
-4. Discussion  A few paragraphs that:
+## Discussion
 
   -	Begin with an accurate summary statement; describe how the results help answer your research questions and what was most interesting from your analysis.  In fact, the first paragraph of the Discussion is very important – in professional journals, it is often the first and sometimes the only paragraph that is read in a paper.  After the first sentence highlights primary results, the remainder of the first paragraph might compare your results to others in the literature or include interesting secondary results.
   
@@ -242,8 +228,6 @@ Procceding with model 3 as our best model of dog outcomes from the animal shelte
   
   Future work could be done in Dallas to help minimize the number of animals which need to be euthanized. By identifying specific at-risk groups of animals, more resources could be allocated to advocating for these animals or transfering them to other No-Kill shelters. We would recomend any additional research to work directly with the Dallas Animal Shelter group. By having a direct contact with the group doing data collection, a statistician will be able to better identify pressing issues of the group and verify certain assumptions that we have not been able to verify. 
   
-  -	Do not include test statistics or p-values in this section.
-
 
 # Works Cited 
 
