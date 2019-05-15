@@ -115,7 +115,6 @@ adoptions %>%
   
 #### EDA Results: Effect of Council District 
 
-
 #### EDA Results: Dog and Cat Differences
 
 
@@ -201,8 +200,6 @@ Procceding with model 3 as our best model of dog outcomes from the animal shelte
 
 #### Multilevel Model for Dog Outcomes
 
-#### Modeling Dog and Cat Differences
-
 
 ```{r, results = "asis", message=FALSE, echo=FALSE}
 mod.1_dead <- glmer(out_dead~1+(1|council_district), 
@@ -220,6 +217,10 @@ stargazer(mod.1_dead, mod.1,
           intercept.bottom = FALSE)
 
 ```
+
+
+
+#### Modeling Dog and Cat Differences
 
 ## Discussion
 
