@@ -29,14 +29,14 @@ adoptions=adoptions%>%
          summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0))
 
 names(adoptions)
-surv.mod=coxph(Surv(days_in_shelter, censored)~pitbull,
+surv.mod=coxph(Surv(days_in_shelter, censored)~pitbull+strata(chip_status, summer, contagious_intake),
                data=adoptions)
 summary(surv.mod)
 
 
-kp_curve=survfit(Surv(days_in_shelter, censored)~pitbull,
+kp_curve=survfit(Surv(days_in_shelter, censored)~pitbull+strata(chip_status, summer, contagious_intake),
       data=adoptions)
-
+kp_curve
 ggsurvplot(kp_curve, data=adoptions)
 
 test.ph <- cox.zph(surv.mod)
