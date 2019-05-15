@@ -223,13 +223,27 @@ Procceding with model 3 as our best model of dog outcomes from the animal shelte
 
 
 4. Discussion  A few paragraphs that:
+
   -	Begin with an accurate summary statement; describe how the results help answer your research questions and what was most interesting from your analysis.  In fact, the first paragraph of the Discussion is very important – in professional journals, it is often the first and sometimes the only paragraph that is read in a paper.  After the first sentence highlights primary results, the remainder of the first paragraph might compare your results to others in the literature or include interesting secondary results.
+  
   -	Discuss possible implications of the results in the context of the research question.
+  
   -	Make a statement regarding potential confounding variables in your study
+  
   -	Make a statement about the generalizability of your results.  Don’t give generic statements of possible causation and generalizability, but thoughtfully discuss relevant issues – confounding variables, representativeness of the sample, etc.
+  
+  Conclusions about animal outcomes of animals in shelters from this report can only be extended to the city of Dallas. While our sample size is totally representative for this population, we cannot account for differences that would be encountered in other municipalities, say higher adoption rates or less stigma against certain breeds of dog. Further, we cannot be sure that the trends observed in this paper will continue into the future. Anti-pitbull advocacy groups like [National Pitbull Victims Awareness](https://www.nationalpitbullvictimawareness.org/) and pro-pitbull advocacy groups like [Love-a-Bull](http://love-a-bull.org/resources/statistics-pit-bull-bites-community-safety/) are at odds trying to sway public opinion and policy reguarding the handling of pitbulls in animal shelters. If changes in public percecption of pitbulls or the policy that surrounds them changes, our model will lose it's generalizability to Dallas. 
+  
   -	Identify any limitations of your study. Discuss the potential impact of such limitations on the conclusions.
+  
+  One limitation of our study is that we do not know what happens to animals after they have been transferred out of the animal shelter. In our analysis we have viewed this outcome as a live outcome, but for all we know these animals could go on to another shelter where they are euthanized. Depending on the validity of our assumption, we could be adding some bias to our conclusions. Additionally, there is not consistant infomration on the criteria used by shelters to evaluate animals intake conditions. We look for key words that indicated the health of the animal. However we are not sure how consistant these evaluations are across all Dallas animal shelters. 
+  
   -	Identify strengths and weaknesses of your analysis.
+  
   -	Make suggestions for future research. Identify important next steps that a researcher could take to build on your work.
+  
+  Future work could be done in Dallas to help minimize the number of animals which need to be euthanized. By identifying specific at-risk groups of animals, more resources could be allocated to advocating for these animals or transfering them to other No-Kill shelters. We would recomend any additional research to work directly with the Dallas Animal Shelter group. By having a direct contact with the group doing data collection, a statistician will be able to better identify pressing issues of the group and verify certain assumptions that we have not been able to verify. 
+  
   -	Do not include test statistics or p-values in this section.
 
 
