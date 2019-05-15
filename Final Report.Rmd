@@ -1,7 +1,14 @@
 ---
 title: "Final Report"
 author: "Isaac Slagel and Jack Welsh"
-output: pdf_document
+output:
+  pdf_document:
+    fig_caption: yes
+    fig_height: 3
+    fig_width: 4.5
+header-includes: \usepackage{dcolumn} \usepackage{float}
+editor_options:
+  chunk_output_type: console
 ---
 
 ```{r, include = FALSE}
@@ -23,7 +30,9 @@ adoptions <- read_csv("adoptions.csv")
   Our project looks into animal shelters in the Dallas area using a dataset provided by the ciry of Dallas through dallasopendata.com. This data includes information about every animal that has been brought into an animal shelter in the Dallas area. There are `r nrow(adoptions)` individual animals in this dataset with with information about when and where the animal was found, the health of the animal on arrival, and whether the animal was adopted, euthinized or transfered. We will be investigating the factors that influence the death of an animal and the ammount of time the animal will spend in the shelter before dying, being adopted, or being transfered. We hyppothesize that pitbulls will be adopted at lower rates and euthinized at higher rates. In addition, we hypothesize that dogs without chips are less likely to survive their time at the animal shelter than dogs with chips. We believe that this work is important to help better understand what factors influence the death of animals in animal shelters and improve the outcomes of for animals in animal shelters.
 
   # Talk about the literature and recent movements to get rid of pitbulls.
+ 
   In recent years there has been a movement to regulate pit bulls, many people believe that pitbulls are inherintly not safe and a movement to make them illegal. # add some citations and stuff.
+  
   # Also find some papers about chip status.
 
 
@@ -33,7 +42,7 @@ adoptions <- read_csv("adoptions.csv")
 2. Materials and Methods Three to five paragraphs (or fewer) that…
   -	Briefly describe your data, where it came from (source), definitions of important variables, and how it was collected
 
-We accessed our data from the Dallas Open Data website. This website contains many public datasets, including [animal shelter records](https://www.dallasopendata.com/City-Services/Dallas-Animal-Shelter-Data/7h2m-3um5), which anyone can request an access key to and then download. We installed the data, selected the variables of interest to us, and created a .csv file in the CreateDataset.Rmd file. Our dataset is saved as adoptions.csv. The initial variables from this dataset are described below in Table 1.
+We accessed our data from the Dallas Open Data website. This website contains many public datasets, including [animal shelter records](https://www.dallasopendata.com/City-Services/Dallas-Animal-Shelter-Data/7h2m-3um5). Anyone can request an access key to this dataset and then download it. We downloaded the data, selected the variables of interest to us, and created a .csv file in the CreateDataset.Rmd file. Our dataset is saved as adoptions.csv. The initial variables from this dataset are described below in Table 1.
 
 ```{r variable table, echo = FALSE}
 variables <- c("Variable Name", "Variable Role", "Variable Type", "Range of Values", "Units")
@@ -71,6 +80,9 @@ In order to fit a binomial regression, we had to summarise our dataset with resp
 
   -	Briefly but thoroughly describe the statistical inference methods used to quantify the association between your outcome and predictor variables (at least one method must have been introduced in Stat 316).  What summary statistics were calculated?  What statistical tests were performed?
 
+We used binomial regression to compare how the outcomes of pitbulls differ from other breeds of dog. In fitting this model we had to control for a plethora of cofounding variables including season of outcome, chip status, and intake condition of the animal. 
+
+We used a Cox Proportional hazard test to compare how the outcomes of ...
 
   -	Specify strategies employed when building your models
 
@@ -89,11 +101,120 @@ Note:  If you are using a method not covered in Stat 316, you may choose to expa
 3. Results  The meat of your report, which should include…
   -	A general description of your data (completed via your exploratory data analysis)
 
+#### EDA Results: Pitbull
 
+
+  To look into how pit bulls are handled within animal shelters, we decided to explore how the outcomes of pit bulls may differ from non-pitbulls. Table 1 describes the differences in outcome rates for non-pitbulls compared to pitbulls.
+
+
+```{r pitbull EDA table, echo = FALSE}
+proper=function(x) paste0(toupper(substr(x, 1, 1)), tolower(substring(x, 2)))
+
+adoptions %>%
+  filter(dog == 1) %>%
+  mutate(outcome = as.factor(outcome_type),
+         pitbull = as.factor(pitbull)) %>%
+  group_by(pitbull, outcome_type) %>%
+  dplyr::count()%>%
+  rename("freq"=n)%>%
+  group_by(pitbull)%>%
+  mutate(freq = freq/ sum(freq))%>%
+  spread(outcome_type,freq) %>%
+  gather(key = Outcome, value = value, -pitbull) %>%
+  spread(key = pitbull, value = value) %>%
+  select(1,3,2) %>%
+  rename( "Pitbull (%)" = `1`, "Non-Pitbull (%)" = `0`) %>%
+  mutate(Outcome = proper(Outcome), `Pitbull (%)` =100*`Pitbull (%)` , `Non-Pitbull (%)`=`Non-Pitbull (%)`*100 )%>%
+  arrange(desc(`Pitbull (%)`))%>%
+  kable(digits = 2, format = "latex", booktabs = T, caption = "Pitbull Outcomes")%>%
+  kable_styling(latex_options =  c("striped", "HOLD_position"))
+
+```
+
+
+  We see that pit bulls, while only adopted at a slightly lower rate (~5%), are euthanized at well over double the rate of other dogs. Further, we see that other dogs have a much higher chance of being transferred to another facility or returned to their owner. To get a better understanding of this relationship, but we likely need to control for things like chip status, intake condition, and season of outcome in a binomial regression. 
+  
   -	A description of the results from your analyses, including interpretations of parameter estimates, tests, and confidence intervals in context.
 
+```{r pitbull model table, results = "asis", echo = FALSE, message=FALSE}
 
-  -	Tables that summarize results and figures that illustrate results. These tables and figures should be well-labeled, numbered (e.g. Figure 1), and have a good, descriptive caption.  Each report should have a minimum of two plots; rarely are residual plots part of the main body of the report unless they are an integral part of the story.
+pitbull_binom <- adoptions %>%
+  filter(!str_detect(intake_subtype, "(DEAD)|(DIED)")) %>%
+  filter(dog == 1) %>%
+  mutate(out_dead = outcome_type %in% c("DEAD ON ARRIVAL", "EUTHANIZED", "DIED"),
+         summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0),
+         chip_status = ifelse(chip_status=="SCAN CHIP", 1, 0),
+         contagious=ifelse(grepl(".*[^NON-]CONTAGIOUS", intake_condition),1,0),
+         treatable=ifelse(grepl("^TREATABLE.*", intake_condition),1,0)) %>%
+  group_by(pitbull, chip_status, summer, contagious, treatable) %>%
+  summarize(prop_dead = sum(out_dead)/n(), count = n())
+
+
+#### MODEL 1 ####
+
+pitbull_model1_quasi <- glm(prop_dead ~ pitbull + chip_status + summer , weights = count, family = quasibinomial, data = pitbull_binom)
+
+#### MODEL 2 ####
+
+pitbull_model2_quasi <- glm(prop_dead ~ pitbull + chip_status +
+                      summer + contagious , weights = count,
+                    family = quasibinomial, data = pitbull_binom)
+
+
+#### MODEL 3 ####
+
+
+pitbull_model3_quasi <- glm(prop_dead ~ pitbull + chip_status +
+                      summer + contagious + treatable , weights = count,
+                    family = quasibinomial, data = pitbull_binom)
+
+#### TABLE ####
+ci.func <- function(model){
+  exp(confint(model))
+}
+
+p.func <- function(model){
+  coef(summary(model))[,4]
+}
+
+stargazer(pitbull_model1_quasi, pitbull_model2_quasi, pitbull_model3_quasi,
+          title="Modeling Dog Outcomes in Dallas Animal Shelters",
+          type='latex',
+          align=TRUE,
+          header=FALSE,
+          table.placement = "H",
+          apply.coef = exp,
+          ci=TRUE,
+          ci.custom = list(ci.func(pitbull_model1_quasi),
+                           ci.func(pitbull_model2_quasi),
+                           ci.func(pitbull_model3_quasi)),
+          p.auto = FALSE,
+          p = list(p.func(pitbull_model1_quasi),
+                   p.func(pitbull_model2_quasi),
+                   p.func(pitbull_model3_quasi)),
+          dep.var.labels=c("Proportion of dogs who died"),
+          covariate.labels = c("Intercept","Pitbull",
+                              "Scannable Chip", "Summer Outcome",
+                              "Contagious", "Treatable At Intake",
+                            "Overdispersion Parameter"),
+          intercept.bottom = FALSE,
+          omit.stat = "n",
+          add.lines = list(c("Overdisperson Parameter", "139.72", "111.46",  "6.27"),
+                           c("Nested F Test","", "F: 5.1142^*", "F: 313.62^{***}")))
+
+```
+
+```{r, include = FALSE}
+anova(pitbull_model1_quasi, pitbull_model2_quasi, test = "F")
+anova(pitbull_model2_quasi, pitbull_model3_quasi, test = "F")
+exp(confint(pitbull_model3_quasi))
+```
+
+We see in Table 3 that all of our models have variable estimates that are significant including Model 3 which accounted for whether or not an animal was deemed "treatable" at the time of intake. Further, by two F tests we see each of our models is an improvement on the one before it (Model 1 $\rightarrow$ Model 2: F = 5.1141, p-value = 0.031) (Model 2 $\rightarrow$ Model 3: F = 313.62, p-value <<< .05). 
+
+Procceding with model 3 as our best model of dog outcomes from the animal shelter, we glean several insights about the relationships between certain characteristics of dogs and those animal's outcomes from the shelter. For instance, if a dog is a pitbull, we expect it's odds of leaving the animal shelter dead increase by 348%, after controlling for chip status, season, and intake condition. Further, if a dog is a pitbull we are 95% confident that the true increase in odds of death at outcome is between 302% and 402%. Yikes! On the other hand, if a dog comes into the shelter with a scannable chip, we expect the animals odds of dying within the shelter system to drop by about 22%, after controlling for pitbull, season, and intake condition. Interestingly enough, if a dog has its outcome in the summer, the odds of that outcome being death are about 47% higher, controlling for breed, chip status, and intake condition.
+
+
 
 
   -	While you should interpret tests, confidence intervals, and coefficients in this section, you should not editorialize here!  Save that for the Discussion.
