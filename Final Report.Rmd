@@ -246,6 +246,9 @@ Our model has two levels,
 This model was chosen based on information from our exploratory data analysis. Again, we found that
 
 ```{r, echo=FALSE, include=F}
+mod.1_dead <- glmer(out_dead~1+(1|council_district), 
+                    data=just_dog_adoptions, 
+                    family = "binomial")
 mod.2.dead=glmer(out_dead~summer+chip_status+pitbull+(1|council_district), data=mlm_dead, family = "binomial")
 summary(mod.2.dead)
 ```
@@ -316,3 +319,78 @@ Patronek, G. J., & Crowe, A. (2018). Factors Associated with High Live Release f
   -	How you went from the model output in R to interpretations in your report (e.g. exponentiate coefficients, then take inverse)
   -	Anticipate questions someone might have after reading your report, and make sure those questions can be answered with information in the appendix.
   -	A citation for each reference article (in APA format or something similar) you included in your proposal.  Also include a link, if appropriate.  Remember that you must have the entire paper and not just an abstract, and at least two must be from peer-reviewed journals.
+
+
+### Dogs vs Cats
+
+```{r}
+cat_dog_binom <- adoptions %>%
+  filter(!str_detect(intake_subtype, "(DEAD)|(DIED)")) %>%
+  filter(dog == 1 | cat == 1) %>%
+  mutate(out_dead = outcome_type %in% c("DEAD ON ARRIVAL", "EUTHANIZED", "DIED"),
+         summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0))%>%
+  mutate(chip_status = ifelse(chip_status=="SCAN CHIP", 1, 0)) %>%
+  group_by(dog, chip_status, summer, stray) %>%
+  summarize(prop_dead = sum(out_dead)/n(), count = n())
+
+####### MODEL 1: dog #########
+
+dogcat_model1_binom <- glm(prop_dead ~ dog, weights = count, family = binomial, data = cat_dog_binom)
+
+dogcat_model1_quasi <- glm(prop_dead ~ dog, weights = count, family = quasibinomial, data = cat_dog_binom)
+
+summary(dogcat_model1_binom)
+exp(confint(dogcat_model1_binom))
+
+summary(dogcat_model1_quasi)
+exp(confint(dogcat_model1_quasi))
+
+####### MODEL 2: dog + summer #########
+
+dogcat_model2_binom <- glm(prop_dead ~ dog + summer, weights = count, family = binomial, data = cat_dog_binom)
+
+dogcat_model2_quasi <- glm(prop_dead ~ dog + summer, weights = count, family = quasibinomial, data = cat_dog_binom)
+
+summary(dogcat_model2_binom)
+exp(confint(dogcat_model2_binom))
+
+summary(dogcat_model2_quasi)
+exp(confint(dogcat_model2_quasi))
+
+
+####### MODEL 3: dog + chip ######
+
+dogcat_model3_binom <- glm(prop_dead ~ dog + chip_status, weights = count, family = binomial, data = cat_dog_binom)
+
+dogcat_model3_quasi <- glm(prop_dead ~ dog + chip_status, weights = count, family = quasibinomial, data = cat_dog_binom)
+
+summary(dogcat_model3_binom)
+exp(confint(dogcat_model3_binom))
+
+summary(dogcat_model3_quasi)
+exp(confint(dogcat_model3_quasi))
+
+####### MODEL 4: summer + dog + summer:dog ######
+
+dogcat_model4_binom <- glm(prop_dead ~ summer+dog+ summer:dog, weights = count, family = binomial, data = cat_dog_binom)
+
+dogcat_model4_quasi <- glm(prop_dead ~ summer+dog+ summer:dog, weights = count, family = quasibinomial, data = cat_dog_binom)
+
+summary(dogcat_model4_binom)
+exp(confint(dogcat_model4_binom))
+
+summary(dogcat_model4_quasi)
+exp(confint(dogcat_model4_quasi))
+
+####### MODEL 5: stray ######
+
+dogcat_model5_binom <- glm(prop_dead ~ dog + stray, weights = count, family = binomial, data = cat_dog_binom)
+
+dogcat_model5_quasi <- glm(prop_dead ~ dog + stray, weights = count, family = quasibinomial, data = cat_dog_binom)
+
+summary(dogcat_model5_binom)
+exp(confint(dogcat_model5_binom))
+
+summary(dogcat_model5_quasi)
+exp(confint(dogcat_model5_quasi))
+```
