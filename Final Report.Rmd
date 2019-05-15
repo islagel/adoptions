@@ -232,6 +232,10 @@ Our model has two levels,
 
   -Level 1
   $$ Y_{ij}=a_i+b_i*summer_{ij}+c_i*pitbull_{ij}+d_i*chipstatus_{ij}+\epsilon_{ij}$$
+  
+  where 
+  
+  $
 
   -Level 2
   $a_i=\alpha_0+u_i$
@@ -241,22 +245,22 @@ Our model has two levels,
   
   where
   
-  $\begin{bmatrix} u_i \\ v_i \\ w_i\\ x_i \end{bmatrix}=N\begin{pmatrix} \begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} \sigma_u^2 & & & \\ \sigma_{uv} & \sigma_v^2 & & \\ \sigma_{uvw} &\sigma_{vw} & \sigma_w^2 & \\ \sigma_{uvwx} & \sigma{vwx} & \sigma_{wx} & \sigma_x^2 \end{bmatrix} \end{pmatrix} $
+  $$\begin{bmatrix} u_i \\ v_i \\ w_i\\ x_i \end{bmatrix}=N\begin{pmatrix} \begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} \sigma_u^2 & & & \\ \sigma_{uv} & \sigma_v^2 & & \\ \sigma_{uvw} &\sigma_{vw} & \sigma_w^2 & \\ \sigma_{uvwx} & \sigma{vwx} & \sigma_{wx} & \sigma_x^2 \end{bmatrix} \end{pmatrix}$$
 
-This model was chosen based on information from our exploratory data analysis. Again, we found that
+  This model was chosen based on information from our exploratory data analysis. . It is important to note that the odds of a pitbull dying in the animal shelter are 3.42 times higher than for non pitbulls accounting for season, chip status, and intake condition, see table 4. As expected, the odds of a contagious dog dying at the animal shelter are 3.96 time higher than a non contagious dog accounting for whether the dog is treatable, the season, chip status and pitbull.
 
 ```{r, echo=FALSE, include=F}
-mod.1_dead <- glmer(out_dead~1+(1|council_district), 
-                    data=just_dog_adoptions, 
-                    family = "binomial")
-mod.2.dead=glmer(out_dead~summer+chip_status+pitbull+(1|council_district), data=mlm_dead, family = "binomial")
+mod.2.dead=glmer(out_dead~pitbull + chip_status +
+                      summer + contagious + treatable
+                 +(1|council_district), data=mlm_dead, family = "binomial")
 summary(mod.2.dead)
+exp(fixef(mod.2.dead))
 ```
 
-```{r, results="asis"}
+```{r,  results = "asis", echo = FALSE, message=FALSE}
 stargazer(mod.2.dead,
-          add.lines = list(c("Between District $\\sigma$", "0.1408")),
-          title="Predicting Dead Outcomes and Adoption Outcomes with Multilevel Structure with Level 1 Predictors",
+          apply.coef = exp,
+          title="Predicting Dead Outcomes using Multilevel Logistic Regression",
           type='latex',
           align=TRUE,
           header=FALSE,
@@ -270,9 +274,7 @@ stargazer(mod.2.dead,
 
  In our modeling of Dog and Cat differences we used used binomial regression. To model this we considered the following model:
 
-\begin{equation}
-log(\frac{p_{i}}{1-p_{i}})=\beta_0+\beta_1 DogYN + \beta_i(Confounder_i).
-\end{equation}
+$$log(\frac{p_{i}}{1-p_{i}})=\beta_0+\beta_1 DogYN + \beta_i(Confounder_i)$$
 
 We considered several models with different confounders controled for based on findings in the literature and our EDA. We were not able to find any significant difference in the odds of death between dogs and cat. We conclude that there is not evidence of a significant difference between dogs and cats in odds of dying in an animal shelter after accounting for chip_status, season of outcome, and intake condition. These models can be found in the Dog Cat portion of our appendix.
 
