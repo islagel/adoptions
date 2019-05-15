@@ -432,7 +432,7 @@ exp(fixef(mod.2.adopted))
 exp(fixef(mod.2.adopted))/(1+exp(fixef(mod.2.adopted)))
 
 
-mod.2.dead=glmer(out_dead~summer+chip_status+treatable_intake+(1|council_district), data=just_dog_adoptions, family = "binomial")
+mod.2.dead=glmer(out_dead~summer+chip_status+pitbull+(1|council_district), data=just_dog_adoptions, family = "binomial")
 summary(mod.2.dead)
 exp(fixef(mod.2.dead))
 exp(fixef(mod.2.dead))/(1+exp(fixef(mod.2.dead)))
