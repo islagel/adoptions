@@ -17,6 +17,7 @@ library(readr)
 library(lubridate)
 library(kableExtra)
 library(knitr)
+library(lme4)
 library(stargazer)
 adoptions <- read_csv("adoptions.csv")
 ```
@@ -115,6 +116,31 @@ adoptions %>%
   
 #### EDA Results: Effect of Council District 
 
+```{r, echo=FALSE}
+mlm_dead<- adoptions %>%
+  filter(!str_detect(intake_subtype, "(DEAD)|(DIED)")) %>%
+  filter(dog == 1) %>%
+  mutate(out_dead = outcome_type %in% c("DEAD ON ARRIVAL", "EUTHANIZED", "DIED"),
+         summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0),
+         chip_status = ifelse(chip_status=="SCAN CHIP", 1, 0),
+         contagious=ifelse(grepl(".*[^NON-]CONTAGIOUS", intake_condition),1,0),
+         treatable=ifelse(grepl("^TREATABLE.*", intake_condition),1,0))
+
+mlm_dead %>%
+  group_by(council_district)%>%
+  summarise(prop_dead = sum(out_dead)/n())%>%
+  filter(!is.na(council_district))%>%
+  ggplot(aes(x=as.factor(council_district), y = prop_dead)) +
+  geom_bar(stat = "identity")+
+  xlab("City Conucil District")+
+  ylab("Proportion Dead")+
+  ggtitle("Proportion Dead by Council District")
+  
+
+```
+
+
+
 
 #### EDA Results: Dog and Cat Differences
 
@@ -200,6 +226,23 @@ We see in Table 3 that all of our models have variable estimates that are signif
 Procceding with model 3 as our best model of dog outcomes from the animal shelter, we glean several insights about the relationships between certain characteristics of dogs and those animal's outcomes from the shelter. For instance, if a dog is a pitbull, we expect it's odds of leaving the animal shelter dead increase by 348%, after controlling for chip status, season, and intake condition. Further, if a dog is a pitbull we are 95% confident that the true increase in odds of death at outcome is between 302% and 402%. Yikes! On the other hand, if a dog comes into the shelter with a scannable chip, we expect the animals odds of dying within the shelter system to drop by about 22%, after controlling for pitbull, season, and intake condition. Interestingly enough, if a dog has its outcome in the summer, the odds of that outcome being death are about 47% higher, controlling for breed, chip status, and intake condition.
 
 #### Multilevel Model for Dog Outcomes
+
+
+
+```{r, echo=FALSE, include=F}
+mod.2.dead=glmer(out_dead~summer+chip_status+pitbull+(1|council_district), data=mlm_dead, family = "binomial")
+summary(mod.2.dead)
+```
+
+```{r, results="asis"}
+stargazer(mod.2.dead, 
+          add.lines = list(c("Between District $\\sigma$", "0.1408")),
+          title="Predicting Dead Outcomes and Adoption Outcomes with Multilevel Structure with Level 1 Predictors",
+          type='latex',
+          align=TRUE,
+          header=FALSE,
+          intercept.bottom = FALSE)
+```
 
 #### Modeling Dog and Cat Differences
 
