@@ -26,19 +26,15 @@ adoptions=adoptions%>%
          rehabitable_intake=ifelse(grepl(".*REHABILITABLE.*", intake_condition),1,0),
          normal_intake=ifelse(grepl(".*NORMAL.*", intake_condition),1,0),
          chip_status = ifelse(chip_status=="SCAN CHIP", 1, 0),
-         summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0))%>%
-  mutate(censored=ifelse(days_in_shelter>55, 1, censored))%>%
-  filter(days_in_shelter<55)%>%
-  filter(days_in_shelter!=1)
+         summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0))
 
 names(adoptions)
-surv.mod=coxph(Surv(days_in_shelter, censored)~chip_status+
-                +summer+pitbull,
+surv.mod=coxph(Surv(days_in_shelter, censored)~pitbull,
                data=adoptions)
 summary(surv.mod)
 
 
-kp_curve=survfit(Surv(days_in_shelter, censored)~summer+pitbull,
+kp_curve=survfit(Surv(days_in_shelter, censored)~pitbull,
       data=adoptions)
 
 ggsurvplot(kp_curve, data=adoptions)

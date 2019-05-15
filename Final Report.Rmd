@@ -227,7 +227,7 @@ Procceding with model 3 as our best model of dog outcomes from the animal shelte
 Our model has two levels, 
 
   -Level 1
-  $$ Y_{ij}=a_i+b_i*summer_{ij}+c_i*pitbull_{ij}+d_i*chipstatus_{ij}+\epsilon_{ij}$$
+  $$log(\frac{p_{ij}}{1-p_{ij}})=a_i+b_i*summer_{ij}+c_i*pitbull_{ij}+d_i*chipstatus_{ij}$$
   
   where 
 
@@ -243,12 +243,12 @@ $$
 \begin{bmatrix} u_i \\ v_i \\ w_i\\ x_i \end{bmatrix}=N\begin{pmatrix} \begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} \sigma_u^2 & & & \\ \sigma_{uv} & \sigma_v^2 & & \\ \sigma_{uvw} &\sigma_{vw} & \sigma_w^2 & \\ \sigma_{uvwx} & \sigma{vwx} & \sigma_{wx} & \sigma_x^2 \end{bmatrix} \end{pmatrix}
 $$
 
-  This model was chosen based on information from our exploratory data analysis. . It is important to note that the odds of a pitbull dying in the animal shelter are 3.42 times higher than for non pitbulls accounting for season, chip status, and intake condition, see table 4. As expected, the odds of a contagious dog dying at the animal shelter are 3.96 time higher than a non contagious dog accounting for whether the dog is treatable, the season, chip status and pitbull.
+  This model was chosen based on information from our exploratory data analysis. . It is important to note that the odds of a pitbull dying in the animal shelter are 3.42 times higher than for non pitbulls accounting for season, chip status, and intake condition, see table 4. As expected, the odds of a contagious dog dying at the animal shelter are 3.96 time higher than a non contagious dog accounting for whether the dog is treatable, the season, chip status and pitbull. Also, unsuprisingly if a dog enters the animal shelter with a treatable intake the odds of dying in the animal shelter decrease by 84% controlling for whether the dog is contagious on intake, the season, and chip status. 
 
 ```{r, echo=FALSE, include=F}
 mod.2.dead=glmer(out_dead~pitbull + chip_status +
                       summer + contagious + treatable
-                 +(1|council_district), data=mlm_dead, family = "binomial")
+                 +(pitbull+chip_status+summer+treatable|council_district), data=mlm_dead, family = "binomial")
 summary(mod.2.dead)
 exp(fixef(mod.2.dead))
 ```
