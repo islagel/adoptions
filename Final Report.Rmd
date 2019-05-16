@@ -35,14 +35,14 @@ adoptions <- read_csv("adoptions.csv")
 
   Our research looks into animal shelters in the Dallas area using a dataset provided by the city of Dallas on dallasopendata.com. This data includes information about every animal that has been brought into an animal shelter in the Dallas area. There are `r nrow(adoptions)` individual animals in this dataset with with information about when and where the animal was found, the health of the animal on arrival, and whether the animal was adopted, euthinized or transfered.
 
-  Recent research on animal shelters have consistantly shown that outcomes for pitbulls are consistantly worse than other dog breeds (Patronek & Crowe 2018, Lepper et al 2002). We are interested in seeing if these this trends exist in the Dallas animal shelter system. If these trends do occur, how to they manifest in the quantative insights we glean from our analysis. Do pitbulls face greater odds of euthanization than other breeds? Are pitbulls adopted at lower rates than other species of dogs. Do certain animal shelters handle pitbulls better or worse than others? 
+  Recent research on animal shelters have consistantly shown that outcomes for pitbulls are consistantly worse than other dog breeds (Patronek & Crowe 2018, Lepper et al 2002). We are interested in seeing if these this trends exist in the Dallas animal shelter system. If these trends do occur, how to they manifest in the quantative insights we glean from our analysis. Do pitbulls face greater odds of euthanization than other breeds? Are pitbulls adopted at lower rates than other species of dogs. Do certain animal shelters handle pitbulls better or worse than others?
 
 
 
 ## Materials and Methods
 
 
-We accessed our data from the Dallas Open Data website. This website contains many public datasets, including [animal shelter records](https://www.dallasopendata.com/City-Services/Dallas-Animal-Shelter-Data/7h2m-3um5). Anyone can request an access key to this dataset and then download it. We downloaded the data, selected the variables of interest to us, and created a .csv file in the CreateDataset.Rmd file. Our dataset is saved as adoptions.csv. The initial variables from this dataset are described below in Table 1.
+  We accessed our data from the Dallas Open Data website. This website contains many public datasets, including [animal shelter records](https://www.dallasopendata.com/City-Services/Dallas-Animal-Shelter-Data/7h2m-3um5). Anyone can request an access key to this dataset and then download it. We downloaded the data, selected the variables of interest to us, and created a .csv file in the CreateDataset.Rmd file. Our dataset is saved as adoptions.csv. The initial variables from this dataset are described below in Table 1.
 
 ```{r variable table, echo = FALSE}
 variables <- c("Variable Name", "Variable Role", "Variable Type", "Description")
@@ -72,23 +72,19 @@ kable(tab,
 ```
 
 
-  We used the imported data described in Table 1 to create a fleet of indicator variables: `adopted`, `chip_status`, `summer`, `treatable_intake`, `adopted`, `dead`. These indicator variables were created to streamline our modleing process. They allow us to increase the interpretability of variables with multiple categories (like outcome_type).
+  After we imported our dataset we used a variety of variables that were coded as factors and string to create a fleet of indicator variables: `adopted`, `chip_status`, `summer`, `treatable_intake`, `adopted`, `dead`.These indicator variables were created to streamline our modleing process. They allow us to increase the interpretability of variables with multiple categories (like outcome_type). We also modified the intake date and outcome date variables to create a `days_in_shelter` variable. This variable is a neccesary outcome for the survival analysis portion of the data.
 
-  In order to fit a binomial regression, we had to summarise our dataset with respect to certain variables we controlled for in our model. One interesting issue that we encountered was the significance of the dataset we fit on SE estimates. If we summarized our data for each specific model, parameter estimates had increased SEs and more insignificant p-values. However, if we fit all of our models on the same, more extensive, summary table, SEs were small and parameters were more likely to be significant. We decided to proceed with the latter option, as it allows us to carry out nested F tests and would be more like a modeling process for true grouped data. This could mean that our SEs are artifically low.
+  In order to fit a quiasibinomial model, we had to summarise our dataset with respect to certain variables we controlled for in our model. One interesting issue that we encountered was the effect that the dataset used had on SE estimates. If we summarized our data for each specific model, parameter estimates had increased SEs and more insignificant p-values. However, if we fit all of our models on the same, more extensive, summary table, SEs were small and parameters were more likely to be significant. We decided to proceed with the latter option, as it allows us to carry out nested F tests and would be more like a modeling process for true grouped data. This could mean that our SEs are artifically low.
 
   We used quasibinomial regression to compare how the outcomes of pitbulls differ from other breeds of dog. In fitting this model we had to control for a plethora of cofounding variables including season of outcome, chip status, and intake condition of the animal. We also considered a multilevel model to account for difference in district correlation.
 
   We also fit multilevel logistic regression models to compare ourcomes after accounting for correlation within city council districts. Our modeling process took on a similar approach to the binomial regression, we examined differences in odds of dying for pitbulls and non-pitbulls after accounting for differences in chip status, and season.  
 
-  To investigate the ammount of time that dogs are spending in the animal shelter before dying we used cox proportional hazards. Cox proportional hazards is a semi parametric model used in survival to analyze how variables of interest affect the time till an event occuring. As the name suggests this is commonly used to investigate what factors affect time till death. This is done by comparing hazard rates using a hazard ratio. The hazard ratio is the ratio of hazard rates between groups, a hazard rate is the rate at which the outcome is happening. So, this type of model investigates how variables affect the rate at which outcomes happen.
+  To investigate the ammount of time that dogs are spending in the animal shelter before dying we used Cox proportional hazards. Cox proportional hazards is a semi parametric model used in survival to analyze how variables of interest affect the time till an event occuring. As the name suggests this is commonly used to investigate what factors affect time till death. This is done by comparing hazard rates using a hazard ratio. The hazard ratio is the ratio of hazard rates between groups, a hazard rate is the rate at which the outcome is happening. So, this type of model investigates how variables affect the rate at which outcomes happen.
 
-  The Cox Proportional Hazards model is a semiparametric model, this means that this model does not make assumptions about the undMrlying distribution of data, but it does assume that the hazard ratios for any two individuals is constant over time. In other words, the risk of the outcome of interest happening for one individual at every time point must be proportionally constant to all other individuals.
+  The Cox proportional hazards model is a semiparametric model, this means that this model does not make assumptions about the undMrlying distribution of data, but it does assume that the hazard ratios for any two individuals is constant over time. In other words, the risk of the outcome of interest happening for one individual at every time point must be proportionally constant to all other individuals.
 
-  This model follows the general form
-
-  $$h(t)=h_0(t)*\exp\{b_1*x_1+b_2*x_2+....+b_p*x_p\}$$.
-
-  where $h_0(t)$ is called the baseline hazard rate and is an estimation of the hazard rate of an individual at time t with $x_1$ to $x_p$ all equal to 0 having the outcome of interest already happened. $b_1$ to $b_p$ are the hazard ratio estimates. These are estimations of how much the hazard rate will change at time t compared to the baseline hazard rate at time t. This model also allows us to censor our data. We do not know if an animal that is trasfered dies in the animal shelter, so that variable is censored at the time of the otcome. This us allows us to consider all of our data without making assumptions on whether the animal is dead or alive.
+  This model follows the general form $h(t)=h_0(t)*\exp\{b_1*x_1+b_2*x_2+....+b_p*x_p\}.$ where $h_0(t)$ is called the baseline hazard rate and is an estimation of the hazard rate of an individual at time t with $x_1$ to $x_p$ all equal to 0 having the outcome of interest already happened. $b_1$ to $b_p$ are the hazard ratio estimates. These are estimations of how much the hazard rate will change at time t compared to the baseline hazard rate at time t. This model also allows us to censor our data. We do not know if an animal that is trasfered dies in the animal shelter, so that variable is censored at the time of the otcome. This us allows us to consider all of our data without making assumptions on whether the animal is dead or alive.
 
 
 ## Results
@@ -408,6 +404,8 @@ We considered several models with different confounders controled for based on f
 
 ## Discussion
 
+
+
   -	Begin with an accurate summary statement; describe how the results help answer your research questions and what was most interesting from your analysis.  In fact, the first paragraph of the Discussion is very important – in professional journals, it is often the first and sometimes the only paragraph that is read in a paper.  After the first sentence highlights primary results, the remainder of the first paragraph might compare your results to others in the literature or include interesting secondary results.
 
   -	Discuss possible implications of the results in the context of the research question.
@@ -429,7 +427,9 @@ We considered several models with different confounders controled for based on f
   Future work could be done in Dallas to help minimize the number of animals which need to be euthanized. By identifying specific at-risk groups of animals, more resources could be allocated to advocating for these animals or transfering them to other No-Kill shelters. We would recomend any additional research to work directly with the Dallas Animal Shelter group. By having a direct contact with the group doing data collection, a statistician will be able to better identify pressing issues of the group and verify certain assumptions that we have not been able to verify.
 
 
-# Works Cited
+## Works Cited
+
+
 
 1. https://www.aspca.org/animal-homelessness/shelter-intake-and-surrender
 2. https://rucore.libraries.rutgers.edu/rutgers-lib/38418/PDF/1/play/
@@ -442,7 +442,14 @@ Patronek, G. J., & Crowe, A. (2018). Factors Associated with High Live Release f
 
 [Lampe, R., & Witte, T. H. (2015). Speed of dog adoption: Impact of online photo traits. Journal of applied animal welfare science, 18(4), 343-354.](https://www.tandfonline.com/doi/abs/10.1080/10888705.2014.982796)
 
-5. Annotated Appendix
+
+
+## Annotated Appendix
+
+======
+
+
+
   -	Tables and figures that are informative but were not referenced specifically in the main report.  Include a short annotation – one or two sentences on what they show.
   -	R scripts and output (annotated) so that I can trace how you constructed your final data set, what models you ran to produce the results quoted in your report, and what intermediate models you also considered.
   -	Description of statistical modeling steps that were not included in the main body of your report.  Possible entries here include: How you handled missing data. Evaluation of assumptions. Outlier analysis and how you decided to deal with any outliers along with rationale for your decision. Describe hypotheses testing you performed during model building and how you decided on the explanatory variables you ultimately included in your final model. Assessment of the final model.
@@ -539,7 +546,7 @@ exp(confint(dogcat_model5_quasi))
 
 #### Cox Proportional Hazards
 
-As you can see below when we include chip_status and summer in the cox proportional hazards model the kaplan meir curves begin to overlap and cross which means the the hazards are no longer proportional. 
+As you can see below when we include chip_status and summer in the cox proportional hazards model the kaplan meir curves begin to overlap and cross which means the the hazards are no longer proportional.
 
 ```{r}
 
@@ -549,5 +556,3 @@ kp_curve.all.confounders=survfit(Surv(days_in_shelter,censored)~pitbull+summer+c
 ggsurvplot(kp_curve.all.confounders, data=adoptions_surv)
 
 ```
-
-
