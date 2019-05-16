@@ -84,7 +84,7 @@ kable(tab,
 
   We also fit multilevel logistic regression models to compare ourcomes after accounting for correlation within city council districts. Our modeling process took on a similar approach to the binomial regression, we examined differences in odds of dying for pitbulls and non-pitbulls after accounting for differences in chip status, and season.  
 
-  To investigate the ammount of time that dogs spend in the animal shelter before dying we used a Cox proportional hazards model. Cox proportional hazards is a semi parametric model used in survival anslysis to explain how variables of interest affect the time until an event occurs. As the name 'survival analysis' suggests, this method is commonly used to investigate what factors affect time till death. This is done by comparing hazard rates using a hazard ratio. The hazard ratio is the ratio of hazard rates between groups, a hazard rate is the rate at which the outcome is happening. So, this type of model investigates how variables affect the rate at which outcomes happen.
+  To investigate the ammount of time that dogs spend in the animal shelter before dying we used a Cox proportional hazards model. Cox proportional hazards is a semi parametric model used in survival anslysis to explain how variables of interest affect the time until an event occurs. As the name 'survival analysis' suggests, this method is commonly used to investigate what factors affect time untildeath. This is done by comparing hazard rates using a hazard ratio. The hazard ratio is the ratio of hazard rates between groups, a hazard rate is the rate at which the outcome is happening. So, this type of model investigates how variables affect the rate at which outcomes happen.
 
   The Cox proportional hazards model is a semiparametric model, this means that this model does not make assumptions about the undMrlying distribution of data, but it does assume that the hazard ratios for any two individuals is constant over time. In other words, the risk of the outcome of interest happening for one individual at every time point must be proportionally constant to all other individuals.
 
@@ -124,7 +124,7 @@ adoptions %>%
         format = "latex",
         booktabs = T,
         caption = "Pitbull Outcomes")%>%
-  kable_styling(latex_options =  c("striped", "HOLD_position"), font_size = 7)
+  kable_styling(latex_options =  c("striped", "HOLD_position"), font_size = 8)
 
 ```
 
@@ -304,7 +304,7 @@ stargazer(mod.2.dead,
 ```
 
 
-#### EDA Results: Time Till Death for Dogs
+#### EDA Results: Time Until Death for Dogs
 
 
 ```{r, echo=FALSE, message=FALSE, include=FALSE, fig.align="center"}
@@ -342,25 +342,30 @@ ggsurvplot(surv.mod, data=adoptions_surv, legend = "none")
 
 When investigating the ammount of time that dogs spend in the animal shelter before dying or having another outcome we noticed that pitbulls die much more often (see Table 2). In the Kaplan Meir Curve above we can see that the survival probability for pitbulls falls below 50% sooner than that of non pitbulls.
 
-```{r}
+```{r, echo = FALSE}
 time_in_animal_shelter=adoptions_surv%>%
   group_by(pitbull)%>%
-  summarise(`Average Number of Days in Shelter`=mean(days_in_shelter, na.rm=TRUE))%>%
+  summarise(`Days`=mean(days_in_shelter, na.rm=TRUE))%>%
   mutate(`Pitbull`=ifelse(pitbull==0,"No", "Yes"))%>%
+<<<<<<< HEAD
+  select(`Pitbull`, `Days`)
+  
+=======
   select(`Pitbull`, `Average Number of Days in Shelter`)
 
+>>>>>>> 1ee04d9528f5ded405b33ae1a23a8367fd52685c
 kable(time_in_animal_shelter,
       format = "latex" ,
       booktabs = T,
       linesep = "",
       caption = "Average Time Spent in Animal Shelter") %>%
-  kable_styling(latex_options = c("striped", "hold_position", "scale_down"), font_size = 12)
+  kable_styling(latex_options = c("striped", "hold_position"), font_size = 12)
 
 ```
 
 We also found that the average time a pitbull spends in a shelter is longer than the average time a non pitbull spends in a shelter. Pitbulls are spending more time in the animal shelter and therefore having more oportunities to be adpoted and still have a higher proportion die in the animal shelter.
 
-#### Modeling Time Till Death for Pitbulls
+#### Modeling Time UntilDeath for Pitbulls
 
   We approached this task by using Cox proportional hazards. We wanted to control for `chip_status` and `summer`, but the proportional hazards assumption was no longer met when we added these confounding variables to our model (see appendix). To get around this, we stratified our data by both `summer` and `chip_status`. For each of these 4 strata we fit the model $h(t)=h_0(t)*\exp\{b_1*{\rm Pitbull} \}$. Our findings are summarised in Table 5 below.
 
@@ -458,6 +463,7 @@ stargazer(surv.mod.1.1, surv.mod.1.0, surv.mod.0.1, surv.mod.0.0,
 
 [Posage, J. M., Bartlett, P. C., & Thomas, D. K. (1998). Determining factors for successful adoption of dogs from an animal shelter. Journal of the American Veterinary Medical Association, 213(4), 478-482.](https://europepmc.org/abstract/med/9713528)
 
+\pagebreak
 
 
 
