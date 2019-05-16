@@ -28,6 +28,7 @@ library(stargazer)
 
 data_path <- here::here("adoptions.csv")
 adoptions <- read_csv(data_path)
+
 ```
 
 
@@ -335,11 +336,11 @@ adoptions_surv=adoptions_1%>%
 ```{r, echo=F, fig.align="center", fig.cap="Kaplan–Meier Curves for pitbull (blue) and non-pitbull survival (pink)."}
 surv.mod=survfit(Surv(days_in_shelter, censored)~pitbull,
                data=adoptions_surv)
-surv.mod$
+
 ggsurvplot(surv.mod, data=adoptions_surv, legend = "none")
 ```
 
-When investigating the ammount of time that dogs spend in the animal shelter before dying or having another outcome we noticed that pitbulls die much more often (see Table 2). Furthermore, the probability of surviving decreases faster for pitbulls than for non pitbulls. 
+When investigating the ammount of time that dogs spend in the animal shelter before dying or having another outcome we noticed that pitbulls die much more often (see Table 2). In the Kaplan Meir Curve above we can see that the survival probability for pitbulls falls below 50% sooner than that of non pitbulls. 
 
 ```{r}
 time_in_animal_shelter=adoptions_surv%>%
@@ -357,7 +358,7 @@ kable(time_in_animal_shelter,
 
 ```
 
-We also found that the average time a pitbull spends in the shelter is longer than the average time a non pitbull spends in shelter. Th
+We also found that the average time a pitbull spends in a shelter is longer than the average time a non pitbull spends in a shelter. Pitbulls are spending more time in the animal shelter and therefore having more oportunities to be adpoted and still have a higher proportion die in the animal shelter. 
 
 #### Modeling Time Till Death for Pitbulls
 
