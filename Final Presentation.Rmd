@@ -73,6 +73,73 @@ adoptions %>%
 
 ### Quasibinomial Model 
 
+```{r pitbull model table, results = "asis", echo = FALSE, message=FALSE}
+
+
+pitbull_binom <- adoptions %>%
+  filter(!str_detect(intake_subtype, "(DEAD)|(DIED)")) %>%
+  filter(dog == 1) %>%
+  mutate(out_dead = outcome_type %in% c("DEAD ON ARRIVAL", "EUTHANIZED", "DIED"),
+         summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0),
+         chip_status = ifelse(chip_status=="SCAN CHIP", 1, 0),
+         contagious=ifelse(grepl(".*[^NON-]CONTAGIOUS", intake_condition),1,0),
+         treatable=ifelse(grepl("^TREATABLE.*", intake_condition),1,0)) %>%
+  group_by(pitbull, chip_status, summer, contagious, treatable) %>%
+  summarize(prop_dead = sum(out_dead)/n(), count = n())
+
+
+#### MODEL 1 ####
+
+pitbull_model1_quasi <- glm(prop_dead ~ pitbull + chip_status + summer , weights = count, family = quasibinomial, data = pitbull_binom)
+
+#### MODEL 2 ####
+
+pitbull_model2_quasi <- glm(prop_dead ~ pitbull + chip_status +
+                      summer + contagious , weights = count,
+                    family = quasibinomial, data = pitbull_binom)
+
+
+#### MODEL 3 ####
+
+
+pitbull_model3_quasi <- glm(prop_dead ~ pitbull + chip_status +
+                      summer + contagious + treatable , weights = count,
+                    family = quasibinomial, data = pitbull_binom)
+
+ci.func <- function(model){
+  exp(confint(model))
+}
+
+p.func <- function(model){
+  coef(summary(model))[,4]
+}
+
+
+stargazer(pitbull_model1_quasi, pitbull_model2_quasi, pitbull_model3_quasi,
+          type='latex',
+          align=TRUE,
+          header=FALSE,
+          table.placement = "H",
+          apply.coef = exp,
+          ci=TRUE,
+          ci.custom = list(ci.func(pitbull_model1_quasi),
+                           ci.func(pitbull_model2_quasi),
+                           ci.func(pitbull_model3_quasi)),
+          p.auto = FALSE,
+          p = list(p.func(pitbull_model1_quasi),
+                   p.func(pitbull_model2_quasi),
+                   p.func(pitbull_model3_quasi)),
+          dep.var.labels=c("Proportion of dogs who died"),
+          covariate.labels = c("Intercept","Pitbull",
+                              "Scannable Chip", "Summer Outcome",
+                              "Contagious", "Treatable At Intake",
+                            "Overdispersion Parameter"),
+          intercept.bottom = FALSE,
+          font.size = "tiny",
+          omit.stat = "n",
+          add.lines = list(c("Overdisperson Parameter", "139.72", "111.46",  "6.27"),
+                           c("Nested F Test","", "F: 5.1142^*", "F: 313.62^{***}")))
+```
 
 
 ### Cox Proportional Hazards 
