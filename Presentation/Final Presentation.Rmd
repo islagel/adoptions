@@ -251,6 +251,9 @@ stargazer(surv.mod.1.1, surv.mod.1.0, surv.mod.0.1, surv.mod.0.0,
 
 ### Discussion
 
-- Pitbulls do die more often in animal shelters
-- Pitbulls die at a higher rate in animal shelters
+- Pitbulls have far larger chance of dying in animal shelter than non-pitbuls 
+    - quasibinomial regression 
+    - random intercepts approach
+    - Cox proportional hazards approach
+- What can be done to address this?
 
