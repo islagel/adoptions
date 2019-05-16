@@ -5,7 +5,7 @@ date: "May 16, 2019"
 header-includes: \usepackage{dcolumn} \usepackage{float} \usepackage{longtable,booktabs} \usepackage{colortbl}
 output:
   beamer_presentation:
-    theme: "Copenhagen"
+    theme: "Frankfurt"
     slide_level: 3
 ---
 
@@ -63,9 +63,18 @@ adoptions %>%
 
 
 
-# Methods
+# Quasibinomial Model
 
 ### Quasibinomial Model 
+
+ - Modeling the odds of dying at outcome 
+ - Interested in the `pitbull` coefficient 
+ - Need to control for:
+    - season
+    - chip status
+    - intake condition
+
+### Quasibinomial Results 
 
 ```{r pitbull model table, results = "asis", echo = FALSE, message=FALSE}
 
@@ -135,16 +144,13 @@ stargazer(pitbull_model1_quasi, pitbull_model2_quasi, pitbull_model3_quasi,
                            c("Nested F Test","", "F: 5.1142^*", "F: 313.62^{***}")))
 ```
 
+# Survival Analysis 
 
 ### Cox Proportional Hazards 
 
 - Used for looking at time till event.
 - Follows the general form $h(t)=h_0(t)*\exp\{b_1*x_1+b_2*x_2+....+b_p*x_p\}.$
 - Only assumes that the hazards are proportional. 
-
-# Results
-
-### Quasibinomial Results
 
 ### Cox Proportional Hazard Results
 
