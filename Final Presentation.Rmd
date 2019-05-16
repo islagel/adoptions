@@ -2,6 +2,7 @@
 title: "Dallas Animal Shelter Analysis"
 author: "Jack Welsh and Isaac Slagel"
 date: "May 16, 2019"
+header-includes: \usepackage{dcolumn} \usepackage{float} \usepackage{longtable,booktabs} \usepackage{colortbl}
 output:
   beamer_presentation:
     theme: "Copenhagen"
@@ -38,14 +39,47 @@ here::here()
 
 ### EDA 
 
+```{r pitbull EDA table, echo = FALSE}
+proper=function(x) paste0(toupper(substr(x, 1, 1)), tolower(substring(x, 2)))
+
+
+adoptions %>%
+  filter(dog == 1) %>%
+  mutate(outcome = as.factor(outcome_type),
+         pitbull = as.factor(pitbull)) %>%
+  group_by(pitbull, outcome_type) %>%
+  dplyr::count()%>%
+  rename("freq"=n)%>%
+  group_by(pitbull)%>%
+  mutate(freq = freq/ sum(freq))%>%
+  spread(outcome_type,freq) %>%
+  gather(key = Outcome, value = value, -pitbull) %>%
+  spread(key = pitbull, value = value) %>%
+  select(1,3,2) %>%
+  rename( "Pitbull (%)" = `1`, "Non-Pitbull (%)" = `0`) %>%
+  mutate(Outcome = proper(Outcome), `Pitbull (%)` =100*`Pitbull (%)` , `Non-Pitbull (%)`=`Non-Pitbull (%)`*100 )%>%
+  arrange(desc(`Pitbull (%)`))%>%
+  kable(digits = 2,
+        linesep = "",
+        format = "latex",
+        booktabs = T,
+        caption = "Pitbull Outcomes")%>%
+  kable_styling(latex_options =  c("striped", "HOLD_position"), font_size = 8)
+```
+
+
+
 # Methods
-
-
 
 ### Quasibinomial Model 
 
+
+
 ### Cox Proportional Hazards 
 
+- Used for looking at time till event.
+- Follows the general form $h(t)=h_0(t)*\exp\{b_1*x_1+b_2*x_2+....+b_p*x_p\}.$
+- Only assumes that the hazards are proportional. 
 
 # Results
 
@@ -53,8 +87,13 @@ here::here()
 
 ### Cox Proportional Hazard Results
 
+
+
 #Discussion 
 
 
 ### Discussion
+
+- Pitbulls do die more often in animal shelters
+- Pitbulls die at a higher rate in animal shelters
 
