@@ -240,9 +240,9 @@ mlm_dead %>%
 
 
 
-#### Multilevel Model for Dog Outcomes
+#### Random Intercepts Model for Dog Outcomes
 
-  During our EDA we found that there was a difference in deaths between city council districts this made us suspect that the guidelines within each city coucil district might be different and that there might be correlation within city council district. To account for this potential correlation we used a multilevel logistic regression model.
+  During our EDA we found that there was a difference in dog deaths between city council districts. To account for this we used a random intercepts logistic regression model.
 
 Our model has two levels,
 
@@ -255,16 +255,11 @@ $$\log(\frac{p_{ij}}{1-p_{ij}})=a_i+b_i*{\rm (summer)}_{ij}+c_i*{\rm  (pitbull)}
 - Level 2
 \begin{eqnarray*}  
   a_i&=\alpha_0+u_i\\
-  b_i&=\beta_0+v_i\\
-  c_i&=\gamma_0+w_i\\
-  d_i&=\delta_0+x_i.
 \end{eqnarray*}  
 
-The variance components are described by:
+The variance component is described by:
 
-$$
-\begin{bmatrix} u_i \\ v_i \\ w_i\\ x_i \end{bmatrix}=N\begin{pmatrix} \begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} \sigma_u^2 & & & \\ \sigma_{uv} & \sigma_v^2 & & \\ \sigma_{uvw} &\sigma_{vw} & \sigma_w^2 & \\ \sigma_{uvwx} & \sigma{vwx} & \sigma_{wx} & \sigma_x^2 \end{bmatrix} \end{pmatrix}
-$$
+$$u_i=N(0,\sigma^2_u)$$
 
   It is important to note that the odds of a pitbull dying in the animal shelter are 3.42 times higher than for non pitbulls accounting for season, chip status, and intake condition, see table 4. As expected, the odds of a contagious dog dying at the animal shelter are 3.96 time higher than a non contagious dog accounting for whether the dog is treatable, the season, chip status and pitbull. Also, unsuprisingly if a dog enters the animal shelter with a treatable intake the odds of dying in the animal shelter decrease by 84% controlling for whether the dog is contagious on intake, the season, and chip status.
 
@@ -289,7 +284,7 @@ p.func <- function(model){
 }
 
 stargazer(mod.2.dead,
-          title="Modeling Dog Deaths in Animal Shelters using Multilevel Logistic Regression",
+          title="Modeling Dog Deaths in Animal Shelters using \n Random Intercepts Logistic Regression",
           type='latex',
           align=TRUE,
           header=FALSE,
@@ -309,11 +304,10 @@ stargazer(mod.2.dead,
 
 #### EDA Results: Time Till Death for Dogs
 
-  When invesitgating the ammoint of time that dogs spend in the animal shelter before dying or having another outcome we noticed that pitbulls as mentioned before die much more often, but the probability of surviving decreases faster for pitbulls than for non pitbulls.
+  When invesitgating the ammount of time that dogs spend in the animal shelter before dying or having another outcome we noticed that pitbulls, as mentioned see table 2, die much more often. Furthermore, the probability of surviving decreases faster for pitbulls than for non pitbulls.
 
 ```{r, echo=FALSE, message=FALSE, include=FALSE, fig.align="center"}
 adoptions_1 <- read_csv("adoptions.csv")
-
 
 adoptions_surv=adoptions_1%>%
   mutate(intake_date=as.Date(intake_date),
@@ -338,7 +332,7 @@ adoptions_surv=adoptions_1%>%
 ```
 
 
-```{r, echo=F}
+```{r, echo=F, fig.align="center"}
 surv.mod=survfit(Surv(days_in_shelter, censored)~pitbull,
                data=adoptions_surv)
 ggsurvplot(surv.mod, data=adoptions_surv)
@@ -542,3 +536,13 @@ exp(confint(dogcat_model5_binom))
 summary(dogcat_model5_quasi)
 exp(confint(dogcat_model5_quasi))
 ```
+
+#### Cox Proportional Hazards
+
+As you can see below when we include chip_status and summer in the cox proportional hazards model the kaplan meir curves
+
+```{r}
+
+```
+
+
