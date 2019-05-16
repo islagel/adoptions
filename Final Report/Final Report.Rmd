@@ -37,9 +37,9 @@ adoptions <- read_csv(data_path)
 
   According to an estimate by the American Society for the Prevention of Cruelty to Animals (ASPCA), over 6.5 millions animals enter a shelter system every year. (Shelter Intake and Surrender, ASPCA). After entering the shelter system animals are either rehabilitated and sent to homes or euthanized. Animal shelters run mostly on revenue from donations and adoption fees so they routinely run into perminant defieciets and must be supported with money from local governments (Goselin et. al. 2011). Knowing more about the outcomes of animals from these shelters could help us minimize the percent of animals that need to be euthanized. Further, by identifying which animals are less likely to be adopted, we can help shelters allocate resources to minimize the time these animals spend in the shelter system.
 
-  Our research looks into animal shelters in the Dallas, Texas area using a dataset provided by the city of Dallas on dallasopendata.com. This data includes information about every animal that has been brought into an animal shelter in the Dallas area. There are `r nrow(adoptions)` individual animals in this dataset with information about when and where the animal was found, the health of the animal on arrival, and whether the animal was adopted, euthinized or transfered.
+  Our research looks into animal shelters in the Dallas, Texas area using a dataset provided by the city of Dallas on dallasopendata.com. This data includes information about every animal that has been brought into an animal shelter in the Dallas area. There are `r nrow(adoptions)` individual animals in this dataset with information about when and where the animal was found, the health of the animal on arrival, and whether the animal was adopted, euthanized or transferred.
 
-  Recent research on animal shelters have consistantly shown that outcomes for pitbulls are consistantly worse than other dog breeds (Patronek & Crowe 2018, Lepper et al 2002). We are interested in seeing if these trends exist in the Dallas animal shelter system. If these trends do occur, how to they manifest in the quantative insights we glean from our analysis. Do pitbulls face greater odds of euthanization than other breeds? Are pitbulls adopted at lower rates than other species of dogs. Do certain animal shelters handle pitbulls better or worse than others?
+  Recent research on animal shelters have consistently shown that outcomes for pitbulls are consistently worse than other dog breeds (Patronek & Crowe 2018, Lepper et al 2002). We are interested in seeing if these this trends exist in the Dallas animal shelter system. If these trends do occur, how to they manifest in the quantitative insights we glean from our analysis. Do pitbulls face greater odds of euthanization than other breeds? Are pitbulls adopted at lower rates than other species of dogs. Do certain animal shelters handle pitbulls better or worse than others?
 
 
 
@@ -76,13 +76,13 @@ kable(tab,
 ```
 
 
-  After we imported our dataset, we used a variety of variables that were coded as factors and string to create a fleet of indicator variables: `adopted`, `chip_status`, `summer`, `treatable_intake`, `adopted`, `dead`. These indicator variables were created to streamline our modeling process. They allow us to increase the interpretability of variables with multiple categories (like outcome_type). We also modified the intake date and outcome date variables to create a `days_in_shelter` variable. This variable is a neccesary outcome for the survival analysis portion of the data.
+  After we imported our dataset we used a variety of variables that were coded as factors and string to create a fleet of indicator variables: `adopted`, `chip_status`, `summer`, `treatable_intake`, `adopted`, `dead`. These indicator variables were created to streamline our modeling process. They allow us to increase the interpretability of variables with multiple categories (like outcome_type). We also modified the intake date and outcome date variables to create a `days_in_shelter` variable. This variable is a necessary outcome for the survival analysis portion of the data.
 
-  In order to fit a quasibinomial model, we had to summarise our dataset with respect to certain variables we controlled for in our model. One interesting issue that we encountered was the effect that the dataset used had on SE estimates. If we summarized our data for each specific model, parameter estimates had increased SEs and more insignificant p-values. However, if we fit all of our models on the same, more extensive, summary table, SEs were small and parameters were more likely to be significant. We decided to proceed with the latter option, as it allows us to carry out nested F tests and would be more like a modeling process for true grouped data. This could mean that our SEs are artifically low.
+  We used quasi-binomial regression to compare how the outcomes of pitbulls differ from other breeds of dog. In fitting this model we had to control for a plethora of confounding variables including season of outcome, chip status, and intake condition of the animal.
 
-  We used quasibinomial regression to compare how the outcomes of pitbulls differ from other breeds of dog. In fitting this model we had to control for a plethora of cofounding variables including season of outcome, chip status, and intake condition of the animal.
+  In order to fit a quasi-binomial model, we had to summarize our dataset with respect to certain variables we controlled for in our model. One interesting issue that we encountered was the effect that the dataset used had on SE estimates. If we summarized our data for each specific model, parameter estimates had increased SEs and more insignificant p-values. However, if we fit all of our models on the same, more extensive, summary table, SEs were small and parameters were more likely to be significant. We decided to proceed with the latter option, as it allows us to carry out nested F tests and would be more like a modeling process for true grouped data. This could mean that our SEs are artificially low.
 
-  We also fit multilevel logistic regression models to compare ourcomes after accounting for correlation within city council districts. Our modeling process took on a similar approach to the binomial regression, we examined differences in odds of dying for pitbulls and non-pitbulls after accounting for differences in chip status, and season.  
+  We also fit a random intercepts logistic regression model to compare outcomes after accounting for correlation within city council districts. Our modeling process took on a similar approach to the binomial regression, we examined differences in odds of dying for pitbulls and non-pitbulls after accounting for differences in chip status, and season.  
 
   To investigate the number of days that dogs spend in the animal shelter before dying, we used a Cox proportional hazards model. Cox proportional hazards is a semi parametric model used in survival analysis to explain how variables of interest affect the time until an event occurs. As the name 'survival analysis' suggests, this method is commonly used to investigate what factors affect time until death. This is done by comparing hazard rates using a hazard ratio. The hazard ratio is the ratio of hazard rates between groups and a hazard rate is the rate at which the outcome is happening. Therefore, this type of model investigates how variables affect the rate at which outcomes happen.
 
@@ -97,7 +97,7 @@ kable(tab,
 #### EDA Results: Pitbull
 
 
-  To look into how pitbulls are handled within animal shelters, we decided to explore how the outcomes of pit bulls may differ from non-pitbulls. Table 1 describes the differences in outcome rates for non-pitbulls compared to pitbulls.
+  To look into how pitbulls are handled within animal shelters, we decided to explore how the outcomes of pitbulls may differ from non-pitbulls. Table 2 describes the differences in outcome rates for non-pitbulls compared to pitbulls.
 
 
 ```{r pitbull EDA table, echo = FALSE}
@@ -213,7 +213,7 @@ Procceding with Model 3 as our best model of dog outcomes from the animal shelte
 
 #### EDA Results: Effect of Council District
 
-An additional variable that was avalible in our dataset was `council_district`. The city of Dallas has 14 council districts. We are concerned that there may be some correlation between outcomes for each council district.
+An additional variable that was available in our dataset was `council_district`. The city of Dallas has 14 council districts. We are concerned that there may be some correlation between outcomes for each council district.
 
 ```{r, echo=FALSE, fig.align="center", fig.cap="Proportion of dogs with dead outcomes by council district."}
 mlm_dead<- adoptions %>%
@@ -348,7 +348,7 @@ time_in_animal_shelter=adoptions_surv%>%
   summarise(`Days`=mean(days_in_shelter, na.rm=TRUE))%>%
   mutate(`Pitbull`=ifelse(pitbull==0,"No", "Yes"))%>%
   select(`Pitbull`, `Days`)
-  
+
 kable(time_in_animal_shelter,
       format = "latex" ,
       booktabs = T,
@@ -426,10 +426,10 @@ stargazer(surv.mod.1.1, surv.mod.1.0, surv.mod.0.1, surv.mod.0.0,
 
 
 
-  Conclusions about animal outcomes of animals in shelters from this report can only be extended to the city of Dallas. While our sample size is totally representative for this population, we cannot account for differences that would be encountered in other municipalities, say higher adoption rates or less stigma against certain breeds of dog. Further, we cannot be sure that the trends observed in this paper will continue into the future. Anti-pitbull advocacy groups like [National Pitbull Victims Awareness](https://www.nationalpitbullvictimawareness.org/) and pro-pitbull advocacy groups like [Love-a-Bull](http://love-a-bull.org/resources/statistics-pit-bull-bites-community-safety/) are at odds trying to sway public opinion and policy reguarding the handling of pitbulls in animal shelters. If changes in public percecption of pitbulls or the policy that surrounds them changes, our model will lose it's generalizability to Dallas.
+  Conclusions about animal outcomes of animals in shelters from this report can only be extended to the city of Dallas. While our sample size is totally representative for this population, we cannot account for differences that would be encountered in other municipalities, say higher adoption rates or less stigma against certain breeds of dog. Further, we cannot be sure that the trends observed in this paper will continue into the future. Anti-pitbull advocacy groups like [National Pitbull Victims Awareness](https://www.nationalpitbullvictimawareness.org/) and pro-pitbull advocacy groups like [Love-a-Bull](http://love-a-bull.org/resources/statistics-pit-bull-bites-community-safety/) are at odds trying to sway public opinion and policy regarding the handling of pitbulls in animal shelters. If changes in public perception of pitbulls or the policy that surrounds them changes, our model will lose it's generalizability to Dallas.
 
 
-  A limitation of our study is that we do not know what happens to animals after they have been transferred out of the animal shelter. In our analysis,  we have viewed this outcome as a live outcome, but for all we know these animals could go on to another shelter where they are euthanized. Depending on the validity of our assumption, we could be adding some bias to our conclusions. Additionally, there is not consistant information on the criteria used by shelters to evaluate animals intake conditions. We looked for key words that indicated the health of the animal. However we are not sure how consistant these evaluations are across all Dallas animal shelters. We are also unsure of how the decision is made to euthinize an animal. We do not know if an animal is euthinized if it has been in the shelter for more than a certain number of days and if there is a number of days cutoff. We also don't know if this is consistent across all of the animal shelters. 
+  A limitation of our study is that we do not know what happens to animals after they have been transferred out of the animal shelter. In our analysis,  we have viewed this outcome as a live outcome, but for all we know these animals could go on to another shelter where they are euthanized. Depending on the validity of our assumption, we could be adding some bias to our conclusions. Additionally, there is not consistant information on the criteria used by shelters to evaluate animals intake conditions. We looked for key words that indicated the health of the animal. However we are not sure how consistant these evaluations are across all Dallas animal shelters. We are also unsure of how the decision is made to euthinize an animal. We do not know if an animal is euthinized if it has been in the shelter for more than a certain number of days and if there is a number of days cutoff. We also don't know if this is consistent across all of the animal shelters.
 
 
   Our analysis was effective in approaching a particular question from a number of unique approaches. We implemented a binomial regression, a random intercepts logistic regression, and a Cox proportional hazards model to investigate how pitbull outcomes differ from other breeds of dogs after accounting for confounding variables. Further, the results from each of these investigations tell a similar story about the increase rates of death for pitbulls in the Dallas animal shelter system.
