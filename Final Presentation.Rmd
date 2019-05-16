@@ -33,14 +33,29 @@ here::here()
 # Introduction
 
 ### Background
-```{r, echo=FALSE, out.height="60%", out.width="60%", fig.align="right"}
-include_graphics("pitbull.jpg")
-```
 
-- Test
+
+\begin{multicols}{2}
+
+  \null \vfill
+  \includegraphics[width=.5 \textwidth]{pitbull.jpg}
+  \vfill \null
+
+\columnbreak
+
+  \null \vfill
+  \begin{itemize}
+    \item  Working with data from DallasOpenData
+    \item `r nrow(adoptions)` individual observations
+    \item  adopted, out\_dead, days\_in\_shelter, chip\_status, intake\_condition, etc
+  \end{itemize}
+  \vfill \null
+\end{multicols}
+
 
 ### EDA 
-```{r, echo=FALSE, fig.align="center", out.width="80%", out.height="80%", fig.cap="Outcomes for Pitbulls v.s. Non Pitbulls"}
+
+```{r, echo=FALSE, fig.align="center", out.width="80%", out.height="75%", fig.cap="Outcomes for Pitbulls v.s. Non Pitbulls"}
 adoptions %>%
   filter(dog == 1) %>%
   filter(outcome_type%in%c("ADOPTION", "EUTHANIZED", "RETURNED TO OWNER", "TRANSFER"))%>%
@@ -60,7 +75,8 @@ adoptions %>%
   ggplot(aes(x=Pitbull, y=Proportion)) +
     geom_col()+
     facet_wrap(~measurement, ncol=4)+
-  theme_minimal()
+  theme_minimal()+
+  theme(text = element_text(size=18))
 ```
 
 
