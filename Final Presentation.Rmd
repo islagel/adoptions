@@ -5,6 +5,7 @@ date: "May 16, 2019"
 output:
   beamer_presentation:
     theme: "Copenhagen"
+    slide_level: 3
 ---
 
 ```{r setup, include=FALSE}
@@ -27,39 +28,31 @@ adoptions <- read_csv(data_path)
 here::here()
 ```
 
-\section{Intoduction}
+# Introduction
 
-# Background
-
+### Background
 
 ![Pitbull](pitbull.jpg)
 
+### EDA 
 
-# EDA 
 
-
-\section{Modeling}
 # Methods
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
 
-# Cox Proportional Hazards 
+### Quasibinomial Model 
 
-```{r cars, echo = TRUE}
-summary(cars)
-```
+### Cox Proportional Hazards 
+
 
 # Results
 
-# Result Part 1
+### Quasibinomial Results
 
-```{r pressure}
-plot(pressure)
-```
+### Cox Proportional Hazard Results
 
+#Discussion 
 
-# Results Part 2
+### Discussion
 
 
