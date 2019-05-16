@@ -10,6 +10,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(here)
 ```
 
 ```{r, include = FALSE}
@@ -34,10 +35,11 @@ here::here()
 
 ![Pitbull](pitbull.jpg)
 
+
 ### EDA 
 
-
 # Methods
+
 
 
 ### Quasibinomial Model 
@@ -53,6 +55,6 @@ here::here()
 
 #Discussion 
 
-### Discussion
 
+### Discussion
 
