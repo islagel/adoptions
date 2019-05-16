@@ -394,16 +394,17 @@ ci.func <- function(model){
 
 stargazer(surv.mod.1.1, surv.mod.1.0, surv.mod.0.1, surv.mod.0.0,
           align=TRUE,
-          title = "Results of Stratified Cox Proportional Hazards Survival Analysis",
+          title = "b_1 Estimates for Strata",
           header=FALSE,
+          
           table.placement = "H",
           apply.coef = exp,
           ci=TRUE,
           ci.custom = list(ci.func(surv.mod.1.1), ci.func(surv.mod.1.0), ci.func(surv.mod.0.1), ci.func(surv.mod.0.1), ci.func(surv.mod.0.0)),
-          dep.var.labels=c("Time Spent in Animal Shelter Prior to Death"),
+          dep.var.caption = "Strata"
           model.numbers = FALSE,
           column.labels = c("Summer and Chip", "Summer and No Chip", "Not Summer and Chip", "Neither Summer or Chip"),
-          omit.stat = c("all")
+          omit.stat = c("rsq", "chi2", "f", "ll", "logrank", "max.rsq", "wald")
           )
 ```
 
