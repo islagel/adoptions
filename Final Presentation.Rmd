@@ -34,7 +34,22 @@ here::here()
 
 ### Background
 
-![Pitbull](pitbull.jpg)
+\begin{multicols}{2}
+
+  \null \vfill
+  \includegraphics[Pitbull, width=.3\textwidth]{pitbull.jpg}
+  \vfill \null
+
+\columnbreak
+
+  \null \vfill
+  \begin{itemize}
+    \item - Working with data from DallasOpenData
+    \item - `r nrow(adoptions)` Individual observations
+  \end{itemize}
+  \vfill \null
+\end{multicols}
+
 
 
 ### EDA 
