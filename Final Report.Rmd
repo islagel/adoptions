@@ -35,7 +35,7 @@ adoptions <- read_csv("adoptions.csv")
 
   Our research looks into animal shelters in the Dallas area using a dataset provided by the city of Dallas on dallasopendata.com. This data includes information about every animal that has been brought into an animal shelter in the Dallas area. There are `r nrow(adoptions)` individual animals in this dataset with with information about when and where the animal was found, the health of the animal on arrival, and whether the animal was adopted, euthinized or transfered.
 
-  Recent research on animal shelters have consistantly shown that outcomes for pitbulls are consistantly worse than other dog breeds (Patronek & Crowe 2018, Lepper et al 2002). We are interested in seeing if these this trends exist in the Dallas animal shelter system. If these trends do occur, how to they manifest in the quantative insights we glean from our analysis. Do pitbulls face greater odds of euthanization than other breeds? Are pitbulls adopted at lower rates than other species of dogs. Do certain animal shelters handle pitbulls better or worse than others? 
+  Recent research on animal shelters have consistantly shown that outcomes for pitbulls are consistantly worse than other dog breeds (Patronek & Crowe 2018, Lepper et al 2002). We are interested in seeing if these this trends exist in the Dallas animal shelter system. If these trends do occur, how to they manifest in the quantative insights we glean from our analysis. Do pitbulls face greater odds of euthanization than other breeds? Are pitbulls adopted at lower rates than other species of dogs. Do certain animal shelters handle pitbulls better or worse than others?
 
 
 
@@ -72,7 +72,7 @@ kable(tab,
 ```
 
 
-  After we imported our dataset we used a variety of variables that were coded as factors and string to create a fleet of indicator variables: `adopted`, `chip_status`, `summer`, `treatable_intake`, `adopted`, `dead`.These indicator variables were created to streamline our modleing process. They allow us to increase the interpretability of variables with multiple categories (like outcome_type). We also modified the intake date and outcome date variables to create a `days_in_shelter` variable. This variable is a neccesary outcome for the survival analysis portion of the data. 
+  After we imported our dataset we used a variety of variables that were coded as factors and string to create a fleet of indicator variables: `adopted`, `chip_status`, `summer`, `treatable_intake`, `adopted`, `dead`.These indicator variables were created to streamline our modleing process. They allow us to increase the interpretability of variables with multiple categories (like outcome_type). We also modified the intake date and outcome date variables to create a `days_in_shelter` variable. This variable is a neccesary outcome for the survival analysis portion of the data.
 
   In order to fit a quiasibinomial model, we had to summarise our dataset with respect to certain variables we controlled for in our model. One interesting issue that we encountered was the effect that the dataset used had on SE estimates. If we summarized our data for each specific model, parameter estimates had increased SEs and more insignificant p-values. However, if we fit all of our models on the same, more extensive, summary table, SEs were small and parameters were more likely to be significant. We decided to proceed with the latter option, as it allows us to carry out nested F tests and would be more like a modeling process for true grouped data. This could mean that our SEs are artifically low.
 
@@ -340,7 +340,7 @@ ggsurvplot(surv.mod, data=adoptions_surv)
 
 #### Modeling Time Till Death for Pitbulls
 
-  We approached this task by using Cox proportional hazards. We wanted to control for chip_status and summer, but the proportional hazards assumption was no longer met when we added these confounding variables to our model. To get around this, we stratified our data into 4 smaller datasets, one where it was the summer and all the animals had a chip, one where it was not the summer and all the animals had chips, one where it was summer and none of the animals had chips, and one where it was not the summer and the animals did not have chips. For each of our 4 datasets we fit the following model:
+  We approached this task by using cox proportional hazards. We wanted to control for chip_status and summer, but the proportional hazards assumption was no longer met when we added these confounding variables to our model (see appendix). To get around this, we stratified our data into 4 smaller datasets, one where it was the summer and all the animals had a chip, one where it was not the summer and all the animals had chips, one where it was summer and none of the animals had chips, and one where it was not the summer and the animals did not have chips. For each of our 4 datasets we fit the following model:
 
   $$h(t)=h_0(t)*\exp\{b_1*{\rm Pitbull} \}$$.
 
@@ -546,10 +546,13 @@ exp(confint(dogcat_model5_quasi))
 
 #### Cox Proportional Hazards
 
-As you can see below when we include chip_status and summer in the cox proportional hazards model the kaplan meir curves
+As you can see below when we include chip_status and summer in the cox proportional hazards model the kaplan meir curves begin to overlap and cross which means the the hazards are no longer proportional.
 
 ```{r}
 
+kp_curve.all.confounders=survfit(Surv(days_in_shelter,censored)~pitbull+summer+chip_status,
+      data=adoptions_surv)
+
+ggsurvplot(kp_curve.all.confounders, data=adoptions_surv)
+
 ```
-
-
