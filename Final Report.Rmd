@@ -341,7 +341,7 @@ ggsurvplot(surv.mod, data=adoptions_surv)
 
 #### Modeling Time Till Death for Pitbulls
 
-  We approached this task by using cox proportional hazards. We wanted to control for chip_status and summer, but the proportional hazards assumption was no longer met when we added these confounding variables to our model. To get around this, we stratified our data into 4 smaller datasets, one where it was the summer and all the animals had a chip, one where it was not the summer and all the animals had chips, one where it was summer and none of the animals had chips, and one where it was not the summer and the animals did not have chips. For each of our 4 datasets we fit the following model:
+  We approached this task by using cox proportional hazards. We wanted to control for chip_status and summer, but the proportional hazards assumption was no longer met when we added these confounding variables to our model (see appendix). To get around this, we stratified our data into 4 smaller datasets, one where it was the summer and all the animals had a chip, one where it was not the summer and all the animals had chips, one where it was summer and none of the animals had chips, and one where it was not the summer and the animals did not have chips. For each of our 4 datasets we fit the following model:
 
   $$h(t)=h_0(t)*\exp\{b_1*{\rm Pitbull} \}$$.
 
@@ -539,9 +539,14 @@ exp(confint(dogcat_model5_quasi))
 
 #### Cox Proportional Hazards
 
-As you can see below when we include chip_status and summer in the cox proportional hazards model the kaplan meir curves
+As you can see below when we include chip_status and summer in the cox proportional hazards model the kaplan meir curves begin to overlap and cross which means the the hazards are no longer proportional. 
 
 ```{r}
+
+kp_curve.all.confounders=survfit(Surv(days_in_shelter,censored)~pitbull+summer+chip_status,
+      data=adoptions_surv)
+
+ggsurvplot(kp_curve.all.confounders, data=adoptions_surv)
 
 ```
 
