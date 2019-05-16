@@ -76,7 +76,7 @@ kable(tab,
 
   In order to fit a binomial regression, we had to summarise our dataset with respect to certain variables we controlled for in our model. One interesting issue that we encountered was the significance of the dataset we fit on SE estimates. If we summarized our data for each specific model, parameter estimates had increased SEs and more insignificant p-values. However, if we fit all of our models on the same, more extensive, summary table, SEs were small and parameters were more likely to be significant. We decided to proceed with the latter option, as it allows us to carry out nested F tests and would be more like a modeling process for true grouped data. This could mean that our SEs are artifically low.
 
-  We used quasibinomial regression to compare how the outcomes of pitbulls differ from other breeds of dog. In fitting this model we had to control for a plethora of cofounding variables including season of outcome, chip status, and intake condition of the animal. We also considered a multilevel model to account for difference in district correlation. 
+  We used quasibinomial regression to compare how the outcomes of pitbulls differ from other breeds of dog. In fitting this model we had to control for a plethora of cofounding variables including season of outcome, chip status, and intake condition of the animal. We also considered a multilevel model to account for difference in district correlation.
 
   We also fit multilevel logistic regression models to compare ourcomes after accounting for correlation within city council districts. Our modeling process took on a similar approach to the binomial regression, we examined differences in odds of dying for pitbulls and non-pitbulls after accounting for differences in chip status, and season.  
 
@@ -130,72 +130,6 @@ adoptions %>%
 
 
   We see that pit bulls, while only adopted at a slightly lower rate (~5%), are euthanized at well over double the rate of other dogs. Further, we see that other dogs have a much higher chance of being transferred to another facility or returned to their owner. To get a better understanding of this relationship, but we likely need to control for things like chip status, intake condition, and season of outcome in a binomial regression.
-
-#### EDA Results: Effect of Council District
-
-  During our EDA we noticed that death the proportion of dogs dying in animals shelters differs by city council district. City council district 12 seems to be the highest at 19.2% of the dogs are dying in the shelter system, and city council district 11 has the lowest at only 12.1% of the dogs dying in the shelter system.
-
-```{r, echo=FALSE}
-mlm_dead<- adoptions %>%
-  filter(!str_detect(intake_subtype, "(DEAD)|(DIED)")) %>%
-  filter(dog == 1) %>%
-  mutate(out_dead = outcome_type %in% c("DEAD ON ARRIVAL", "EUTHANIZED", "DIED"),
-         summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0),
-         chip_status = ifelse(chip_status=="SCAN CHIP", 1, 0),
-         contagious=ifelse(grepl(".*[^NON-]CONTAGIOUS", intake_condition),1,0),
-         treatable=ifelse(grepl("^TREATABLE.*", intake_condition),1,0))
-
-mlm_dead %>%
-  group_by(council_district)%>%
-  summarise(prop_dead = sum(out_dead)/n())%>%
-  filter(!is.na(council_district))%>%
-  ggplot(aes(x=as.factor(council_district), y = prop_dead)) +
-  geom_bar(stat = "identity")+
-  xlab("City Conucil District")+
-  ylab("Proportion Dead")+
-  ggtitle("Proportion Dead by Council District")
-
-```
-
-
-#### EDA Results: Time Till Death for Dogs
-
-  When invesitgating the ammoint of time that dogs spend in the animal shelter before dying or having another outcome we noticed that pitbulls as mentioned before die much more often, but the probability of surviving decreases faster for pitbulls than for non pitbulls.
-
-```{r, echo=FALSE, message=FALSE, include=FALSE}
-adoptions_1 <- read_csv("adoptions.csv")
-
-
-adoptions_surv=adoptions_1%>%
-  mutate(intake_date=as.Date(intake_date),
-         outcome_date=as.Date(outcome_date))%>%
-  mutate(days_in_shelter=difftime(outcome_date, intake_date, units = "days"),
-         days_in_shelter=as.numeric(days_in_shelter)+1)%>%
-  filter(outcome_type!="DEAD ON ARRIVAL")%>%
-  mutate(death=ifelse(outcome_type=="DIED", 1, 0),
-         death=ifelse(outcome_type=="EUTHANIZED", 1, death),
-         censored=ifelse(death==1, 2, 1))%>%
-  filter(animal_type=="DOG")%>%
-  mutate(animal_breed=as.factor(animal_breed))%>%
-  mutate(healthy_intake=ifelse(grepl("^HEALTHY.*",intake_condition),1,0),
-         contagious_intake=ifelse(grepl(".*[^NON-]CONTAGIOUS", intake_condition),1,0),
-         untreatable_intake=ifelse(grepl(".*(UNTREATABLE).*", intake_condition),1,0),
-         treatable_intake=ifelse(grepl("^TREATABLE.*", intake_condition),1,0),
-         manageable_intake=ifelse(grepl(".*MANAGEABLE.*", intake_condition),1,0),
-         rehabitable_intake=ifelse(grepl(".*REHABILITABLE.*", intake_condition),1,0),
-         normal_intake=ifelse(grepl(".*NORMAL.*", intake_condition),1,0),
-         chip_status = ifelse(chip_status=="SCAN CHIP", 1, 0),
-         summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0))
-```
-
-
-```{r, echo=F}
-surv.mod=survfit(Surv(days_in_shelter, censored)~pitbull,
-               data=adoptions_surv)
-ggsurvplot(surv.mod, data=adoptions_surv)
-```
-
-
 
 #### Binomial Models for Dog Outcomes
 
@@ -277,6 +211,34 @@ We see in Table 3 that all of our models have variable estimates that are signif
 
 Procceding with model 3 as our best model of dog outcomes from the animal shelter, we glean several insights about the relationships between certain characteristics of dogs and those animal's outcomes from the shelter. For instance, if a dog is a pitbull, we expect it's odds of leaving the animal shelter dead increase by 348%, after controlling for chip status, season, and intake condition. Further, if a dog is a pitbull we are 95% confident that the true increase in odds of death at outcome is between 302% and 402%. Yikes! On the other hand, if a dog comes into the shelter with a scannable chip, we expect the animals odds of dying within the shelter system to drop by about 22%, after controlling for pitbull, season, and intake condition. Interestingly enough, if a dog has its outcome in the summer, the odds of that outcome being death are about 47% higher, controlling for breed, chip status, and intake condition.
 
+#### EDA Results: Effect of Council District
+
+  During our EDA we noticed that death the proportion of dogs dying in animals shelters differs by city council district. City council district 12 seems to be the highest at 19.2% of the dogs are dying in the shelter system, and city council district 11 has the lowest at only 12.1% of the dogs dying in the shelter system.
+
+```{r, echo=FALSE, fig.align="center"}
+mlm_dead<- adoptions %>%
+  filter(!str_detect(intake_subtype, "(DEAD)|(DIED)")) %>%
+  filter(dog == 1) %>%
+  mutate(out_dead = outcome_type %in% c("DEAD ON ARRIVAL", "EUTHANIZED", "DIED"),
+         summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0),
+         chip_status = ifelse(chip_status=="SCAN CHIP", 1, 0),
+         contagious=ifelse(grepl(".*[^NON-]CONTAGIOUS", intake_condition),1,0),
+         treatable=ifelse(grepl("^TREATABLE.*", intake_condition),1,0))
+
+mlm_dead %>%
+  group_by(council_district)%>%
+  summarise(prop_dead = sum(out_dead)/n())%>%
+  filter(!is.na(council_district))%>%
+  ggplot(aes(x=as.factor(council_district), y = prop_dead)) +
+  geom_bar(stat = "identity")+
+  xlab("City Conucil District")+
+  ylab("Proportion Dead")+
+  ggtitle("Proportion Dead by Council District")
+
+```
+
+
+
 
 #### Multilevel Model for Dog Outcomes
 
@@ -345,13 +307,51 @@ stargazer(mod.2.dead,
 ```
 
 
-#### Modeling Time Until Death for Pitbulls
+#### EDA Results: Time Till Death for Dogs
 
-  We approached this task by using Cox Proportional Hazards. We wanted to control for chip_status and summer, but the proportional hazards assumption was no longer met when we added these confounding variables to our model. To get around this, we subset our data into 4 smaller datasets, one where it was the summer and all the animals had a chip, one where it was not the summer and all the animals had chips, one where it was summer and none of the animals had chips, and one where it was not the summer and the animals did not have chips. For each of our 4 datasets we fit the following model:
+  When invesitgating the ammoint of time that dogs spend in the animal shelter before dying or having another outcome we noticed that pitbulls as mentioned before die much more often, but the probability of surviving decreases faster for pitbulls than for non pitbulls.
+
+```{r, echo=FALSE, message=FALSE, include=FALSE, fig.align="center"}
+adoptions_1 <- read_csv("adoptions.csv")
+
+
+adoptions_surv=adoptions_1%>%
+  mutate(intake_date=as.Date(intake_date),
+         outcome_date=as.Date(outcome_date))%>%
+  mutate(days_in_shelter=difftime(outcome_date, intake_date, units = "days"),
+         days_in_shelter=as.numeric(days_in_shelter)+1)%>%
+  filter(outcome_type!="DEAD ON ARRIVAL")%>%
+  mutate(death=ifelse(outcome_type=="DIED", 1, 0),
+         death=ifelse(outcome_type=="EUTHANIZED", 1, death),
+         censored=ifelse(death==1, 2, 1))%>%
+  filter(animal_type=="DOG")%>%
+  mutate(animal_breed=as.factor(animal_breed))%>%
+  mutate(healthy_intake=ifelse(grepl("^HEALTHY.*",intake_condition),1,0),
+         contagious_intake=ifelse(grepl(".*[^NON-]CONTAGIOUS", intake_condition),1,0),
+         untreatable_intake=ifelse(grepl(".*(UNTREATABLE).*", intake_condition),1,0),
+         treatable_intake=ifelse(grepl("^TREATABLE.*", intake_condition),1,0),
+         manageable_intake=ifelse(grepl(".*MANAGEABLE.*", intake_condition),1,0),
+         rehabitable_intake=ifelse(grepl(".*REHABILITABLE.*", intake_condition),1,0),
+         normal_intake=ifelse(grepl(".*NORMAL.*", intake_condition),1,0),
+         chip_status = ifelse(chip_status=="SCAN CHIP", 1, 0),
+         summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0))
+```
+
+
+```{r, echo=F}
+surv.mod=survfit(Surv(days_in_shelter, censored)~pitbull,
+               data=adoptions_surv)
+ggsurvplot(surv.mod, data=adoptions_surv)
+```
+
+
+#### Modeling Time Till Death for Pitbulls
+
+  We approached this task by using cox proportional hazards. We wanted to control for chip_status and summer, but the proportional hazards assumption was no longer met when we added these confounding variables to our model. To get around this, we stratified our data into 4 smaller datasets, one where it was the summer and all the animals had a chip, one where it was not the summer and all the animals had chips, one where it was summer and none of the animals had chips, and one where it was not the summer and the animals did not have chips. For each of our 4 datasets we fit the following model:
 
   $$h(t)=h_0(t)*\exp\{b_1*{\rm Pitbull} \}$$.
 
-  We found that in all 4 subsets of the data the coefficient for pitbull is significant. The hazard ratio ranged from 1.69 in the subset where it is not the summer and all the animals have chips to 1.94 in the not summer and all animals do not have a chip dataset. In laymens terms this means that on average at any time during an animals stay at the animal shelter 1.69 to 1.94 times as many pitbulls have died as non pitbulls.
+  We found that in all 4 strata of the data the coefficient for pitbull is significant. The hazard ratio ranged from 1.69 in the strata where it is not the summer and all the animals have chips to 1.94 in the not summer and all animals do not have a chip dataset. In layman's terms this means that on average at any time during an animals stay at the animal shelter 1.69 to 1.94 times as many pitbulls have died as non pitbulls.
 
 ```{r, echo=FALSE, include=FALSE}
 adop.1.1=adoptions_surv%>%
@@ -396,6 +396,18 @@ stargazer(surv.mod.1.1, surv.mod.1.0, surv.mod.0.1, surv.mod.0.0,
           omit.stat = "all"
           )
 ```
+
+
+
+#### Modeling Dog and Cat Differences
+
+ In our modeling of Dog and Cat differences we used used binomial regression. To model this we considered the following model:
+
+$$log(\frac{p_{i}}{1-p_{i}})=\beta_0+\beta_1 {\rm (Dog)} + \beta_i{\rm (Confounder)}_i$$
+
+We considered several models with different confounders controled for based on findings in the literature and our EDA. We were not able to find any significant difference in the odds of death between dogs and cat. We conclude that there is not evidence of a significant difference between dogs and cats in odds of dying in an animal shelter after accounting for chip_status, season of outcome, and intake condition. These models can be found in the Dog Cat portion of our appendix.
+
+
 
 
 
