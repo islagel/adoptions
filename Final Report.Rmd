@@ -251,6 +251,9 @@ $$\log(\frac{p_{ij}}{1-p_{ij}})=a_i+b_i*{\rm (summer)}_{ij}+c_i*{\rm  (pitbull)}
 - Level 2
 \begin{eqnarray*}  
   a_i&=\alpha_0+u_i\\
+  b_i& =\beta_0\\
+  c_i& =\gamma_0\\
+  d_i& =\delta_0\\
 \end{eqnarray*}  
 
 The variance component is described by:
@@ -445,9 +448,6 @@ Patronek, G. J., & Crowe, A. (2018). Factors Associated with High Live Release f
 
 
 ## Annotated Appendix
-
-======
-
 
 
   -	Tables and figures that are informative but were not referenced specifically in the main report.  Include a short annotation – one or two sentences on what they show.
