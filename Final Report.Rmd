@@ -76,19 +76,19 @@ kable(tab,
 
   In order to fit a binomial regression, we had to summarise our dataset with respect to certain variables we controlled for in our model. One interesting issue that we encountered was the significance of the dataset we fit on SE estimates. If we summarized our data for each specific model, parameter estimates had increased SEs and more insignificant p-values. However, if we fit all of our models on the same, more extensive, summary table, SEs were small and parameters were more likely to be significant. We decided to proceed with the latter option, as it allows us to carry out nested F tests and would be more like a modeling process for true grouped data. This could mean that our SEs are artifically low.
 
-  We used binomial regression to compare how the outcomes of pitbulls differ from other breeds of dog. In fitting this model we had to control for a plethora of cofounding variables including season of outcome, chip status, and intake condition of the animal. We also considered a multilevel model to account for difference in district correlation. Next we used a binomial regression to compare how the outcomes of dogs and cats differ, after controlling for season of outcome, chip status, and intake condition of the animal. We used findings from our exploratory data analysis to guide decisions on variable selection. Additionally we refered to models fit in the literature to guide decisions about model inclusion.
+  We used quasibinomial regression to compare how the outcomes of pitbulls differ from other breeds of dog. In fitting this model we had to control for a plethora of cofounding variables including season of outcome, chip status, and intake condition of the animal. We also considered a multilevel model to account for difference in district correlation. 
 
   We also fit multilevel logistic regression models to compare ourcomes after accounting for correlation within city council districts. Our modeling process took on a similar approach to the binomial regression, we examined differences in odds of dying for pitbulls and non-pitbulls after accounting for differences in chip status, and season.  
 
   To investigate the ammount of time that dogs are spending in the animal shelter before dying we used cox proportional hazards. Cox proportional hazards is a semi parametric model used in survival to analyze how variables of interest affect the time till an event occuring. As the name suggests this is commonly used to investigate what factors affect time till death. This is done by comparing hazard rates using a hazard ratio. The hazard ratio is the ratio of hazard rates between groups, a hazard rate is the rate at which the outcome is happening. So, this type of model investigates how variables affect the rate at which outcomes happen.
 
-  The cox proportional hazards model is a semiparametric model, this means that this model does not make assumptions about the underlying distribution of data, but it does assume that the hazard ratios for any two individuals is constant over time. In other words, the risk of the outcome of interest happening for one individual at every time point must be proportionally constant to all other individuals.
+  The Cox Proportional Hazards model is a semiparametric model, this means that this model does not make assumptions about the undMrlying distribution of data, but it does assume that the hazard ratios for any two individuals is constant over time. In other words, the risk of the outcome of interest happening for one individual at every time point must be proportionally constant to all other individuals.
 
   This model follows the general form
 
   $$h(t)=h_0(t)*\exp\{b_1*x_1+b_2*x_2+....+b_p*x_p\}$$.
 
-  where $h_0(t)$ is called the baseline hazard rate and is an estimation of the hazard rate of an individual at time t with $x_1$ to $x_p$ all equal to 0 having the outcome of interest already happened. $b_1$ to $b_p$ are the hazard ratio estimates. These are estimations of how much the hazard rate will change at time t compared to the baseline hazard rate at time t. This model also allows us to censor our data. Censoring is when everything that is not the outcome is labled as censored. This is nice because if an individual transferes to a different animal shelter we can still include this animal even though we dont know what happend to it. We know that till time t the animal was ok, but after time t it is no longer part of our analysis. This allows us to include all outcome possibilities for our analysis.
+  where $h_0(t)$ is called the baseline hazard rate and is an estimation of the hazard rate of an individual at time t with $x_1$ to $x_p$ all equal to 0 having the outcome of interest already happened. $b_1$ to $b_p$ are the hazard ratio estimates. These are estimations of how much the hazard rate will change at time t compared to the baseline hazard rate at time t. This model also allows us to censor our data. We do not know if an animal that is trasfered dies in the animal shelter, so that variable is censored at the time of the otcome. This us allows us to consider all of our data without making assumptions on whether the animal is dead or alive.
 
 
 ## Results
@@ -157,10 +157,6 @@ mlm_dead %>%
 
 ```
 
-
-
-
-#### EDA Results: Dog and Cat Differences
 
 #### EDA Results: Time Till Death for Dogs
 
@@ -348,17 +344,10 @@ stargazer(mod.2.dead,
 
 ```
 
-#### Modeling Dog and Cat Differences
 
- In our modeling of Dog and Cat differences we used used binomial regression. To model this we considered the following model:
+#### Modeling Time Until Death for Pitbulls
 
-$$log(\frac{p_{i}}{1-p_{i}})=\beta_0+\beta_1 {\rm (Dog)} + \beta_i{\rm (Confounder)}_i$$
-
-We considered several models with different confounders controled for based on findings in the literature and our EDA. We were not able to find any significant difference in the odds of death between dogs and cat. We conclude that there is not evidence of a significant difference between dogs and cats in odds of dying in an animal shelter after accounting for chip_status, season of outcome, and intake condition. These models can be found in the Dog Cat portion of our appendix.
-
-#### Modeling Time Till Death for Pitbulls
-
-  We approached this task by using cox proportional hazards. We wanted to control for chip_status and summer, but the proportional hazards assumption was no longer met when we added these confounding variables to our model. To get around this, we subset our data into 4 smaller datasets, one where it was the summer and all the animals had a chip, one where it was not the summer and all the animals had chips, one where it was summer and none of the animals had chips, and one where it was not the summer and the animals did not have chips. For each of our 4 datasets we fit the following model:
+  We approached this task by using Cox Proportional Hazards. We wanted to control for chip_status and summer, but the proportional hazards assumption was no longer met when we added these confounding variables to our model. To get around this, we subset our data into 4 smaller datasets, one where it was the summer and all the animals had a chip, one where it was not the summer and all the animals had chips, one where it was summer and none of the animals had chips, and one where it was not the summer and the animals did not have chips. For each of our 4 datasets we fit the following model:
 
   $$h(t)=h_0(t)*\exp\{b_1*{\rm Pitbull} \}$$.
 
@@ -457,6 +446,18 @@ Patronek, G. J., & Crowe, A. (2018). Factors Associated with High Live Release f
 
 
 ### Dogs vs Cats
+
+#### EDA Results: Dog and Cat Differences
+
+
+
+#### Modeling Dog and Cat Differences
+
+ In our modeling of Dog and Cat differences we used used binomial regression. To model this we considered the following model:
+
+$$log(\frac{p_{i}}{1-p_{i}})=\beta_0+\beta_1 {\rm (Dog)} + \beta_i{\rm (Confounder)}_i$$
+
+We considered several models with different confounders controled for based on findings in the literature and our EDA. We were not able to find any significant difference in the odds of death between dogs and cat. We conclude that there is not evidence of a significant difference between dogs and cats in odds of dying in an animal shelter after accounting for chip_status, season of outcome, and intake condition.
 
 ```{r}
 cat_dog_binom <- adoptions %>%
