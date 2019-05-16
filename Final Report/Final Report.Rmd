@@ -360,7 +360,7 @@ kable(time_in_animal_shelter,
 
 We also found that the average time a pitbull spends in a shelter is longer than the average time a non pitbull spends in a shelter. Pitbulls are spending more time in the animal shelter and therefore having more oportunities to be adpoted and still have a higher proportion die in the animal shelter.
 
-#### Modeling Time UntilDeath for Pitbulls
+#### Modeling Time Until Death for Pitbulls
 
   We approached this task by using Cox proportional hazards. We wanted to control for `chip_status` and `summer`, but the proportional hazards assumption was no longer met when we added these confounding variables to our model (see appendix). To get around this, we stratified our data by both `summer` and `chip_status`. For each of these 4 strata we fit the model $h(t)=h_0(t)*\exp\{b_1*{\rm Pitbull} \}$. Our findings are summarised in Table 5 below.
 
