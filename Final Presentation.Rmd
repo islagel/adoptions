@@ -154,7 +154,75 @@ stargazer(pitbull_model1_quasi, pitbull_model2_quasi, pitbull_model3_quasi,
 
 ### Cox Proportional Hazard Results
 
+```{r, echo=FALSE, message=FALSE, include=FALSE, fig.align="center"}
+adoptions_1 <- read_csv(data_path)
 
+adoptions_surv=adoptions_1%>%
+  mutate(intake_date=as.Date(intake_date),
+         outcome_date=as.Date(outcome_date))%>%
+  mutate(days_in_shelter=difftime(outcome_date, intake_date, units = "days"),
+         days_in_shelter=as.numeric(days_in_shelter)+1)%>%
+  filter(outcome_type!="DEAD ON ARRIVAL")%>%
+  mutate(death=ifelse(outcome_type=="DIED", 1, 0),
+         death=ifelse(outcome_type=="EUTHANIZED", 1, death),
+         censored=ifelse(death==1, 2, 1))%>%
+  filter(animal_type=="DOG")%>%
+  mutate(animal_breed=as.factor(animal_breed))%>%
+  mutate(healthy_intake=ifelse(grepl("^HEALTHY.*",intake_condition),1,0),
+         contagious_intake=ifelse(grepl(".*[^NON-]CONTAGIOUS", intake_condition),1,0),
+         untreatable_intake=ifelse(grepl(".*(UNTREATABLE).*", intake_condition),1,0),
+         treatable_intake=ifelse(grepl("^TREATABLE.*", intake_condition),1,0),
+         manageable_intake=ifelse(grepl(".*MANAGEABLE.*", intake_condition),1,0),
+         rehabitable_intake=ifelse(grepl(".*REHABILITABLE.*", intake_condition),1,0),
+         normal_intake=ifelse(grepl(".*NORMAL.*", intake_condition),1,0),
+         chip_status = ifelse(chip_status=="SCAN CHIP", 1, 0),
+         summer = ifelse(month %in% c(5, 6, 7, 8, 9), 1, 0))
+```
+
+```{r, echo=FALSE, include=FALSE}
+adop.1.1=adoptions_surv%>%
+  filter(summer==1, chip_status==1)
+adop.0.1=adoptions_surv%>%
+  filter(summer==0, chip_status==1)
+adop.1.0=adoptions_surv%>%
+  filter(summer==1, chip_status==0)
+adop.0.0=adoptions_surv%>%
+  filter(summer==0, chip_status==0)
+
+surv.mod.1.1=coxph(Surv(days_in_shelter, censored)~pitbull,
+               data=adop.1.1)
+surv.mod.0.1=coxph(Surv(days_in_shelter, censored)~pitbull,
+                   data=adop.0.1)
+surv.mod.1.0=coxph(Surv(days_in_shelter, censored)~pitbull,
+                   data=adop.1.0)
+surv.mod.0.0=coxph(Surv(days_in_shelter, censored)~pitbull,
+                   data=adop.0.0)
+```
+
+
+```{r, results = "asis", echo = FALSE, message=FALSE}
+
+ci.func <- function(model){
+  exp(confint(model))
+}
+
+
+stargazer(surv.mod.1.1, surv.mod.1.0, surv.mod.0.1, surv.mod.0.0,
+          align=TRUE,
+          title = "$b_1$ Estimates for Each Strata",
+          header=FALSE,
+          table.placement = "H",
+          apply.coef = exp,
+          ci=TRUE,
+          ci.custom = list(ci.func(surv.mod.1.1), ci.func(surv.mod.1.0), ci.func(surv.mod.0.1), ci.func(surv.mod.0.1), ci.func(surv.mod.0.0)),
+          dep.var.caption = "Strata",
+          dep.var.labels = "",
+          model.numbers = FALSE,
+          column.labels = c("Summer and Chip", "Summer and No Chip", "Not Summer and Chip", "Neither Summer or Chip"),
+          omit.stat = "all",
+          font.size = "tiny"
+          )
+```
 
 #Discussion 
 
