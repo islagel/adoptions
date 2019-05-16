@@ -262,7 +262,7 @@ stargazer(surv.mod.1.1, surv.mod.1.0, surv.mod.0.1, surv.mod.0.0,
 ### Discussion
 
 - Pitbulls have far larger chance of dying in animal shelter than non-pitbuls 
-    - quasibinomial regression 
+    - quasi-binomial regression 
     - random intercepts approach
     - Cox proportional hazards approach
 - What can be done to address this?
