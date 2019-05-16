@@ -86,7 +86,7 @@ kable(tab,
 
   This model follows the general form
 
-  $$h(t)=h_0(t)*e^{b_1*x_1+b_2*x_2+....+b_p*x_p}$$.
+  $$h(t)=h_0(t)*\exp\{b_1*x_1+b_2*x_2+....+b_p*x_p\}$$.
 
   where $h_0(t)$ is called the baseline hazard rate and is an estimation of the hazard rate of an individual at time t with $x_1$ to $x_p$ all equal to 0 having the outcome of interest already happened. $b_1$ to $b_p$ are the hazard ratio estimates. These are estimations of how much the hazard rate will change at time t compared to the baseline hazard rate at time t. This model also allows us to censor our data. Censoring is when everything that is not the outcome is labled as censored. This is nice because if an individual transferes to a different animal shelter we can still include this animal even though we dont know what happend to it. We know that till time t the animal was ok, but after time t it is no longer part of our analysis. This allows us to include all outcome possibilities for our analysis.
 
@@ -290,7 +290,7 @@ Our model has two levels,
 
 - Level 1
 
-  $$log(\frac{p_{ij}}{1-p_{ij}})=a_i+b_i*summer_{ij}+c_i*pitbull_{ij}+d_i*chipstatus_{ij}$$
+$$\log(\frac{p_{ij}}{1-p_{ij}})=a_i+b_i*{\rm (summer)}_{ij}+c_i*{\rm  (pitbull)}_{ij}+d_i*(\rm chip\ status)_{ij}$$
 
 
 
@@ -352,7 +352,7 @@ stargazer(mod.2.dead,
 
  In our modeling of Dog and Cat differences we used used binomial regression. To model this we considered the following model:
 
-$$log(\frac{p_{i}}{1-p_{i}})=\beta_0+\beta_1 DogYN + \beta_i(Confounder_i)$$
+$$log(\frac{p_{i}}{1-p_{i}})=\beta_0+\beta_1 {\rm (Dog)} + \beta_i{\rm (Confounder)}_i$$
 
 We considered several models with different confounders controled for based on findings in the literature and our EDA. We were not able to find any significant difference in the odds of death between dogs and cat. We conclude that there is not evidence of a significant difference between dogs and cats in odds of dying in an animal shelter after accounting for chip_status, season of outcome, and intake condition. These models can be found in the Dog Cat portion of our appendix.
 
@@ -360,7 +360,7 @@ We considered several models with different confounders controled for based on f
 
   We approached this task by using cox proportional hazards. We wanted to control for chip_status and summer, but the proportional hazards assumption was no longer met when we added these confounding variables to our model. To get around this, we subset our data into 4 smaller datasets, one where it was the summer and all the animals had a chip, one where it was not the summer and all the animals had chips, one where it was summer and none of the animals had chips, and one where it was not the summer and the animals did not have chips. For each of our 4 datasets we fit the following model:
 
-  $$h(t)=h_0(t)*e^{b_1*Pitbull}$$.
+  $$h(t)=h_0(t)*\exp\{b_1*{\rm Pitbull} \}$$.
 
   We found that in all 4 subsets of the data the coefficient for pitbull is significant. The hazard ratio ranged from 1.69 in the subset where it is not the summer and all the animals have chips to 1.94 in the not summer and all animals do not have a chip dataset. In laymens terms this means that on average at any time during an animals stay at the animal shelter 1.69 to 1.94 times as many pitbulls have died as non pitbulls.
 
