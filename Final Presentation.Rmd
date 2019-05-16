@@ -2,7 +2,7 @@
 title: "Dallas Animal Shelter Analysis"
 author: "Jack Welsh and Isaac Slagel"
 date: "May 16, 2019"
-header-includes: \usepackage{dcolumn} \usepackage{float} \usepackage{longtable,booktabs} \usepackage{colortbl}
+header-includes: \usepackage{dcolumn} \usepackage{float} \usepackage{longtable,booktabs} \usepackage{colortbl} \usepackage{multicol}
 output:
   beamer_presentation:
     theme: "Frankfurt"
@@ -33,9 +33,11 @@ here::here()
 # Introduction
 
 ### Background
+```{r, echo=FALSE, out.height="60%", out.width="60%", fig.align="right"}
+include_graphics("pitbull.jpg")
+```
 
-![Pitbull](pitbull.jpg)
-
+- Test
 
 ### EDA 
 ```{r, echo=FALSE, fig.align="center", out.width="80%", out.height="80%", fig.cap="Outcomes for Pitbulls v.s. Non Pitbulls"}
@@ -149,10 +151,14 @@ stargazer(pitbull_model1_quasi, pitbull_model2_quasi, pitbull_model3_quasi,
 ### Cox Proportional Hazards 
 
 - Used for looking at time till event.
+
 - Follows the general form $h(t)=h_0(t)*\exp\{b_1*x_1+b_2*x_2+....+b_p*x_p\}.$
+
 - Only assumes that the hazards are proportional. 
 
 ### Cox Proportional Hazard Results
+
+- Our Model: $h(t)=h_0(t)*\exp\{b_1*{\rm Pitbull} \}$
 
 ```{r, echo=FALSE, message=FALSE, include=FALSE, fig.align="center"}
 adoptions_1 <- read_csv(data_path)
