@@ -35,7 +35,7 @@ adoptions <- read_csv("adoptions.csv")
 ## Introduction  
 
 
-  According to an ASPCA estimate, over 6.5 millions animals enter a shelter system every year. (Cite 1). After entering the shelter system animals are either rehabilitated and sent to homes or euthanized. Animal shelters, while running mostly on revenue from donations and adoption fees, routinely run into perminant defieciets and must be supported with money from local governments (Cite 2). Knowing more about the outcomes of animals from these shelters could help us minimize the percent of animals that need to be euthanized. Further, by identifying which animals are less likely to be adopted, we can help shelters allocate resources to minimize the time these animals spend in the shelter system.
+  According to an ASPCA estimate, over 6.5 millions animals enter a shelter system every year. (Shelter Intake and Surrender, ASPCA). After entering the shelter system animals are either rehabilitated and sent to homes or euthanized. Animal shelters, while running mostly on revenue from donations and adoption fees, routinely run into perminant defieciets and must be supported with money from local governments (Goselin et. al. 2011). Knowing more about the outcomes of animals from these shelters could help us minimize the percent of animals that need to be euthanized. Further, by identifying which animals are less likely to be adopted, we can help shelters allocate resources to minimize the time these animals spend in the shelter system.
 
   Our research looks into animal shelters in the Dallas area using a dataset provided by the city of Dallas on dallasopendata.com. This data includes information about every animal that has been brought into an animal shelter in the Dallas area. There are `r nrow(adoptions)` individual animals in this dataset with with information about when and where the animal was found, the health of the animal on arrival, and whether the animal was adopted, euthinized or transfered.
 
@@ -424,7 +424,7 @@ stargazer(surv.mod.1.1, surv.mod.1.0, surv.mod.0.1, surv.mod.0.0,
   -	Discuss possible implications of the results in the context of the research question.
 
 
-  We have demonstrated clear evidence that pitbulls that come into the Dallas animal shelter system have a far higher risk of dying in the shelter system. We demonstrated this consistently through a binomial approach, a multilevel approach, and a survival analysis based approach. We would urge the Dallas animal shelter system to consider allocating more resources to pitbulls coming into the shelter. Perhaps by implementing more training programs for these animals, better marketing them, or advocating for more pitbulls to be fostered, fewer pitbulls would need to be euthanized in the Dallas animal shelter system. 
+  We have demonstrated clear evidence that pitbulls that come into the Dallas animal shelter system have a far higher risk of dying in the shelter system. We demonstrated this consistently through a binomial approach, a multilevel approach, and a survival analysis based approach. We would urge the Dallas animal shelter system to consider allocating more resources to pitbulls coming into the shelter. Lampe and Witte 2015 evidenced the effect that photogenicity can have on animal adoption. Perhaps by better marketing at risk animals, implementing more training programs for these animals, or advocating for more pitbulls to be fostered, fewer pitbulls would need to be euthanized in the Dallas animal shelter system.
 
 
   -	Make a statement regarding potential confounding variables in your study
@@ -462,20 +462,25 @@ One weakness of our analysis came in the quasibinomial modeling of dog outcomes.
 
 
 
-1. https://www.aspca.org/animal-homelessness/shelter-intake-and-surrender
-2. https://rucore.libraries.rutgers.edu/rutgers-lib/38418/PDF/1/play/
+[Goselin, C., Letson, K., McGuinniss, K., Walters, A., & Fagan, J. M. (2011). Animal shelter funding.](https://rucore.libraries.rutgers.edu/rutgers-lib/38418/PDF/1/play/)
 
-Patronek, G. J., & Crowe, A. (2018). Factors Associated with High Live Release for Dogs at a Large, Open-Admission, Municipal Shelter. Animals : an open access journal from MDPI, 8(4), 45. doi:10.3390/ani8040045
+[Shelter Intake and Surrender. (n.d.). Retrieved from https://www.aspca.org/animal-homelessness/shelter-intake-and-surrender](https://www.aspca.org/animal-homelessness/shelter-intake-and-surrender)
+
+[Lampe, R., & Witte, T. H. (2015). Speed of dog adoption: Impact of online photo traits. Journal of applied animal welfare science, 18(4), 343-354.](https://www.tandfonline.com/doi/abs/10.1080/10888705.2014.982796)
 
 [Lepper, M., Kass, P. H., & Hart, L. A. (2002). Prediction of adoption versus euthanasia among dogs and cats in a California animal shelter. Journal of Applied Animal Welfare Science, 5(1), 29-42.](https://www.tandfonline.com/doi/abs/10.1207/S15327604JAWS0501_3)
 
+[Patronek, G. J., & Crowe, A. (2018). Factors Associated with High Live Release for Dogs at a Large, Open-Admission, Municipal Shelter. Animals : an open access journal from MDPI, 8(4), 45. doi:10.3390/ani8040045](https://www.mdpi.com/2076-2615/8/4/45)
+
 [Posage, J. M., Bartlett, P. C., & Thomas, D. K. (1998). Determining factors for successful adoption of dogs from an animal shelter. Journal of the American Veterinary Medical Association, 213(4), 478-482.](https://europepmc.org/abstract/med/9713528)
 
-[Lampe, R., & Witte, T. H. (2015). Speed of dog adoption: Impact of online photo traits. Journal of applied animal welfare science, 18(4), 343-354.](https://www.tandfonline.com/doi/abs/10.1080/10888705.2014.982796)
+
 
 
 
 ## Annotated Appendix
+
+All of our work can be accessed in a public Github repository at https://github.com/islagel/adoptions. 
 
 
   -	Tables and figures that are informative but were not referenced specifically in the main report.  Include a short annotation – one or two sentences on what they show.
