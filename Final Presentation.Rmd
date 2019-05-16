@@ -3,48 +3,63 @@ title: "Dallas Animal Shelter Analysis"
 author: "Jack Welsh and Isaac Slagel"
 date: "May 16, 2019"
 output:
-  ioslides_presentation: default
-  beamer_presentation: default
+  beamer_presentation:
+    theme: "Copenhagen"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Background
+```{r, include = FALSE}
+library(tidyverse)
+library(readr)
+library(lubridate)
+library(survival)
+library(survminer)
+library(kableExtra)
+library(knitr)
+library(lme4)
+library(stargazer)
 
-```{r}
 data_path <- here::here("adoptions.csv")
 adoptions <- read_csv(data_path)
+here::here()
 ```
 
+\section{Intoduction}
 
-![Pitbull]("pitbull.jpg")
-
-
-## EDA 
+# Background
 
 
+![Pitbull](pitbull.jpg)
 
-## Methods
+
+# EDA 
+
+
+\section{Modeling}
+# Methods
 
 - Bullet 1
 - Bullet 2
 - Bullet 3
 
-## Cox Proportional Hazards 
+# Cox Proportional Hazards 
 
 ```{r cars, echo = TRUE}
 summary(cars)
 ```
 
-## Result Part 1
+# Results
+
+# Result Part 1
 
 ```{r pressure}
 plot(pressure)
 ```
 
 
-## Results Part 2
+# Results Part 2
 
 
