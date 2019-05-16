@@ -73,6 +73,15 @@ adoptions %>%
 
 ### Quasibinomial Model 
 
+ - Modeling the odds of dying at outcome 
+ - Interested in the `pitbull` coefficient 
+ - Need to control for:
+    - season
+    - chip status
+    - intake condition
+
+### Quasibinomial Model 
+
 ```{r pitbull model table, results = "asis", echo = FALSE, message=FALSE}
 
 
