@@ -38,33 +38,27 @@ here::here()
 
 
 ### EDA 
-
-```{r pitbull EDA table, echo = FALSE}
-proper=function(x) paste0(toupper(substr(x, 1, 1)), tolower(substring(x, 2)))
-
-
+```{r, echo=FALSE, fig.align="center", out.width="80%", out.height="80%", fig.cap="Outcomes for Pitbulls v.s. Non Pitbulls"}
 adoptions %>%
   filter(dog == 1) %>%
-  mutate(outcome = as.factor(outcome_type),
-         pitbull = as.factor(pitbull)) %>%
-  group_by(pitbull, outcome_type) %>%
-  dplyr::count()%>%
-  rename("freq"=n)%>%
+  filter(outcome_type%in%c("ADOPTION", "EUTHANIZED", "RETURNED TO OWNER", "TRANSFER"))%>%
+  mutate(adopted=ifelse(outcome_type=="ADOPTION",1,0),
+         euthanized=ifelse(outcome_type=="EUTHANIZED", 1, 0), 
+         rto=ifelse(outcome_type=="RETURNED TO OWNER",1,0),
+         transfer=ifelse(outcome_type=="TRANSFER",1,0))%>%
   group_by(pitbull)%>%
-  mutate(freq = freq/ sum(freq))%>%
-  spread(outcome_type,freq) %>%
-  gather(key = Outcome, value = value, -pitbull) %>%
-  spread(key = pitbull, value = value) %>%
-  select(1,3,2) %>%
-  rename( "Pitbull (%)" = `1`, "Non-Pitbull (%)" = `0`) %>%
-  mutate(Outcome = proper(Outcome), `Pitbull (%)` =100*`Pitbull (%)` , `Non-Pitbull (%)`=`Non-Pitbull (%)`*100 )%>%
-  arrange(desc(`Pitbull (%)`))%>%
-  kable(digits = 2,
-        linesep = "",
-        format = "latex",
-        booktabs = T,
-        caption = "Pitbull Outcomes")%>%
-  kable_styling(latex_options =  c("striped", "HOLD_position"), font_size = 8)
+  summarise(count=n(),
+            `Proportion Adopted`=sum(adopted)/count,
+            `Proportion Euthanized`=sum(euthanized)/ count,
+            `Proportion Returned to Owner`=sum(rto)/ count,
+            `Proportion Transfered`=sum(transfer)/count)%>%
+  gather(key="measurement", value= "Proportion", 3:6)%>%
+  mutate(pitbull=ifelse(pitbull==1, "Yes", "No"))%>%
+  rename("Pitbull"=pitbull)%>%
+  ggplot(aes(x=Pitbull, y=Proportion)) +
+    geom_col()+
+    facet_wrap(~measurement, ncol=4)+
+  theme_minimal()
 ```
 
 
