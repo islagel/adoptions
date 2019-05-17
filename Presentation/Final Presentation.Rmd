@@ -65,10 +65,10 @@ adoptions %>%
          transfer=ifelse(outcome_type=="TRANSFER",1,0))%>%
   group_by(pitbull)%>%
   summarise(count=n(),
-            `Proportion Adopted`=sum(adopted)/count,
-            `Proportion Euthanized`=sum(euthanized)/ count,
-            `Proportion Returned to Owner`=sum(rto)/ count,
-            `Proportion Transfered`=sum(transfer)/count)%>%
+            `Adopted`=sum(adopted)/count,
+            `Euthanized`=sum(euthanized)/ count,
+            `Returned to Owner`=sum(rto)/ count,
+            `Transfered`=sum(transfer)/count)%>%
   gather(key="measurement", value= "Proportion", 3:6)%>%
   mutate(pitbull=ifelse(pitbull==1, "Yes", "No"))%>%
   rename("Pitbull"=pitbull)%>%
@@ -166,11 +166,11 @@ stargazer(pitbull_model1_quasi, pitbull_model2_quasi, pitbull_model3_quasi,
 
 ### Cox Proportional Hazards 
 
-- Used for looking at time till event.
+- Used for modeling event occurance over time
 
-- Follows the general form $h(t)=h_0(t)*\exp\{b_1*x_1+b_2*x_2+....+b_p*x_p\}.$
+- Follows the general form $h(t)=h_0(t)*\exp\{b_1*x_1+b_2*x_2+....+b_p*x_p\}$
 
-- Only assumes that the hazards are proportional. 
+- Only assumes that the hazards are proportional
 
 ```{r, echo=FALSE, fig.align="center", out.width="60%", out.height="60%", warning=FALSE, message=FALSE}
 
@@ -241,7 +241,7 @@ ci.func <- function(model){
 
 stargazer(surv.mod.1.1, surv.mod.1.0, surv.mod.0.1, surv.mod.0.0,
           align=TRUE,
-          title = "$b_1$ Estimates for Each Strata",
+          title = "$\\exp(b_1)$ Estimates for Each Strata",
           header=FALSE,
           table.placement = "H",
           apply.coef = exp,
@@ -262,8 +262,9 @@ stargazer(surv.mod.1.1, surv.mod.1.0, surv.mod.0.1, surv.mod.0.0,
 ### Discussion
 
 - Pitbulls have far larger chance of dying in animal shelter than non-pitbuls 
-    - quasi-binomial regression 
-    - random intercepts approach
+    - Quasi-binomial regression 
+    - Random intercepts approach
     - Cox proportional hazards approach
 - What can be done to address this?
 
+### Questions?
